@@ -1,0 +1,17 @@
+{
+    "red": {
+        "R": 255,
+        "G": 0,
+        "B": 0,
+        "ID": ["",""]
+    },
+    
+    "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}
