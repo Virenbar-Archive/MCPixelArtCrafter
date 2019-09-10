@@ -48,6 +48,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -81,6 +84,12 @@
     <Compile Include="Controls\CheckBlock.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\SmartPB.Designer.vb">
+      <DependentUpon>SmartPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SmartPB.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -88,10 +97,22 @@
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.vb">
+    <Compile Include="Forms\FormSettings.Designer.vb">
       <DependentUpon>FormSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormSettings.vb">
+    <Compile Include="Forms\FormSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BlockPreview.Designer.vb">
+      <DependentUpon>BlockPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BlockPreview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapPreview.Designer.vb">
+      <DependentUpon>MapPreview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MapPreview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -120,10 +141,13 @@
     <EmbeddedResource Include="Controls\CheckBlock.resx">
       <DependentUpon>CheckBlock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SmartPB.resx">
+      <DependentUpon>SmartPB.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
+    <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -137,19 +161,26 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Default\MapColors.json">
+    <Content Include="Default\MapColors.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\FormMain.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DefaultImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
