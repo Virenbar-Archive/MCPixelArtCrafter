@@ -1,0 +1,6 @@
+{
+    "Blocks": [
+        {"ID": "stone","name": "Stone","texture": "stone.png","default": true},
+        {}
+    ]
+}
