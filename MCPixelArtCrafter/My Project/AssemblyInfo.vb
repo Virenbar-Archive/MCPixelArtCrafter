@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("MCPixelArtCrafter")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("IT Organization")>
+<Assembly: AssemblyCompany("Virenbar")>
 <Assembly: AssemblyProduct("MCPixelArtCrafter")>
-<Assembly: AssemblyCopyright("Copyright © IT Organization 2019")>
+<Assembly: AssemblyCopyright("Copyright © Virenbar 2019")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.1.0.0")>
+<Assembly: AssemblyFileVersion("0.1.0.0")>

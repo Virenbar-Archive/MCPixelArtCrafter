@@ -39,7 +39,8 @@ Partial Class FormMain
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(713, 430)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(703, 435)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 2
@@ -56,22 +57,22 @@ Partial Class FormMain
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
         Me.GroupBox1.Controls.Add(Me.RadioButton1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 377)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 382)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(141, 76)
+        Me.GroupBox1.Size = New System.Drawing.Size(127, 67)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox1.Text = "Mode"
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Location = New System.Drawing.Point(6, 42)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(90, 17)
+        Me.RadioButton2.Size = New System.Drawing.Size(104, 17)
         Me.RadioButton2.TabIndex = 1
         Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "RadioButton2"
+        Me.RadioButton2.Text = "Use block colors"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton1
@@ -79,27 +80,28 @@ Partial Class FormMain
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(90, 17)
+        Me.RadioButton1.Size = New System.Drawing.Size(98, 17)
         Me.RadioButton1.TabIndex = 0
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "RadioButton1"
+        Me.RadioButton1.Text = "Use map colors"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'Bt_Settings
         '
-        Me.Bt_Settings.Location = New System.Drawing.Point(12, 348)
+        Me.Bt_Settings.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Bt_Settings.Location = New System.Drawing.Point(703, 353)
         Me.Bt_Settings.Name = "Bt_Settings"
         Me.Bt_Settings.Size = New System.Drawing.Size(75, 23)
         Me.Bt_Settings.TabIndex = 4
-        Me.Bt_Settings.Text = "Button2"
+        Me.Bt_Settings.Text = "Settings"
         Me.Bt_Settings.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 456)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 461)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
         Me.StatusStrip1.TabIndex = 5
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -110,7 +112,8 @@ Partial Class FormMain
         '
         'SelectImage
         '
-        Me.SelectImage.Location = New System.Drawing.Point(159, 430)
+        Me.SelectImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SelectImage.Location = New System.Drawing.Point(12, 353)
         Me.SelectImage.Name = "SelectImage"
         Me.SelectImage.Size = New System.Drawing.Size(96, 23)
         Me.SelectImage.TabIndex = 7
@@ -119,10 +122,12 @@ Partial Class FormMain
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(261, 432)
+        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox1.Location = New System.Drawing.Point(114, 355)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(583, 20)
         Me.TextBox1.TabIndex = 8
         '
         'SmartPB1
@@ -132,14 +137,15 @@ Partial Class FormMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SmartPB1.Location = New System.Drawing.Point(12, 12)
         Me.SmartPB1.Name = "SmartPB1"
-        Me.SmartPB1.Size = New System.Drawing.Size(776, 318)
+        Me.SmartPB1.Size = New System.Drawing.Size(766, 335)
         Me.SmartPB1.TabIndex = 6
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 478)
+        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.ClientSize = New System.Drawing.Size(790, 483)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.SelectImage)
         Me.Controls.Add(Me.SmartPB1)
@@ -148,7 +154,7 @@ Partial Class FormMain
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button1)
         Me.Name = "FormMain"
-        Me.Text = "Form1"
+        Me.Text = "MC PixelArtCrafter"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)

@@ -1,12 +1,13 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
-
 Public Class FormMain
     Dim ImagePath As String
     Dim InputImage As Bitmap
+    'Dim MCC As New MapColorsCollection
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetImage(Path.GetFullPath("DefaultImage.png"))
-
+        'MCC.Load()
+        MapColorsCollection.Load()
         'JsonConvert.DeserializeObject(Of Block)("")
     End Sub
 
@@ -23,5 +24,11 @@ Public Class FormMain
         InputImage = New Bitmap(ImagePath)
         SmartPB1.SetImage(InputImage)
         TextBox1.Text = ImagePath
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        MapPreview.Generate(InputImage)
+        MapPreview.ShowDialog()
+        'AboutBox1.Show()
     End Sub
 End Class
