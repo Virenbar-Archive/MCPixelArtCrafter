@@ -22,30 +22,31 @@ Partial Class FormMain
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Create = New System.Windows.Forms.Button()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RB_Block = New System.Windows.Forms.RadioButton()
+        Me.RB_Map = New System.Windows.Forms.RadioButton()
         Me.Bt_Settings = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.SelectImage = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.SmartPB1 = New MCPixelArtCrafter.SmartPB()
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Button1
+        'Create
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(703, 435)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Create.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Create.Location = New System.Drawing.Point(344, 435)
+        Me.Create.Name = "Create"
+        Me.Create.Size = New System.Drawing.Size(118, 23)
+        Me.Create.TabIndex = 2
+        Me.Create.Text = "Create image"
+        Me.Create.UseVisualStyleBackColor = True
         '
         'OFD
         '
@@ -55,8 +56,8 @@ Partial Class FormMain
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.RadioButton2)
-        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Controls.Add(Me.RB_Block)
+        Me.GroupBox1.Controls.Add(Me.RB_Map)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 382)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(127, 67)
@@ -64,32 +65,32 @@ Partial Class FormMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Mode"
         '
-        'RadioButton2
+        'RB_Block
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(6, 42)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(104, 17)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Use block colors"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.RB_Block.AutoSize = True
+        Me.RB_Block.Location = New System.Drawing.Point(6, 42)
+        Me.RB_Block.Name = "RB_Block"
+        Me.RB_Block.Size = New System.Drawing.Size(104, 17)
+        Me.RB_Block.TabIndex = 1
+        Me.RB_Block.Text = "Use block colors"
+        Me.RB_Block.UseVisualStyleBackColor = True
         '
-        'RadioButton1
+        'RB_Map
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(98, 17)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Use map colors"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.RB_Map.AutoSize = True
+        Me.RB_Map.Checked = True
+        Me.RB_Map.Location = New System.Drawing.Point(6, 19)
+        Me.RB_Map.Name = "RB_Map"
+        Me.RB_Map.Size = New System.Drawing.Size(98, 17)
+        Me.RB_Map.TabIndex = 0
+        Me.RB_Map.TabStop = True
+        Me.RB_Map.Text = "Use map colors"
+        Me.RB_Map.UseVisualStyleBackColor = True
         '
         'Bt_Settings
         '
-        Me.Bt_Settings.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Bt_Settings.Location = New System.Drawing.Point(703, 353)
+        Me.Bt_Settings.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Bt_Settings.Location = New System.Drawing.Point(703, 10)
         Me.Bt_Settings.Name = "Bt_Settings"
         Me.Bt_Settings.Size = New System.Drawing.Size(75, 23)
         Me.Bt_Settings.TabIndex = 4
@@ -112,8 +113,7 @@ Partial Class FormMain
         '
         'SelectImage
         '
-        Me.SelectImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SelectImage.Location = New System.Drawing.Point(12, 353)
+        Me.SelectImage.Location = New System.Drawing.Point(12, 10)
         Me.SelectImage.Name = "SelectImage"
         Me.SelectImage.Size = New System.Drawing.Size(96, 23)
         Me.SelectImage.TabIndex = 7
@@ -122,23 +122,25 @@ Partial Class FormMain
         '
         'TextBox1
         '
-        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(114, 355)
+        Me.TextBox1.Location = New System.Drawing.Point(114, 12)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(583, 20)
         Me.TextBox1.TabIndex = 8
         '
-        'SmartPB1
+        'PB
         '
-        Me.SmartPB1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.PB.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SmartPB1.Location = New System.Drawing.Point(12, 12)
-        Me.SmartPB1.Name = "SmartPB1"
-        Me.SmartPB1.Size = New System.Drawing.Size(766, 335)
-        Me.SmartPB1.TabIndex = 6
+        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PB.Location = New System.Drawing.Point(12, 39)
+        Me.PB.Name = "PB"
+        Me.PB.Size = New System.Drawing.Size(766, 337)
+        Me.PB.TabIndex = 9
+        Me.PB.TabStop = False
         '
         'FormMain
         '
@@ -146,32 +148,33 @@ Partial Class FormMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(790, 483)
+        Me.Controls.Add(Me.PB)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.SelectImage)
-        Me.Controls.Add(Me.SmartPB1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Bt_Settings)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Create)
         Me.Name = "FormMain"
         Me.Text = "MC PixelArtCrafter"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Create As Button
     Friend WithEvents OFD As OpenFileDialog
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents RB_Block As RadioButton
+    Friend WithEvents RB_Map As RadioButton
     Friend WithEvents Bt_Settings As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
-    Friend WithEvents SmartPB1 As SmartPB
     Friend WithEvents SelectImage As Button
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents PB As PictureBoxPAZ
 End Class

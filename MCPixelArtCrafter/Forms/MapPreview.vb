@@ -8,7 +8,6 @@
         ReDim Map(w, h)
         OutImage = New Bitmap(w, h)
 
-
         Dim closest As MapColor
         For x = 0 To w - 1
             For y = 0 To h - 1
@@ -24,6 +23,11 @@
     End Sub
 
     Private Sub MapPreview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        SmartPB1.SetImage(OutImage)
+        PB.SetImage(OutImage)
+        With FlowLayoutPanel1.Controls
+            .Add(New CheckBlock)
+            .Add(New CheckBlock)
+            .Add(New CheckBlock)
+        End With
     End Sub
 End Class

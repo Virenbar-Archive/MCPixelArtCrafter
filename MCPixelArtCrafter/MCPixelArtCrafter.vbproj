@@ -112,6 +112,9 @@
     <Compile Include="Controls\CheckBlock.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\PictureBoxPAZ.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\SmartPB.Designer.vb">
       <DependentUpon>SmartPB.vb</DependentUpon>
     </Compile>

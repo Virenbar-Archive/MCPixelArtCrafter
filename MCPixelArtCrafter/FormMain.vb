@@ -22,11 +22,12 @@ Public Class FormMain
     End Sub
     Private Sub SetImage(ImagePath As String)
         InputImage = New Bitmap(ImagePath)
-        SmartPB1.SetImage(InputImage)
+        PB.SetImage(InputImage)
         TextBox1.Text = ImagePath
+        'PanAndZoomPictureBox1.Image = InputImage
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
         MapPreview.Generate(InputImage)
         MapPreview.ShowDialog()
         'AboutBox1.Show()

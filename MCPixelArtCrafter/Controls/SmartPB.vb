@@ -1,5 +1,7 @@
-﻿Public Class SmartPB
+﻿<Obsolete("Replaced with PictureBoxPAZ")>
+Public Class SmartPB
     Dim OldPoint As Point
+
     Private Sub PB_MouseDown(sender As Object, e As MouseEventArgs) Handles PB.MouseDown
         OldPoint = e.Location
     End Sub
@@ -34,6 +36,12 @@
     End Sub
 
     Private Sub LeaveSPB(sender As Object, e As EventArgs) Handles MyPanel.MouseLeave
+
+    End Sub
+
+    Private Sub PB_Paint(sender As Object, e As PaintEventArgs) Handles PB.Paint
+        'e.Graphics.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+        'PB.Invalidate()
 
     End Sub
 End Class

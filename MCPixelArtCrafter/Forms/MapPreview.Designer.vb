@@ -22,31 +22,45 @@ Partial Class MapPreview
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SmartPB1 = New MCPixelArtCrafter.SmartPB()
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'SmartPB1
+        'PB
         '
-        Me.SmartPB1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.PB.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SmartPB1.Location = New System.Drawing.Point(12, 12)
-        Me.SmartPB1.Name = "SmartPB1"
-        Me.SmartPB1.Size = New System.Drawing.Size(776, 369)
-        Me.SmartPB1.TabIndex = 0
+        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PB.Location = New System.Drawing.Point(12, 12)
+        Me.PB.Name = "PB"
+        Me.PB.Size = New System.Drawing.Size(776, 283)
+        Me.PB.TabIndex = 0
+        Me.PB.TabStop = False
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(222, 319)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(416, 119)
+        Me.FlowLayoutPanel1.TabIndex = 1
         '
         'MapPreview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.SmartPB1)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
+        Me.Controls.Add(Me.PB)
         Me.Name = "MapPreview"
         Me.ShowIcon = False
         Me.Text = "Map Preview"
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents SmartPB1 As SmartPB
+    Friend WithEvents PB As PictureBoxPAZ
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
