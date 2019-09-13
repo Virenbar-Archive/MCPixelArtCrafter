@@ -51,12 +51,14 @@ Public Class PictureBoxPAZ
                     AddHandler MouseMove, AddressOf OnMouseMove
                     AddHandler MouseDown, AddressOf OnMouseDown
                     AddHandler MouseUp, AddressOf OnMouseUp
+                    AddHandler ClientSizeChanged, AddressOf OnResize
                 Else
                     RemoveHandler MouseEnter, AddressOf OnMouseEnter
                     RemoveHandler MouseWheel, AddressOf OnMouseWheel
                     RemoveHandler MouseMove, AddressOf OnMouseMove
                     RemoveHandler MouseDown, AddressOf OnMouseDown
                     RemoveHandler MouseUp, AddressOf OnMouseUp
+                    RemoveHandler ClientSizeChanged, AddressOf OnResize
                 End If
             End If
         End Set
@@ -112,7 +114,7 @@ Public Class PictureBoxPAZ
 
             tX += shiftX
             tY += shiftY
-            CheckT(tX, tY)
+            CheckT()
 
             If (shiftX <> 0) Then
                 Me._mouseDownPosition.X = e.Location.X
@@ -160,11 +162,17 @@ Public Class PictureBoxPAZ
         Me.SetZoomScale((_zoomScale + _zoomScale * e.Delta / 1000), e.Location)
     End Sub
 
-    Private Sub CheckT(ByRef tx As Integer, ByRef ty As Integer)
+    Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)
+        If MyBase.Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
+            CheckT()
+            Invalidate()
+        End If
+    End Sub
+    Private Sub CheckT()
         Dim dx = (ClientSize.Width - ImageSize.Width) * 1 / _zoomScale
         Dim dy = (ClientSize.Height - ImageSize.Height) * 1 / _zoomScale
-        tx = IIf(dx > 0, Math.Max(Math.Min(tx, dx), 0), Math.Min(Math.Max(tx, dx), 0))
-        ty = IIf(dy > 0, Math.Max(Math.Min(ty, dy), 0), Math.Min(Math.Max(ty, dy), 0))
+        tX = IIf(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
+        tY = IIf(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
     End Sub
 
     ''' <summary>
@@ -181,7 +189,7 @@ Public Class PictureBoxPAZ
             _zoomScale = zoomScale
             tX += -shiftX
             tY += -shiftY
-            CheckT(tX, tY)
+            CheckT()
             Invalidate()
         End If
     End Sub

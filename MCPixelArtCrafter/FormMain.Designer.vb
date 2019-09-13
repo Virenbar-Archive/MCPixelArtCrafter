@@ -22,6 +22,7 @@ Partial Class FormMain
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Create = New System.Windows.Forms.Button()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -29,10 +30,13 @@ Partial Class FormMain
         Me.RB_Map = New System.Windows.Forms.RadioButton()
         Me.Bt_Settings = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.TSProgressBar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.AnimationLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ProgressCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SelectImage = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ImagePathText = New System.Windows.Forms.TextBox()
         Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
+        Me.ProgressTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +103,7 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSProgressBar, Me.AnimationLabel, Me.ProgressCount})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 461)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
@@ -108,8 +112,21 @@ Partial Class FormMain
         '
         'ToolStripProgressBar1
         '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
+        Me.TSProgressBar.Name = "ToolStripProgressBar1"
+        Me.TSProgressBar.Size = New System.Drawing.Size(200, 16)
+        '
+        'AnimationLabel
+        '
+        Me.AnimationLabel.AutoSize = False
+        Me.AnimationLabel.Name = "AnimationLabel"
+        Me.AnimationLabel.Size = New System.Drawing.Size(17, 17)
+        Me.AnimationLabel.Text = "|"
+        '
+        'ProgressCount
+        '
+        Me.ProgressCount.Name = "ProgressCount"
+        Me.ProgressCount.Size = New System.Drawing.Size(40, 17)
+        Me.ProgressCount.Text = "Count"
         '
         'SelectImage
         '
@@ -122,13 +139,13 @@ Partial Class FormMain
         '
         'TextBox1
         '
-        Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.ImagePathText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(114, 12)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(583, 20)
-        Me.TextBox1.TabIndex = 8
+        Me.ImagePathText.Location = New System.Drawing.Point(114, 12)
+        Me.ImagePathText.Name = "TextBox1"
+        Me.ImagePathText.ReadOnly = True
+        Me.ImagePathText.Size = New System.Drawing.Size(583, 20)
+        Me.ImagePathText.TabIndex = 8
         '
         'PB
         '
@@ -142,6 +159,10 @@ Partial Class FormMain
         Me.PB.TabIndex = 9
         Me.PB.TabStop = False
         '
+        'AnimationTimer
+        '
+        Me.ProgressTimer.Interval = 50
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -149,7 +170,7 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(790, 483)
         Me.Controls.Add(Me.PB)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.ImagePathText)
         Me.Controls.Add(Me.SelectImage)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Bt_Settings)
@@ -173,8 +194,11 @@ Partial Class FormMain
     Friend WithEvents RB_Map As RadioButton
     Friend WithEvents Bt_Settings As Button
     Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
+    Friend WithEvents TSProgressBar As ToolStripProgressBar
     Friend WithEvents SelectImage As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents ImagePathText As TextBox
     Friend WithEvents PB As PictureBoxPAZ
+    Friend WithEvents AnimationLabel As ToolStripStatusLabel
+    Friend WithEvents ProgressCount As ToolStripStatusLabel
+    Friend WithEvents ProgressTimer As Timer
 End Class
