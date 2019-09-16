@@ -112,6 +112,12 @@
     <Compile Include="Controls\CheckBlock.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\MapColorCount.Designer.vb">
+      <DependentUpon>MapColorCount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MapColorCount.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\PictureBoxPAZ.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     <EmbeddedResource Include="Controls\CheckBlock.resx">
       <DependentUpon>CheckBlock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapColorCount.resx">
+      <DependentUpon>MapColorCount.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SmartPB.resx">
       <DependentUpon>SmartPB.vb</DependentUpon>
     </EmbeddedResource>
@@ -210,7 +219,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\DataSources\FormMain.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -235,6 +243,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

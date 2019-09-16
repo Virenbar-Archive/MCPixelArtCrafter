@@ -95,12 +95,12 @@
    "Full": "Purpur (Block, Pillar, Slab), Magenta Wool, Magenta Glazed Terracotta, Magenta Concrete, Magenta Concrete Powder",
    "Transparent": "Magenta Carpet, Magenta Stained Glass, Magenta Stained Glass Pane, Magenta Bed foot"
  },
-    {
-        "ID": "17 LIGHT_BLUE",
-        "ColorStr": "102, 153, 216",
-        "Full": "Light Blue Wool, Light Blue Glazed Terracotta, Light Blue Concrete, Light Blue Concrete Powder",
-        "Transparent": "Light Blue Carpet, Light Blue Stained Glass, Light Blue Stained Glass Pane, Light Blue Bed foot"
-    },
+ {
+   "ID": "17 LIGHT_BLUE",
+   "ColorStr": "102, 153, 216",
+   "Full": "Light Blue Wool, Light Blue Glazed Terracotta, Light Blue Concrete, Light Blue Concrete Powder",
+   "Transparent": "Light Blue Carpet, Light Blue Stained Glass, Light Blue Stained Glass Pane, Light Blue Bed foot"
+ },
  {
    "ID": "18 YELLOW",
    "ColorStr": "229, 229, 51",

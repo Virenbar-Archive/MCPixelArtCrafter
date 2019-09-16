@@ -1,7 +1,7 @@
 ﻿Public Class MapResult
     Private Map(0, 0) As MapColor
     Public ReadOnly Property OutImage As Bitmap
-    Private UsedMapColors As New Dictionary(Of MapColor, Integer)
+    Public UsedMapColors As New Dictionary(Of MapColor, Integer)
     Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer)) As Task
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
