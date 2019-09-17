@@ -12,6 +12,6 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 'v4.6.1'
+        dotnet-version: 2.2.7
     - name: Build with dotnet
       run: dotnet build --configuration Release  
