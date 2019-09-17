@@ -22,25 +22,25 @@ Partial Class MapColorCount
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lbl_count = New System.Windows.Forms.Label()
+        Me.p_color = New System.Windows.Forms.Panel()
         Me.SuspendLayout()
         '
-        'Label1
+        'lbl_count
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(25, 5)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(75, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Color x 10 000"
+        Me.lbl_count.AutoSize = True
+        Me.lbl_count.Location = New System.Drawing.Point(25, 5)
+        Me.lbl_count.Name = "lbl_count"
+        Me.lbl_count.Size = New System.Drawing.Size(75, 13)
+        Me.lbl_count.TabIndex = 0
+        Me.lbl_count.Text = "Color x 10 000"
         '
-        'Panel1
+        'p_color
         '
-        Me.Panel1.Location = New System.Drawing.Point(3, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(16, 16)
-        Me.Panel1.TabIndex = 1
+        Me.p_color.Location = New System.Drawing.Point(3, 3)
+        Me.p_color.Name = "p_color"
+        Me.p_color.Size = New System.Drawing.Size(16, 16)
+        Me.p_color.TabIndex = 1
         '
         'MapColorCount
         '
@@ -48,8 +48,8 @@ Partial Class MapColorCount
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.p_color)
+        Me.Controls.Add(Me.lbl_count)
         Me.MaximumSize = New System.Drawing.Size(200, 22)
         Me.MinimumSize = New System.Drawing.Size(110, 22)
         Me.Name = "MapColorCount"
@@ -59,6 +59,6 @@ Partial Class MapColorCount
 
     End Sub
 
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lbl_count As Label
+    Friend WithEvents p_color As Panel
 End Class

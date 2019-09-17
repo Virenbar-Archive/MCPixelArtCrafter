@@ -23,7 +23,7 @@
                     Next
                 Next
             End Sub)
-        Await Task.Delay(1 * 1000)
+        Await Task.Delay(1 * 500)
         'MapColorsCollection.GetClosest()
     End Function
 End Class

@@ -35,8 +35,9 @@ Partial Class FormMain
         Me.ProgressCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SelectImage = New System.Windows.Forms.Button()
         Me.ImagePathText = New System.Windows.Forms.TextBox()
-        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.ProgressTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
+        Me.TimeTaken = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,17 +104,18 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSProgressBar, Me.AnimationLabel, Me.ProgressCount})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSProgressBar, Me.AnimationLabel, Me.ProgressCount, Me.TimeTaken})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 461)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(790, 22)
         Me.StatusStrip1.TabIndex = 5
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'ToolStripProgressBar1
+        'TSProgressBar
         '
-        Me.TSProgressBar.Name = "ToolStripProgressBar1"
+        Me.TSProgressBar.Name = "TSProgressBar"
         Me.TSProgressBar.Size = New System.Drawing.Size(200, 16)
+        Me.TSProgressBar.Visible = False
         '
         'AnimationLabel
         '
@@ -137,15 +139,19 @@ Partial Class FormMain
         Me.SelectImage.Text = "Select Image"
         Me.SelectImage.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'ImagePathText
         '
         Me.ImagePathText.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ImagePathText.Location = New System.Drawing.Point(114, 12)
-        Me.ImagePathText.Name = "TextBox1"
+        Me.ImagePathText.Name = "ImagePathText"
         Me.ImagePathText.ReadOnly = True
         Me.ImagePathText.Size = New System.Drawing.Size(583, 20)
         Me.ImagePathText.TabIndex = 8
+        '
+        'ProgressTimer
+        '
+        Me.ProgressTimer.Interval = 50
         '
         'PB
         '
@@ -159,9 +165,11 @@ Partial Class FormMain
         Me.PB.TabIndex = 9
         Me.PB.TabStop = False
         '
-        'AnimationTimer
+        'TimeTaken
         '
-        Me.ProgressTimer.Interval = 50
+        Me.TimeTaken.Name = "TimeTaken"
+        Me.TimeTaken.Size = New System.Drawing.Size(34, 17)
+        Me.TimeTaken.Text = "Time"
         '
         'FormMain
         '
@@ -201,4 +209,5 @@ Partial Class FormMain
     Friend WithEvents AnimationLabel As ToolStripStatusLabel
     Friend WithEvents ProgressCount As ToolStripStatusLabel
     Friend WithEvents ProgressTimer As Timer
+    Friend WithEvents TimeTaken As ToolStripStatusLabel
 End Class

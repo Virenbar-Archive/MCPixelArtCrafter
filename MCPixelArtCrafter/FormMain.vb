@@ -32,7 +32,7 @@ Public Class FormMain
 
     Private Sub UpdateProgress() Handles ProgressTimer.Tick
         TSProgressBar.Value = Count
-        ProgressCount.Text = Format(Count, "N0") + "\" + Format(Amount, "N0")
+        ProgressCount.Text = Format(Count, "N0") + "\" + Format(Amount, "N0") + " (" + Format(Count / Amount, "P") + ")"
     End Sub
     Private Sub Animate() Handles ProgressTimer.Tick
         AnimationLabel.Text = Frames(frame)
@@ -44,9 +44,9 @@ Public Class FormMain
         ProgressTimer.Start()
         Dim map As New MapResult
         Await map.Generate(InputImage, Progress)
+        ProgressTimer.Stop()
         MapPreview.MapResult = map
         MapPreview.ShowDialog()
-        ProgressTimer.Stop()
     End Sub
 
 End Class

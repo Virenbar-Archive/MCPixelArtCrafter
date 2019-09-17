@@ -24,11 +24,12 @@ Partial Class MapPreview
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.FLP_UsedColors = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TT_Color = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
+        Me.SFD = New System.Windows.Forms.SaveFileDialog()
         Me.FLP_UsedColors.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -47,6 +48,15 @@ Partial Class MapPreview
         Me.FLP_UsedColors.Name = "FLP_UsedColors"
         Me.FLP_UsedColors.Size = New System.Drawing.Size(846, 167)
         Me.FLP_UsedColors.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Label1"
         '
         'SplitContainer1
         '
@@ -71,24 +81,9 @@ Partial Class MapPreview
         Me.SplitContainer1.SplitterWidth = 6
         Me.SplitContainer1.TabIndex = 0
         '
-        'PB
+        'TT_Color
         '
-        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB.Location = New System.Drawing.Point(0, 0)
-        Me.PB.Name = "PB"
-        Me.PB.Size = New System.Drawing.Size(846, 250)
-        Me.PB.TabIndex = 0
-        Me.PB.TabStop = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
+        Me.TT_Color.IsBalloon = True
         '
         'Button1
         '
@@ -100,6 +95,16 @@ Partial Class MapPreview
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'PB
+        '
+        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB.Location = New System.Drawing.Point(0, 0)
+        Me.PB.Name = "PB"
+        Me.PB.Size = New System.Drawing.Size(846, 250)
+        Me.PB.TabIndex = 0
+        Me.PB.TabStop = False
         '
         'MapPreview
         '
@@ -128,4 +133,5 @@ Partial Class MapPreview
     Friend WithEvents TT_Color As ToolTip
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents SFD As SaveFileDialog
 End Class
