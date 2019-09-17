@@ -149,17 +149,15 @@ Public Class PictureBoxPAZ
     End Sub
 
     Private Shadows Sub OnMouseWheel(ByVal sender As Object, ByVal e As MouseEventArgs)
-        'handle the mouse whell scroll (for zooming)
-        Dim scale As Double = 1
-        If (e.Delta > 0) Then
-            scale = 2
-        ElseIf (e.Delta < 0) Then
-            scale = 0.5
-        Else
-            Return
+        If e.Delta <> 0 Then
+            If e.Delta <= 0 Then
+                If ImageSize.Width <= Math.Min(Image.Width, ClientSize.Width) AndAlso ImageSize.Height < Math.Min(Image.Height, ClientSize.Height) Then Exit Sub
+            Else
+                If ImageSize.Width >= Image.Width * 10 Then Exit Sub
+            End If
+            'TODO
+            Me.SetZoomScale((_zoomScale + _zoomScale * e.Delta / 1000), e.Location)
         End If
-        'TODO
-        Me.SetZoomScale((_zoomScale + _zoomScale * e.Delta / 1000), e.Location)
     End Sub
 
     Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)

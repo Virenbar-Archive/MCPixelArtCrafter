@@ -24,13 +24,11 @@ Partial Class MapPreview
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.FLP_UsedColors = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TT_Color = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.B_Save = New System.Windows.Forms.Button()
         Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.SFD = New System.Windows.Forms.SaveFileDialog()
-        Me.FLP_UsedColors.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -41,22 +39,12 @@ Partial Class MapPreview
         'FLP_UsedColors
         '
         Me.FLP_UsedColors.AutoScroll = True
-        Me.FLP_UsedColors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.FLP_UsedColors.Controls.Add(Me.Label1)
+        Me.FLP_UsedColors.BackColor = System.Drawing.SystemColors.Control
         Me.FLP_UsedColors.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FLP_UsedColors.Location = New System.Drawing.Point(0, 0)
         Me.FLP_UsedColors.Name = "FLP_UsedColors"
         Me.FLP_UsedColors.Size = New System.Drawing.Size(846, 167)
         Me.FLP_UsedColors.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
         '
         'SplitContainer1
         '
@@ -85,16 +73,16 @@ Partial Class MapPreview
         '
         Me.TT_Color.IsBalloon = True
         '
-        'Button1
+        'B_Save
         '
-        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.B_Save.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(378, 445)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(78, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.B_Save.Location = New System.Drawing.Point(378, 445)
+        Me.B_Save.Name = "B_Save"
+        Me.B_Save.Size = New System.Drawing.Size(78, 23)
+        Me.B_Save.TabIndex = 1
+        Me.B_Save.Text = "Save image"
+        Me.B_Save.UseVisualStyleBackColor = True
         '
         'PB
         '
@@ -110,14 +98,13 @@ Partial Class MapPreview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(872, 486)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.B_Save)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "MapPreview"
         Me.ShowIcon = False
         Me.Text = "Map Preview"
-        Me.FLP_UsedColors.ResumeLayout(False)
-        Me.FLP_UsedColors.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -131,7 +118,6 @@ Partial Class MapPreview
     Friend WithEvents FLP_UsedColors As FlowLayoutPanel
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents TT_Color As ToolTip
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents B_Save As Button
     Friend WithEvents SFD As SaveFileDialog
 End Class

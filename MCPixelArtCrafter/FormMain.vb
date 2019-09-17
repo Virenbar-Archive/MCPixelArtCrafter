@@ -32,19 +32,23 @@ Public Class FormMain
 
     Private Sub UpdateProgress() Handles ProgressTimer.Tick
         TSProgressBar.Value = Count
-        ProgressCount.Text = Format(Count, "N0") + "\" + Format(Amount, "N0") + " (" + Format(Count / Amount, "P") + ")"
+        lbl_Progress.Text = "Progress: " + Format(Count, "N0") + "\" + Format(Amount, "N0") + " (" + Format(Count / Amount, "P") + ")"
     End Sub
     Private Sub Animate() Handles ProgressTimer.Tick
         AnimationLabel.Text = Frames(frame)
         frame = (frame + 1) Mod 4
     End Sub
     Private Async Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
-        Amount = InputImage.Width * InputImage.Height
-        TSProgressBar.Maximum = Amount
+        Amount = InputImage.Width * InputImage.Height : TSProgressBar.Maximum = Amount
+        Dim sw = Stopwatch.StartNew()
         ProgressTimer.Start()
+
         Dim map As New MapResult
         Await map.Generate(InputImage, Progress)
+
         ProgressTimer.Stop()
+        lbl_Elapsed.Text = "Elapsed: " + Format(sw.Elapsed.TotalSeconds, "N0") + "s"
+
         MapPreview.MapResult = map
         MapPreview.ShowDialog()
     End Sub
