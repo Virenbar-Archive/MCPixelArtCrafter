@@ -4,14 +4,10 @@ on: [push]
 
 jobs:
   build:
-
-    runs-on: windows-latest
-    
+    runs-on: ubuntu-16.04
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - uses: actions/checkout@master
+    - uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '2.2.103'
-    - name: Build with dotnet
-      run: dotnet build --configuration Release  
+        dotnet-version: '2.2.103' # SDK Version to use.
+    - run: dotnet build <my project>
