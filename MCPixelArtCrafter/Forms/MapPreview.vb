@@ -14,6 +14,8 @@
     End Sub
 
     Private Sub B_Save_Click(sender As Object, e As EventArgs) Handles B_Save.Click
-
+        If SFD.ShowDialog = DialogResult.OK Then
+            MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
+        End If
     End Sub
 End Class

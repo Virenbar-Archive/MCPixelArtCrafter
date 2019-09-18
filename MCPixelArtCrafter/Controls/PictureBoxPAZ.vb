@@ -92,13 +92,17 @@ Public Class PictureBoxPAZ
             Dim mode As InterpolationMode = IIf(_zoomScale < 0, InterpolationMode.Default, _interpolationMode)
             If pe.Graphics.InterpolationMode <> mode Then pe.Graphics.InterpolationMode = mode
             If pe.Graphics.PixelOffsetMode <> PixelOffsetMode.Half Then pe.Graphics.PixelOffsetMode = PixelOffsetMode.Half
+            Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
+            Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
+            pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
             Using transform As System.Drawing.Drawing2D.Matrix = pe.Graphics.Transform
-                If _zoomScale <> 1.0 Then transform.Scale(CSng(_zoomScale), CSng(_zoomScale), MatrixOrder.Append)
+                If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
                 If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
 
                 pe.Graphics.Transform = transform
                 MyBase.OnPaint(pe)
             End Using
+            'pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
         Else
             MyBase.OnPaint(pe)
         End If

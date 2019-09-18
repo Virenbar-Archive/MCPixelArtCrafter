@@ -25,9 +25,9 @@ Partial Class MapPreview
         Me.components = New System.ComponentModel.Container()
         Me.FLP_UsedColors = New System.Windows.Forms.FlowLayoutPanel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.TT_Color = New System.Windows.Forms.ToolTip(Me.components)
         Me.B_Save = New System.Windows.Forms.Button()
-        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.SFD = New System.Windows.Forms.SaveFileDialog()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -69,6 +69,17 @@ Partial Class MapPreview
         Me.SplitContainer1.SplitterWidth = 6
         Me.SplitContainer1.TabIndex = 0
         '
+        'PB
+        '
+        Me.PB.BackColor = System.Drawing.SystemColors.Window
+        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB.Location = New System.Drawing.Point(0, 0)
+        Me.PB.Name = "PB"
+        Me.PB.Size = New System.Drawing.Size(846, 250)
+        Me.PB.TabIndex = 0
+        Me.PB.TabStop = False
+        '
         'TT_Color
         '
         Me.TT_Color.IsBalloon = True
@@ -84,15 +95,9 @@ Partial Class MapPreview
         Me.B_Save.Text = "Save image"
         Me.B_Save.UseVisualStyleBackColor = True
         '
-        'PB
+        'SFD
         '
-        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB.Location = New System.Drawing.Point(0, 0)
-        Me.PB.Name = "PB"
-        Me.PB.Size = New System.Drawing.Size(846, 250)
-        Me.PB.TabIndex = 0
-        Me.PB.TabStop = False
+        Me.SFD.Filter = "PNG|*.png"
         '
         'MapPreview
         '

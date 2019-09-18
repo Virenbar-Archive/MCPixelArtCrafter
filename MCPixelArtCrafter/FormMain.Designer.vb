@@ -33,11 +33,11 @@ Partial Class FormMain
         Me.TSProgressBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.AnimationLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lbl_Progress = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lbl_Elapsed = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SelectImage = New System.Windows.Forms.Button()
         Me.ImagePathText = New System.Windows.Forms.TextBox()
         Me.ProgressTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
-        Me.lbl_Elapsed = New System.Windows.Forms.ToolStripStatusLabel()
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,6 +137,12 @@ Partial Class FormMain
         Me.lbl_Progress.Size = New System.Drawing.Size(55, 21)
         Me.lbl_Progress.Text = "Progress:"
         '
+        'lbl_Elapsed
+        '
+        Me.lbl_Elapsed.Name = "lbl_Elapsed"
+        Me.lbl_Elapsed.Size = New System.Drawing.Size(50, 21)
+        Me.lbl_Elapsed.Text = "Elapsed:"
+        '
         'SelectImage
         '
         Me.SelectImage.Location = New System.Drawing.Point(12, 9)
@@ -167,6 +173,7 @@ Partial Class FormMain
         Me.PB.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PB.BackColor = System.Drawing.SystemColors.Control
         Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PB.Location = New System.Drawing.Point(12, 39)
         Me.PB.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -174,12 +181,6 @@ Partial Class FormMain
         Me.PB.Size = New System.Drawing.Size(766, 337)
         Me.PB.TabIndex = 9
         Me.PB.TabStop = False
-        '
-        'lbl_Elapsed
-        '
-        Me.lbl_Elapsed.Name = "lbl_Elapsed"
-        Me.lbl_Elapsed.Size = New System.Drawing.Size(50, 21)
-        Me.lbl_Elapsed.Text = "Elapsed:"
         '
         'FormMain
         '
