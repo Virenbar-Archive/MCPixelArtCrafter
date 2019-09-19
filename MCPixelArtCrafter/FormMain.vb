@@ -1,6 +1,5 @@
 ﻿Imports System.IO
-Imports System.Threading.Tasks
-Imports Newtonsoft.Json
+
 Public Class FormMain
     Private ImagePath As String
     Private InputImage As Bitmap

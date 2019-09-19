@@ -1,10 +1,7 @@
 ﻿'----------------------------------------------------------------------------
 ' Based on Emgu.CV.UI.PanAndZoomPictureBox.cs   
 '----------------------------------------------------------------------------
-Imports System
-Imports System.Drawing
 Imports System.Drawing.Drawing2D
-Imports System.Windows.Forms
 Imports System.ComponentModel
 ''' <summary>
 ''' A picture box with pan and zoom functionality
@@ -13,10 +10,10 @@ Public Class PictureBoxPAZ
     Inherits PictureBox
 
     Private _panableAndZoomable As Boolean
-    Private _zoomScale As Double
+    Private _zoomScale, _zoomMin As Double
+    Private _zoomMax As Double = 10
     Private _mouseDownPosition As Point
     Private _mouseDownButton As MouseButtons
-    Private _interpolationMode As InterpolationMode = InterpolationMode.NearestNeighbor
     Private Shared _defaultCursor As Cursor = Cursors.Cross
     Private tX, tY As Integer
 
@@ -64,7 +61,7 @@ Public Class PictureBoxPAZ
         End Set
     End Property
 
-    Public ReadOnly Property ImageSize() As Size
+    Protected ReadOnly Property ImageSize() As Size
         Get
             Return New Size(CInt(Math.Round(Image.Size.Width * _zoomScale)), CInt(Math.Round(Image.Size.Height * _zoomScale)))
         End Get
@@ -73,29 +70,21 @@ Public Class PictureBoxPAZ
     ''' <summary>
     ''' Get or Set the interpolation mode for zooming operation
     ''' </summary>
-    <Bindable(False),
-     Category("Design"),
-     DefaultValue(InterpolationMode.NearestNeighbor)>
-    Public Property InterpolationMode As InterpolationMode
-        Get
-            Return Me._interpolationMode
-        End Get
-        Set
-            Me._interpolationMode = Value
-        End Set
-    End Property
+    <Bindable(False), Category("Design"), DefaultValue(InterpolationMode.NearestNeighbor)>
+    Public Property InterpolationMode As InterpolationMode = InterpolationMode.NearestNeighbor
 
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
         If IsDisposed Then Return
 
-        If Me.Image IsNot Nothing Then
-            Dim mode As InterpolationMode = IIf(_zoomScale < 0, InterpolationMode.Default, _interpolationMode)
+        If Image IsNot Nothing Then
+            Dim mode As InterpolationMode = IIf(_zoomScale < 0, InterpolationMode.Default, InterpolationMode)
             If pe.Graphics.InterpolationMode <> mode Then pe.Graphics.InterpolationMode = mode
             If pe.Graphics.PixelOffsetMode <> PixelOffsetMode.Half Then pe.Graphics.PixelOffsetMode = PixelOffsetMode.Half
             Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
             Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
             pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
-            Using transform As System.Drawing.Drawing2D.Matrix = pe.Graphics.Transform
+
+            Using transform As Matrix = pe.Graphics.Transform
                 If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
                 If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
 
@@ -107,12 +96,22 @@ Public Class PictureBoxPAZ
             MyBase.OnPaint(pe)
         End If
     End Sub
+    Private Sub DrawBox(pe As PaintEventArgs)
+        Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
+        Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
+        Dim p3 = New Point(p1.X + ImageSize.Width, p1.Y + ImageSize.Height)
+        Dim p4 = New Point(p1.X + ImageSize.Width, p1.Y)
+        pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
+    End Sub
+    Private Sub DrawGrid()
+
+    End Sub
 
     Private Shadows Sub OnMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
         If Me._mouseDownButton = MouseButtons.Left Then
-            Dim shiftX As Integer = CType(((e.X - Me._mouseDownPosition.X) / Me._zoomScale), Integer)
-            Dim shiftY As Integer = CType(((e.Y - Me._mouseDownPosition.Y) / Me._zoomScale), Integer)
-            If ((shiftX = 0) AndAlso (shiftY = 0)) Then
+            Dim shiftX As Integer = (e.X - Me._mouseDownPosition.X) / Me._zoomScale
+            Dim shiftY As Integer = (e.Y - Me._mouseDownPosition.Y) / Me._zoomScale
+            If (shiftX = 0) AndAlso (shiftY = 0) Then
                 Return
             End If
 
@@ -121,10 +120,10 @@ Public Class PictureBoxPAZ
             CheckT()
 
             If (shiftX <> 0) Then
-                Me._mouseDownPosition.X = e.Location.X
+                _mouseDownPosition.X = e.Location.X
             End If
             If (shiftY <> 0) Then
-                Me._mouseDownPosition.Y = e.Location.Y
+                _mouseDownPosition.Y = e.Location.Y
             End If
 
             Invalidate()
@@ -132,9 +131,9 @@ Public Class PictureBoxPAZ
     End Sub
 
     Private Shadows Sub OnMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
-        Me._mouseDownPosition = e.Location
-        Me._mouseDownButton = e.Button
-        If (e.Button = MouseButtons.Left) Then
+        _mouseDownPosition = e.Location
+        _mouseDownButton = e.Button
+        If e.Button = MouseButtons.Left Then
             Cursor = Cursors.Hand
         End If
     End Sub
@@ -154,18 +153,13 @@ Public Class PictureBoxPAZ
 
     Private Shadows Sub OnMouseWheel(ByVal sender As Object, ByVal e As MouseEventArgs)
         If e.Delta <> 0 Then
-            If e.Delta <= 0 Then
-                If ImageSize.Width <= Math.Min(Image.Width, ClientSize.Width) AndAlso ImageSize.Height < Math.Min(Image.Height, ClientSize.Height) Then Exit Sub
-            Else
-                If ImageSize.Width >= Image.Width * 10 Then Exit Sub
-            End If
-            'TODO
-            Me.SetZoomScale((_zoomScale + _zoomScale * e.Delta / 1000), e.Location)
+            Dim zoom As Double = Math.Max(Math.Min(_zoomScale + _zoomScale * e.Delta / 1000, _zoomMax), _zoomMin)
+            If zoom <> _zoomScale Then SetZoomScale((zoom), e.Location)
         End If
     End Sub
 
     Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)
-        If MyBase.Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
+        If Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
             CheckT()
             Invalidate()
         End If
@@ -202,6 +196,7 @@ Public Class PictureBoxPAZ
     Public Sub SetImage(_image As Image)
         Image = _image
         _zoomScale = 1
+        _zoomMin = Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1)
         tX = ClientSize.Width / 2 - Image.Width / 2
         tY = ClientSize.Height / 2 - Image.Height / 2
     End Sub

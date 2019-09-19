@@ -1,12 +1,19 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
 Imports Colourful
+''' <summary>
+''' Storage for MapColors
+''' </summary>
 Public NotInheritable Class MapColorsCollection
     Private Shared MapColors() As MapColor
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
     Public Sub New()
     End Sub
+    ''' <summary>
+    ''' Loads config from folder and converts colors to Lab
+    ''' </summary>
+    ''' <param name="folder">Folder with config</param>
     Public Shared Sub Load(Optional folder As String = "Default")
         Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
         If Not File.Exists(config) Then
@@ -21,6 +28,11 @@ Public NotInheritable Class MapColorsCollection
             MC.LabColor = Converter.ToLab(New RGBColor(MC.Color))
         Next
     End Sub
+    ''' <summary>
+    ''' Returns closest color
+    ''' </summary>
+    ''' <param name="color">Color to search</param>
+    ''' <returns>Closest color</returns>
     Public Shared Function GetClosest(color As Color) As MapColor
         Dim colorLab = Converter.ToLab(New RGBColor(color))
         Dim Closest As MapColor = Nothing

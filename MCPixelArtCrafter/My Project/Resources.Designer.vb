@@ -69,5 +69,15 @@ Namespace My.Resources
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        '''</summary>
+        Friend ReadOnly Property Logo() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Logo", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
     End Module
 End Namespace

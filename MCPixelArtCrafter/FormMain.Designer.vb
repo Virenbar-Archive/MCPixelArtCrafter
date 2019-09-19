@@ -23,6 +23,7 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.Create = New System.Windows.Forms.Button()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -195,6 +196,7 @@ Partial Class FormMain
         Me.Controls.Add(Me.Bt_Settings)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Create)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FormMain"
         Me.Text = "MC PixelArtCrafter"

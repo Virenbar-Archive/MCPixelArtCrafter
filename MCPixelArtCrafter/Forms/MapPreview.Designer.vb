@@ -109,6 +109,7 @@ Partial Class MapPreview
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "MapPreview"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.Text = "Map Preview"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)

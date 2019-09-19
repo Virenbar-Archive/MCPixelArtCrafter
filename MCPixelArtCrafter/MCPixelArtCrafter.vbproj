@@ -65,6 +65,9 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Colourful, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Colourful.2.0.3\lib\net45\Colourful.dll</HintPath>
@@ -98,10 +101,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.Designer.vb">
+    <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
-    <Compile Include="AboutBox1.vb">
+    <Compile Include="Forms\AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Block.vb" />
@@ -178,7 +181,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutBox1.resx">
+    <EmbeddedResource Include="Forms\AboutBox1.resx">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CheckBlock.resx">
@@ -216,6 +219,9 @@
     <Content Include="Default\Blocks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Logo\Logo.svg" />
+    <Content Include="Logo\Logo.svg.png" />
+    <None Include="Resources\Logo.ico" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
