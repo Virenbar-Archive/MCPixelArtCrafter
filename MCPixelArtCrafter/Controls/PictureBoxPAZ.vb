@@ -70,9 +70,11 @@ Public Class PictureBoxPAZ
     ''' <summary>
     ''' Get or Set the interpolation mode for zooming operation
     ''' </summary>
-    <Bindable(False), Category("Design"), DefaultValue(InterpolationMode.NearestNeighbor)>
     Public Property InterpolationMode As InterpolationMode = InterpolationMode.NearestNeighbor
-
+    ''' <summary>
+    ''' Grid spacing (0-No grid)
+    ''' </summary>
+    Public Property GridSpacing As Integer = 0
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
         If IsDisposed Then Return
 
@@ -80,31 +82,46 @@ Public Class PictureBoxPAZ
             Dim mode As InterpolationMode = IIf(_zoomScale < 0, InterpolationMode.Default, InterpolationMode)
             If pe.Graphics.InterpolationMode <> mode Then pe.Graphics.InterpolationMode = mode
             If pe.Graphics.PixelOffsetMode <> PixelOffsetMode.Half Then pe.Graphics.PixelOffsetMode = PixelOffsetMode.Half
-            Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
-            Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
-            pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
-
+            'DrawBox(pe)
             Using transform As Matrix = pe.Graphics.Transform
                 If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
                 If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
 
                 pe.Graphics.Transform = transform
                 MyBase.OnPaint(pe)
+                'DrawBox(pe)
             End Using
-            'pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
+            DrawBox(pe)
+            If GridSpacing > 0 Then DrawGrid(pe)
         Else
             MyBase.OnPaint(pe)
         End If
     End Sub
     Private Sub DrawBox(pe As PaintEventArgs)
+        pe.Graphics.ResetTransform()
         Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
         Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
         Dim p3 = New Point(p1.X + ImageSize.Width, p1.Y + ImageSize.Height)
-        Dim p4 = New Point(p1.X + ImageSize.Width, p1.Y)
-        pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
+        Dim p4 = New Point(p1.X, p1.Y + ImageSize.Height)
+        'pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
+        pe.Graphics.DrawLines(New Pen(Color.Black, 1), {p1, p2, p3, p4, p1})
+        'pe.Graphics.
     End Sub
-    Private Sub DrawGrid()
-
+    Private Sub DrawGrid(pe As PaintEventArgs)
+        Dim ZP = New Point(tX * _zoomScale, tY * _zoomScale),
+            X1 = New Point(ZP), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
+            Y1 = New Point(ZP), Y2 = New Point(ZP.X + ImageSize.Width, ZP.Y)
+        Dim delta = GridSpacing * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
+        For i = 1 To Math.Floor(Image.Width / GridSpacing) - 1
+            Xd += delta
+            X1.X = Xd : X2.X = Xd
+            pe.Graphics.DrawLine(New Pen(Color.Black, 1), X1, X2)
+        Next
+        For i = 1 To Math.Floor(Image.Height / GridSpacing) - 1
+            Yd += delta
+            Y1.Y = Yd : Y2.Y = Yd
+            pe.Graphics.DrawLine(New Pen(Color.Black, 1), Y1, Y2)
+        Next
     End Sub
 
     Private Shadows Sub OnMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
@@ -165,6 +182,7 @@ Public Class PictureBoxPAZ
         End If
     End Sub
     Private Sub CheckT()
+        'd*: Positive - Free client space, Negative - Hidden image space
         Dim dx = (ClientSize.Width - ImageSize.Width) * 1 / _zoomScale
         Dim dy = (ClientSize.Height - ImageSize.Height) * 1 / _zoomScale
         tX = IIf(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))

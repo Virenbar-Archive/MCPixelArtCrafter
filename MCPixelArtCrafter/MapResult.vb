@@ -13,14 +13,15 @@
             Sub()
                 For x = 0 To w - 1
                     For y = 0 To h - 1
+                        'progress.Report(x * h + (y + 1))
                         If InImage.GetPixel(x, y).A < 256 / 2 Then Continue For
                         closest = MapColorsCollection.GetClosest(InImage.GetPixel(x, y))
                         'Map(x, y) = closest
                         OutImage.SetPixel(x, y, closest.Color)
                         If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
                         UsedMapColors(closest) += 1
-                        progress.Report(x * h + (y + 1))
                     Next
+                    progress.Report((x + 1) * h)
                 Next
             End Sub)
         Await Task.Delay(1 * 500)
