@@ -20,6 +20,7 @@
     End Sub
 
     Private Sub CB_Grid_CheckedChanged(sender As Object, e As EventArgs) Handles CB_Grid.CheckedChanged
-
+        PB.GridSpacing = IIf(CB_Grid.Checked, 16, 0)
+        PB.Invalidate()
     End Sub
 End Class

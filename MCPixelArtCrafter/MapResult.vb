@@ -1,8 +1,9 @@
 ﻿Public Class MapResult
+    Implements IResult
     Private Map(0, 0) As MapColor
-    Public ReadOnly Property OutImage As Bitmap
+    Public ReadOnly Property OutImage As Bitmap Implements IResult.OutImage
     Public UsedMapColors As New Dictionary(Of MapColor, Integer)
-    Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer)) As Task
+    Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
         Dim h = InImage.Height
@@ -14,6 +15,9 @@
                 For x = 0 To w - 1
                     For y = 0 To h - 1
                         'progress.Report(x * h + (y + 1))
+                        If token.IsCancellationRequested Then
+                            token.ThrowIfCancellationRequested()
+                        End If
                         If InImage.GetPixel(x, y).A < 256 / 2 Then Continue For
                         closest = MapColorsCollection.GetClosest(InImage.GetPixel(x, y))
                         'Map(x, y) = closest

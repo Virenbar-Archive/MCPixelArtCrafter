@@ -107,8 +107,8 @@
     <Compile Include="Forms\AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Block.vb" />
-    <Compile Include="BlocksCollection.vb" />
+    <Compile Include="DataClasses\Block.vb" />
+    <Compile Include="DataClasses\BlocksCollection.vb" />
     <Compile Include="Controls\CheckBlock.Designer.vb">
       <DependentUpon>CheckBlock.vb</DependentUpon>
     </Compile>
@@ -155,8 +155,9 @@
     <Compile Include="Forms\MapPreview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapColor.vb" />
-    <Compile Include="MapColorsCollection.vb" />
+    <Compile Include="Interfaces\IResult.vb" />
+    <Compile Include="DataClasses\MapColor.vb" />
+    <Compile Include="DataClasses\MapColorsCollection.vb" />
     <Compile Include="MapResult.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -179,6 +180,7 @@
     <Compile Include="Controls\CheckGroupBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="StatusHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\AboutBox1.resx">
@@ -253,6 +255,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Default\Textures\" />
     <Folder Include="My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

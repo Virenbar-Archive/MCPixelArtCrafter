@@ -1,11 +1,10 @@
 ﻿Imports System.IO
 
 Public Class FormMain
-    Private ImagePath As String
-    Private InputImage As Bitmap
-    Dim Progress As IProgress(Of Integer) = New Progress(Of Integer)(Sub(val) Count = val)
-    Private frame = 0 : Private Count = 0 : Private Amount = 0
-    Private Frames As Char() = {"|", "/", "-", "\"}
+    Private ImagePath As String, InputImage As Bitmap
+    Private Task As Task, CTS As Threading.CancellationTokenSource
+    Dim Progress As IProgress(Of Integer) = New Progress(Of Integer)(Sub(val) SH.Count = val)
+    Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetImage(Path.GetFullPath("DefaultImage.png"))
@@ -23,33 +22,55 @@ Public Class FormMain
     End Sub
 
     Private Sub SetImage(ImagePath As String)
-        ImagePathText.Text = ImagePath
-        InputImage = New Bitmap(ImagePath)
-        PB.SetImage(InputImage)
-        Amount = InputImage.Width * InputImage.Height
+        Try
+            ImagePathText.Text = ImagePath
+            InputImage = New Bitmap(ImagePath)
+            PB.SetImage(InputImage)
+            SH.Amount = InputImage.Width * InputImage.Height : TSProgressBar.Maximum = SH.Amount
+        Catch ex As Exception
+            MessageBox.Show("Can't load image: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
-    Private Sub UpdateProgress() Handles ProgressTimer.Tick
-        TSProgressBar.Value = Count
-        lbl_Progress.Text = "Progress: " + Format(Count, "N0") + "\" + Format(Amount, "N0") + " (" + Format(Count / Amount, "P") + ")"
-    End Sub
-    Private Sub Animate() Handles ProgressTimer.Tick
-        AnimationLabel.Text = Frames(frame)
-        frame = (frame + 1) Mod 4
-    End Sub
-    Private Async Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
-        Amount = InputImage.Width * InputImage.Height : TSProgressBar.Maximum = Amount
-        Dim sw = Stopwatch.StartNew()
-        ProgressTimer.Start()
-
-        Dim map As New MapResult
-        Await map.Generate(InputImage, Progress)
-
-        ProgressTimer.Stop()
-        lbl_Elapsed.Text = "Elapsed: " + Format(sw.Elapsed.TotalSeconds, "N0") + "s"
-
-        MapPreview.MapResult = map
-        MapPreview.ShowDialog()
+    Private Sub UpdateProgress() Handles SH.Tick
+        'TSProgressBar.Value = SH.Count
+        AnimationLabel.Text = SH.NextFrame
+        lbl_Progress.Text = SH.Progress
+        lbl_Elapsed.Text = SH.Elapsed
     End Sub
 
+    Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
+        If Not SH.IsActive Then
+            Create.Text = "Cancel"
+            RunGenerator()
+        Else
+            CTS.Cancel()
+        End If
+    End Sub
+
+    Private Async Sub RunGenerator()
+        SH.Start()
+        Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
+        CTS = New Threading.CancellationTokenSource
+        Task = result.Generate(InputImage, Progress, CTS.Token)
+        Try
+            Await Task
+            lbl_Elapsed.Text = SH.Elapsed
+            'MapPreview.MapResult = result
+            'MapPreview.Show()
+        Catch ex As OperationCanceledException
+            lbl_Elapsed.Text = "Canceled"
+            Exit Sub
+        Catch ex As Exception
+            lbl_Elapsed.Text = "Error"
+            Exit Sub
+        Finally
+            SH.Stop()
+            Task.Dispose()
+            CTS.Dispose()
+            Create.Text = "Create image"
+        End Try
+        MapPreview.MapResult = result
+        MapPreview.Show()
+    End Sub
 End Class
