@@ -101,6 +101,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockResult.vb" />
     <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
@@ -223,6 +224,7 @@
     </Content>
     <Content Include="Logo\Logo.svg" />
     <Content Include="Logo\Logo.svg.png" />
+    <None Include="Default\BlocksTemp.json" />
     <None Include="Resources\Logo.ico" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

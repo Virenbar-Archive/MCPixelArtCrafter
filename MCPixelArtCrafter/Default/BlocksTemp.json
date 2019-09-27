@@ -1,0 +1,890 @@
+[
+ {
+   "Name": "Acacia Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "acacia_planks",
+   "Texture": "acacia_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Andesite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "andesite",
+   "Texture": "andesite.png",
+   "NN": null
+ },
+ {
+   "Name": "Birch Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "birch_planks",
+   "Texture": "birch_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Chiseled Stone Bricks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "chiseled_stone_bricks",
+   "Texture": "chiseled_stone_bricks.png",
+   "NN": null
+ },
+ {
+   "Name": "Cobblestone",
+   "Group": "Common",
+   "Use": true,
+   "ID": "cobblestone",
+   "Texture": "cobblestone.png",
+   "NN": null
+ },
+ {
+   "Name": "Cracked Stone Bricks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "cracked_stone_bricks",
+   "Texture": "cracked_stone_bricks.png",
+   "NN": null
+ },
+ {
+   "Name": "Dark Oak Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "dark_oak_planks",
+   "Texture": "dark_oak_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Desktop",
+   "Group": "Common",
+   "Use": true,
+   "ID": "desktop",
+   "Texture": "desktop.ini",
+   "NN": null
+ },
+ {
+   "Name": "Diorite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "diorite",
+   "Texture": "diorite.png",
+   "NN": null
+ },
+ {
+   "Name": "Dirt",
+   "Group": "Common",
+   "Use": true,
+   "ID": "dirt",
+   "Texture": "dirt.png",
+   "NN": null
+ },
+ {
+   "Name": "Granite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "granite",
+   "Texture": "granite.png",
+   "NN": null
+ },
+ {
+   "Name": "Gravel",
+   "Group": "Common",
+   "Use": true,
+   "ID": "gravel",
+   "Texture": "gravel.png",
+   "NN": null
+ },
+ {
+   "Name": "Jungle Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "jungle_planks",
+   "Texture": "jungle_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Netherrack",
+   "Group": "Common",
+   "Use": true,
+   "ID": "netherrack",
+   "Texture": "netherrack.png",
+   "NN": null
+ },
+ {
+   "Name": "Oak Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "oak_planks",
+   "Texture": "oak_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Polished Andesite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "polished_andesite",
+   "Texture": "polished_andesite.png",
+   "NN": null
+ },
+ {
+   "Name": "Polished Diorite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "polished_diorite",
+   "Texture": "polished_diorite.png",
+   "NN": null
+ },
+ {
+   "Name": "Polished Granite",
+   "Group": "Common",
+   "Use": true,
+   "ID": "polished_granite",
+   "Texture": "polished_granite.png",
+   "NN": null
+ },
+ {
+   "Name": "Red Sand",
+   "Group": "Common",
+   "Use": true,
+   "ID": "red_sand",
+   "Texture": "red_sand.png",
+   "NN": null
+ },
+ {
+   "Name": "Sand",
+   "Group": "Common",
+   "Use": true,
+   "ID": "sand",
+   "Texture": "sand.png",
+   "NN": null
+ },
+ {
+   "Name": "Smooth Stone",
+   "Group": "Common",
+   "Use": true,
+   "ID": "smooth_stone",
+   "Texture": "smooth_stone.png",
+   "NN": null
+ },
+ {
+   "Name": "Spruce Planks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "spruce_planks",
+   "Texture": "spruce_planks.png",
+   "NN": null
+ },
+ {
+   "Name": "Stone",
+   "Group": "Common",
+   "Use": true,
+   "ID": "stone",
+   "Texture": "stone.png",
+   "NN": null
+ },
+ {
+   "Name": "Stone Bricks",
+   "Group": "Common",
+   "Use": true,
+   "ID": "stone_bricks",
+   "Texture": "stone_bricks.png",
+   "NN": null
+ },
+ {
+   "Name": "//Wool",
+   "Group": "",
+   "Use": null,
+   "ID": "",
+   "Texture": "",
+   "NN": null
+ },
+ {
+   "Name": "Black Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "black_wool",
+   "Texture": "black_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Blue Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "blue_wool",
+   "Texture": "blue_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Brown Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "brown_wool",
+   "Texture": "brown_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Cyan Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "cyan_wool",
+   "Texture": "cyan_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Desktop",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "desktop",
+   "Texture": "desktop.ini",
+   "NN": false
+ },
+ {
+   "Name": "Gray Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "gray_wool",
+   "Texture": "gray_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Green Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "green_wool",
+   "Texture": "green_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Blue Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "light_blue_wool",
+   "Texture": "light_blue_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Gray Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "light_gray_wool",
+   "Texture": "light_gray_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Lime Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "lime_wool",
+   "Texture": "lime_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Magenta Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "magenta_wool",
+   "Texture": "magenta_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Orange Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "orange_wool",
+   "Texture": "orange_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Pink Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "pink_wool",
+   "Texture": "pink_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Purple Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "purple_wool",
+   "Texture": "purple_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Red Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "red_wool",
+   "Texture": "red_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "White Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "white_wool",
+   "Texture": "white_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "Yellow Wool",
+   "Group": "Wool",
+   "Use": true,
+   "ID": "yellow_wool",
+   "Texture": "yellow_wool.png",
+   "NN": false
+ },
+ {
+   "Name": "//Concrete",
+   "Group": "",
+   "Use": null,
+   "ID": "",
+   "Texture": "",
+   "NN": null
+ },
+ {
+   "Name": "Black Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "black_concrete",
+   "Texture": "black_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Black Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "black_concrete_powder",
+   "Texture": "black_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Blue Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "blue_concrete",
+   "Texture": "blue_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Blue Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "blue_concrete_powder",
+   "Texture": "blue_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Brown Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "brown_concrete",
+   "Texture": "brown_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Brown Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "brown_concrete_powder",
+   "Texture": "brown_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Cyan Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "cyan_concrete",
+   "Texture": "cyan_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Cyan Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "cyan_concrete_powder",
+   "Texture": "cyan_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Desktop",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "desktop",
+   "Texture": "desktop.ini",
+   "NN": false
+ },
+ {
+   "Name": "Gray Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "gray_concrete",
+   "Texture": "gray_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Gray Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "gray_concrete_powder",
+   "Texture": "gray_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Green Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "green_concrete",
+   "Texture": "green_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Green Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "green_concrete_powder",
+   "Texture": "green_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Blue Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "light_blue_concrete",
+   "Texture": "light_blue_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Blue Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "light_blue_concrete_powder",
+   "Texture": "light_blue_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Gray Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "light_gray_concrete",
+   "Texture": "light_gray_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Gray Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "light_gray_concrete_powder",
+   "Texture": "light_gray_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Lime Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "lime_concrete",
+   "Texture": "lime_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Lime Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "lime_concrete_powder",
+   "Texture": "lime_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Magenta Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "magenta_concrete",
+   "Texture": "magenta_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Magenta Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "magenta_concrete_powder",
+   "Texture": "magenta_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Orange Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "orange_concrete",
+   "Texture": "orange_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Orange Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "orange_concrete_powder",
+   "Texture": "orange_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Pink Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "pink_concrete",
+   "Texture": "pink_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Pink Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "pink_concrete_powder",
+   "Texture": "pink_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Purple Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "purple_concrete",
+   "Texture": "purple_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Purple Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "purple_concrete_powder",
+   "Texture": "purple_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Red Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "red_concrete",
+   "Texture": "red_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Red Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "red_concrete_powder",
+   "Texture": "red_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "White Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "white_concrete",
+   "Texture": "white_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "White Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "white_concrete_powder",
+   "Texture": "white_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "Yellow Concrete",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "yellow_concrete",
+   "Texture": "yellow_concrete.png",
+   "NN": false
+ },
+ {
+   "Name": "Yellow Concrete Powder",
+   "Group": "Concrete",
+   "Use": true,
+   "ID": "yellow_concrete_powder",
+   "Texture": "yellow_concrete_powder.png",
+   "NN": false
+ },
+ {
+   "Name": "//Terracotta",
+   "Group": "",
+   "Use": null,
+   "ID": "",
+   "Texture": "",
+   "NN": null
+ },
+ {
+   "Name": "Black Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "black_glazed_terracotta",
+   "Texture": "black_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Black Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "black_terracotta",
+   "Texture": "black_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Blue Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "blue_glazed_terracotta",
+   "Texture": "blue_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Blue Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "blue_terracotta",
+   "Texture": "blue_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Brown Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "brown_glazed_terracotta",
+   "Texture": "brown_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Brown Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "brown_terracotta",
+   "Texture": "brown_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Cyan Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "cyan_glazed_terracotta",
+   "Texture": "cyan_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Cyan Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "cyan_terracotta",
+   "Texture": "cyan_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Desktop",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "desktop",
+   "Texture": "desktop.ini",
+   "NN": false
+ },
+ {
+   "Name": "Gray Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "gray_glazed_terracotta",
+   "Texture": "gray_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Gray Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "gray_terracotta",
+   "Texture": "gray_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Green Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "green_glazed_terracotta",
+   "Texture": "green_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Green Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "green_terracotta",
+   "Texture": "green_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Blue Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "light_blue_glazed_terracotta",
+   "Texture": "light_blue_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Blue Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "light_blue_terracotta",
+   "Texture": "light_blue_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Gray Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "light_gray_glazed_terracotta",
+   "Texture": "light_gray_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Light Gray Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "light_gray_terracotta",
+   "Texture": "light_gray_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Lime Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "lime_glazed_terracotta",
+   "Texture": "lime_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Lime Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "lime_terracotta",
+   "Texture": "lime_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Magenta Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "magenta_glazed_terracotta",
+   "Texture": "magenta_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Magenta Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "magenta_terracotta",
+   "Texture": "magenta_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Orange Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "orange_glazed_terracotta",
+   "Texture": "orange_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Orange Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "orange_terracotta",
+   "Texture": "orange_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Pink Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "pink_glazed_terracotta",
+   "Texture": "pink_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Pink Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "pink_terracotta",
+   "Texture": "pink_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Purple Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "purple_glazed_terracotta",
+   "Texture": "purple_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Purple Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "purple_terracotta",
+   "Texture": "purple_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Red Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "red_glazed_terracotta",
+   "Texture": "red_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Red Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "red_terracotta",
+   "Texture": "red_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "terracotta",
+   "Texture": "terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "White Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "white_glazed_terracotta",
+   "Texture": "white_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "White Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "white_terracotta",
+   "Texture": "white_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Yellow Glazed Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "yellow_glazed_terracotta",
+   "Texture": "yellow_glazed_terracotta.png",
+   "NN": false
+ },
+ {
+   "Name": "Yellow Terracotta",
+   "Group": "Terracotta",
+   "Use": true,
+   "ID": "yellow_terracotta",
+   "Texture": "yellow_terracotta.png",
+   "NN": false
+ }
+]

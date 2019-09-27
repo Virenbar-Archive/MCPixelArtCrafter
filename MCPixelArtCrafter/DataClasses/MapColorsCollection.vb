@@ -5,9 +5,12 @@ Imports Colourful
 ''' Storage for MapColors
 ''' </summary>
 Public NotInheritable Class MapColorsCollection
+    'Private Shared MapColorsN As Dictionary(Of String, MapColor)
     Private Shared MapColors() As MapColor
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
+    Private Shared ColorCache As New Dictionary(Of Color, Integer)
+    Public Shared Property LabMode As Boolean = False
     Public Sub New()
     End Sub
     ''' <summary>
@@ -34,17 +37,43 @@ Public NotInheritable Class MapColorsCollection
     ''' <param name="color">Color to search</param>
     ''' <returns>Closest color</returns>
     Public Shared Function GetClosest(color As Color) As MapColor
-        Dim colorLab = Converter.ToLab(New RGBColor(color))
+        Dim id As Integer
+        If ColorCache.TryGetValue(color, id) Then Return MapColors(id)
+        If LabMode Then
+            GetClosest = FindClosest(Converter.ToLab(New RGBColor(color)), id)
+        Else
+            GetClosest = FindClosest(color, id)
+        End If
+        If Not ColorCache.ContainsKey(color) Then ColorCache.Add(color, id)
+    End Function
+    Private Shared Function FindClosest(color As Color, ByRef id As Integer) As MapColor
         Dim Closest As MapColor = Nothing
         Dim min, diff As Double
         min = Double.PositiveInfinity
-        For Each MC In MapColors
-            diff = Comparer.ComputeDifference(colorLab, MC.LabColor)
+        For i = 0 To MapColors.Count - 1
+            Dim MC = MapColors(i)
+            diff = Math.Sqrt((CInt(color.R) - CInt(MC.Color.R)) ^ 2 + (CInt(color.G) - CInt(MC.Color.G)) ^ 2 + (CInt(color.B) - CInt(MC.Color.B)) ^ 2)
             If diff < min Then
                 min = diff
                 Closest = MC
+                id = i
             End If
         Next
-        GetClosest = Closest
+        FindClosest = Closest
+    End Function
+    Private Shared Function FindClosest(color As LabColor, ByRef id As Integer) As MapColor
+        Dim Closest As MapColor = Nothing
+        Dim min, diff As Double
+        min = Double.PositiveInfinity
+        For i = 0 To MapColors.Count - 1
+            Dim MC = MapColors(i)
+            diff = Comparer.ComputeDifference(color, MC.LabColor)
+            If diff < min Then
+                min = diff
+                Closest = MC
+                id = i
+            End If
+        Next
+        FindClosest = Closest
     End Function
 End Class
