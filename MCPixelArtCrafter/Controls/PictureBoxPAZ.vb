@@ -11,10 +11,10 @@ Public Class PictureBoxPAZ
 
     Private _panableAndZoomable As Boolean
     Private _zoomScale, _zoomMin As Double
-    Private _zoomMax As Double = 10
+    Private ReadOnly _zoomMax As Double = 10
     Private _mouseDownPosition As Point
     Private _mouseDownButton As MouseButtons
-    Private Shared _defaultCursor As Cursor = Cursors.Cross
+    Private Shared ReadOnly _defaultCursor As Cursor = Cursors.Cross
     Private tX, tY As Integer
 
     ''' <summary>
@@ -72,6 +72,11 @@ Public Class PictureBoxPAZ
     ''' </summary>
     Public Property InterpolationMode As InterpolationMode = InterpolationMode.NearestNeighbor
     ''' <summary>
+    ''' Get or Set drawing of grid
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ShowGrid As Boolean = False
+    ''' <summary>
     ''' Grid spacing (0-No grid)
     ''' </summary>
     Public Property GridSpacing As Integer = 0
@@ -94,7 +99,7 @@ Public Class PictureBoxPAZ
                 End Using
             End With
             DrawBox(pe.Graphics)
-            If GridSpacing > 0 Then DrawGrid(pe.Graphics)
+            If ShowGrid Then DrawGrid(pe.Graphics)
         Else
             MyBase.OnPaint(pe)
         End If
@@ -216,8 +221,12 @@ Public Class PictureBoxPAZ
     Public Sub SetImage(_image As Image)
         Image = _image
         _zoomScale = 1
-        _zoomMin = Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1)
+        SetZoomMin()
         tX = ClientSize.Width / 2 - Image.Width / 2
         tY = ClientSize.Height / 2 - Image.Height / 2
+    End Sub
+
+    Private Sub SetZoomMin(Optional min As Double = Nothing)
+        _zoomMin = IIf(IsNothing(min), Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
     End Sub
 End Class

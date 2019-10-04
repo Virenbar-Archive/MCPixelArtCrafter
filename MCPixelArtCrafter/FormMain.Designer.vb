@@ -178,10 +178,10 @@ Partial Class FormMain
         Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PB.GridSpacing = 0
         Me.PB.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor
-        Me.PB.Location = New System.Drawing.Point(12, 39)
+        Me.PB.Location = New System.Drawing.Point(12, 40)
         Me.PB.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PB.Name = "PB"
-        Me.PB.Size = New System.Drawing.Size(766, 337)
+        Me.PB.Size = New System.Drawing.Size(766, 336)
         Me.PB.TabIndex = 9
         Me.PB.TabStop = False
         '

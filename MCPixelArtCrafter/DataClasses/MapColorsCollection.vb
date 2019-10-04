@@ -5,7 +5,6 @@ Imports Colourful
 ''' Storage for MapColors
 ''' </summary>
 Public NotInheritable Class MapColorsCollection
-    'Private Shared MapColorsN As Dictionary(Of String, MapColor)
     Private Shared MapColors() As MapColor
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
