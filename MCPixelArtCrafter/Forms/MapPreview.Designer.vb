@@ -75,6 +75,8 @@ Partial Class MapPreview
         Me.PB.BackColor = System.Drawing.SystemColors.Window
         Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB.GridSpacing = 0
+        Me.PB.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor
         Me.PB.Location = New System.Drawing.Point(0, 0)
         Me.PB.Name = "PB"
         Me.PB.Size = New System.Drawing.Size(846, 351)
@@ -121,7 +123,6 @@ Partial Class MapPreview
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "MapPreview"
         Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.Text = "Map Preview"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)

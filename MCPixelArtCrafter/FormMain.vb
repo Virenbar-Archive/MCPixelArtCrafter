@@ -7,6 +7,8 @@ Public Class FormMain
     Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
+
         SetImage(Path.GetFullPath("DefaultImage.png"))
         MapColorsCollection.Load()
     End Sub
@@ -70,6 +72,7 @@ Public Class FormMain
             CTS.Dispose()
             Create.Text = "Create image"
         End Try
+        MapPreview.Close()
         MapPreview.MapResult = result
         MapPreview.Show()
     End Sub

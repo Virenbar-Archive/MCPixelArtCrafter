@@ -1,4 +1,5 @@
-﻿Public Class StatusHelper
+﻿Imports Microsoft.WindowsAPICodePack.Taskbar
+Public Class StatusHelper
     Public Event Tick()
     Private WithEvents Timer As New Timer
     Private SW As New Stopwatch
@@ -29,17 +30,25 @@
 
     Public Sub Start()
         _IsActive = True
+        TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
         Timer.Start()
         SW.Restart()
     End Sub
-
+    Public Sub Cancel()
+        _IsActive = False
+        TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Paused)
+        Timer.Stop()
+        SW.Stop()
+    End Sub
     Public Sub [Stop]()
         _IsActive = False
+        TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
         Timer.Stop()
         SW.Stop()
     End Sub
 
     Private Sub OnTick() Handles Timer.Tick
+        TaskbarManager.Instance.SetProgressValue(Count, Amount)
         RaiseEvent Tick()
     End Sub
 End Class

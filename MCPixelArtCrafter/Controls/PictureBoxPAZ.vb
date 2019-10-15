@@ -226,7 +226,7 @@ Public Class PictureBoxPAZ
         tY = ClientSize.Height / 2 - Image.Height / 2
     End Sub
 
-    Private Sub SetZoomMin(Optional min As Double = Nothing)
-        _zoomMin = IIf(IsNothing(min), Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
+    Private Sub SetZoomMin(Optional min As Double = 0)
+        _zoomMin = IIf(min = 0, Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
     End Sub
 End Class
