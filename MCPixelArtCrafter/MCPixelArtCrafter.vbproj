@@ -190,9 +190,6 @@
     <Compile Include="StatusHelper.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormMain.en.resx">
-      <DependentUpon>FormMain.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.ru.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
