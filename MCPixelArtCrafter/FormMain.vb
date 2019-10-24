@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 
+
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
     Private Task As Task, CTS As Threading.CancellationTokenSource
@@ -11,6 +12,7 @@ Public Class FormMain
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
         MapColorsCollection.Load()
+        SettingsHelper.Load()
     End Sub
 
     Private Sub Bt_Settings_Click(sender As Object, e As EventArgs) Handles Bt_Settings.Click

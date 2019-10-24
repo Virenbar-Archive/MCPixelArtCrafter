@@ -1,10 +1,12 @@
 ﻿Imports System.IO
+Imports MCPixelArtCrafter.SettingsHelper
 Imports Newtonsoft.Json
 Imports Colourful
 ''' <summary>
 ''' Storage for MapColors
 ''' </summary>
 Public NotInheritable Class MapColorsCollection
+    Public Shared MapColorsFull() As MapColor
     Private Shared MapColors() As MapColor
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
@@ -17,18 +19,33 @@ Public NotInheritable Class MapColorsCollection
     ''' </summary>
     ''' <param name="folder">Folder with config</param>
     Public Shared Sub Load(Optional folder As String = "Default")
+        MapColors = Nothing
         Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
         If Not File.Exists(config) Then
             MessageBox.Show(String.Format("Can't find {0}", config), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
-        MapColors = JsonConvert.DeserializeObject(Of MapColor())(File.ReadAllText(config))
-        For Each MC In MapColors
-            MC.ColorStr.Split(", ")
-            Dim RGB = Array.ConvertAll(MC.ColorStr.Split(", "), Function(str) Int32.Parse(str))
+        MapColorsFull = JsonConvert.DeserializeObject(Of MapColor())(File.ReadAllText(config))
+        For Each MC In MapColorsFull
+            Dim RGB() = Array.ConvertAll(MC.ColorStr.Split(", "), Function(str) Int32.Parse(str))
             MC.Color = Color.FromArgb(RGB(0), RGB(1), RGB(2))
             MC.LabColor = Converter.ToLab(New RGBColor(MC.Color))
         Next
+        CheckConfig()
+    End Sub
+    Public Shared Sub CheckConfig()
+        LabMode = Config.LabMode
+        If Config.BlacklistMC.Count = 0 Then
+            MapColors = MapColorsFull
+        Else
+            Dim tmp = New List(Of MapColor)
+            For Each MC In MapColorsFull
+                If Config.BlacklistMC.Contains(MC.ID) Then Continue For
+                tmp.Add(MC)
+            Next
+            MapColors = tmp.ToArray
+            ColorCache.Clear()
+        End If
     End Sub
     ''' <summary>
     ''' Returns closest color

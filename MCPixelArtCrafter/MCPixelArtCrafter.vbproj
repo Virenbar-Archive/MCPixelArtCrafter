@@ -187,6 +187,7 @@
     <Compile Include="Controls\CheckGroupBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Settings.vb" />
     <Compile Include="StatusHelper.vb" />
   </ItemGroup>
   <ItemGroup>
