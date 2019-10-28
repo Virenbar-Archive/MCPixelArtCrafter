@@ -85,15 +85,15 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Menu
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSProgressBar, Me.AnimationLabel, Me.lbl_Progress, Me.lbl_Elapsed})
+        resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.Name = "StatusStrip1"
         '
         'TSProgressBar
         '
-        resources.ApplyResources(Me.TSProgressBar, "TSProgressBar")
         Me.TSProgressBar.Name = "TSProgressBar"
+        resources.ApplyResources(Me.TSProgressBar, "TSProgressBar")
         '
         'AnimationLabel
         '
@@ -102,13 +102,13 @@ Partial Class FormMain
         '
         'lbl_Progress
         '
-        resources.ApplyResources(Me.lbl_Progress, "lbl_Progress")
         Me.lbl_Progress.Name = "lbl_Progress"
+        resources.ApplyResources(Me.lbl_Progress, "lbl_Progress")
         '
         'lbl_Elapsed
         '
-        resources.ApplyResources(Me.lbl_Elapsed, "lbl_Elapsed")
         Me.lbl_Elapsed.Name = "lbl_Elapsed"
+        resources.ApplyResources(Me.lbl_Elapsed, "lbl_Elapsed")
         '
         'SelectImage
         '

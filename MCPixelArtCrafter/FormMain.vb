@@ -4,15 +4,15 @@
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
     Private Task As Task, CTS As Threading.CancellationTokenSource
-    Dim Progress As IProgress(Of Integer) = New Progress(Of Integer)(Sub(val) SH.Count = val)
+    Private Progress As IProgress(Of Integer) = New Progress(Of Integer)(Sub(val) SH.Count = val)
     Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
-        MapColorsCollection.Load()
         SettingsHelper.Load()
+        MapColorsCollection.Load()
     End Sub
 
     Private Sub Bt_Settings_Click(sender As Object, e As EventArgs) Handles Bt_Settings.Click

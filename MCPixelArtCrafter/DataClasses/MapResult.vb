@@ -7,7 +7,7 @@
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
         Dim h = InImage.Height
-        'ReDim Map(w, h)
+        ReDim Map(w, h)
         _OutImage = New Bitmap(w, h)
         Dim closest As MapColor
         Await Task.Run(
@@ -20,7 +20,7 @@
                         End If
                         If InImage.GetPixel(x, y).A < 256 / 2 Then Continue For
                         closest = MapColorsCollection.GetClosest(InImage.GetPixel(x, y))
-                        'Map(x, y) = closest
+                        Map(x, y) = closest
                         OutImage.SetPixel(x, y, closest.Color)
                         If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
                         UsedMapColors(closest) += 1

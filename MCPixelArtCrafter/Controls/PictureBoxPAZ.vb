@@ -184,6 +184,7 @@ Public Class PictureBoxPAZ
 
     Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)
         If Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
+            SetZoomMin()
             CheckT()
             Invalidate()
         End If
@@ -228,5 +229,6 @@ Public Class PictureBoxPAZ
 
     Private Sub SetZoomMin(Optional min As Double = 0)
         _zoomMin = IIf(min = 0, Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
+        _zoomScale = Math.Max(_zoomScale, _zoomMin)
     End Sub
 End Class

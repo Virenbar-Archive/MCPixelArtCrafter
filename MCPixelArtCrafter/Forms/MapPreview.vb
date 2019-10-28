@@ -1,4 +1,6 @@
-﻿Public Class MapPreview
+﻿Imports System.ComponentModel
+
+Public Class MapPreview
     Public Property MapResult As MapResult
 
     Private Sub MapPreview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,5 +24,9 @@
     Private Sub CB_Grid_CheckedChanged(sender As Object, e As EventArgs) Handles CB_Grid.CheckedChanged
         PB.ShowGrid = CB_Grid.Checked
         PB.Invalidate()
+    End Sub
+
+    Private Sub MapPreview_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        MapResult = Nothing
     End Sub
 End Class
