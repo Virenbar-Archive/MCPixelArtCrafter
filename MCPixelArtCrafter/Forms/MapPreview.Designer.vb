@@ -79,6 +79,7 @@ Partial Class MapPreview
         Me.PB.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor
         Me.PB.Location = New System.Drawing.Point(0, 0)
         Me.PB.Name = "PB"
+        Me.PB.ShowGrid = False
         Me.PB.Size = New System.Drawing.Size(846, 351)
         Me.PB.TabIndex = 0
         Me.PB.TabStop = False

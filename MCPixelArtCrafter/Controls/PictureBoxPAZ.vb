@@ -31,7 +31,7 @@ Public Class PictureBoxPAZ
         BorderStyle = BorderStyle.Fixed3D
         PanableAndZoomable = True
     End Sub
-
+#Region "Properties"
     ''' <summary>
     ''' Get or Set the property to enable(disable) Pan and Zoom
     ''' </summary>
@@ -80,6 +80,18 @@ Public Class PictureBoxPAZ
     ''' Grid spacing (0-No grid)
     ''' </summary>
     Public Property GridSpacing As Integer = 0
+
+    Public ReadOnly Property MousePos As Point
+        Get
+            Dim CP = PointToClient(MousePosition)
+            Dim X = (tX * _zoomScale - CP.X) / _zoomScale
+            Dim Y = (tX * _zoomScale - CP.Y) / _zoomScale
+            Return New Point(X, Y)
+            'Dim IP = New Point(tX, tY).Multiply(_zoomScale)
+            'Return CP.Substract(IP).Divide(_zoomScale)
+        End Get
+    End Property
+#End Region
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
         If IsDisposed Then Return
 
@@ -232,3 +244,8 @@ Public Class PictureBoxPAZ
         _zoomScale = Math.Max(_zoomScale, _zoomMin)
     End Sub
 End Class
+'TODO: Fix grid 
+'Try alternative pixel render
+'https://stackoverflow.com/questions/40498312/c-sharp-create-grid-for-painting-pixels-and-rendering-text
+'Or make new bitmap with max zoom and grid
+

@@ -29,4 +29,8 @@ Public Class MapPreview
     Private Sub MapPreview_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         MapResult = Nothing
     End Sub
+
+    Private Sub PB_Click(sender As Object, e As EventArgs) Handles PB.Click
+        Console.WriteLine(PB.MousePos.ToString)
+    End Sub
 End Class
