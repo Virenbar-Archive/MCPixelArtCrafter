@@ -84,8 +84,8 @@ Public Class PictureBoxPAZ
     Public ReadOnly Property MousePos As Point
         Get
             Dim CP = PointToClient(MousePosition)
-            Dim X = (tX * _zoomScale - CP.X) / _zoomScale
-            Dim Y = (tX * _zoomScale - CP.Y) / _zoomScale
+            Dim X = (tX - CP.X) / _zoomScale
+            Dim Y = (tY - CP.Y) / _zoomScale
             Return New Point(X, Y)
             'Dim IP = New Point(tX, tY).Multiply(_zoomScale)
             'Return CP.Substract(IP).Divide(_zoomScale)
@@ -101,14 +101,15 @@ Public Class PictureBoxPAZ
                 If .InterpolationMode <> mode Then .InterpolationMode = mode
                 If .PixelOffsetMode <> PixelOffsetMode.Half Then .PixelOffsetMode = PixelOffsetMode.Half
                 'DrawBox(pe)
-                Using transform As Matrix = .Transform
-                    If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
-                    If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
+                'Using transform As Matrix = .Transform
+                '    If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
+                '    If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
 
-                    .Transform = transform
-                    MyBase.OnPaint(pe)
-                    'DrawBox(pe)
-                End Using
+                '    .Transform = transform
+                '    MyBase.OnPaint(pe)
+                '    'DrawBox(pe)
+                'End Using
+                .DrawImage(Image, New Rectangle(New Point(tX, tY), ImageSize))
             End With
             DrawBox(pe.Graphics)
             If ShowGrid Then DrawGrid(pe.Graphics)
@@ -118,16 +119,14 @@ Public Class PictureBoxPAZ
     End Sub
     Private Sub DrawBox(g As Graphics)
         g.ResetTransform()
-        Dim p1 = New Point(tX * _zoomScale, tY * _zoomScale)
-        Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
-        Dim p3 = New Point(p1.X + ImageSize.Width, p1.Y + ImageSize.Height)
-        Dim p4 = New Point(p1.X, p1.Y + ImageSize.Height)
-        'pe.Graphics.DrawLine(New Pen(Color.Black, 1), p1, p2)
-        g.DrawLines(New Pen(Color.Black, 1), {p1, p2, p3, p4, p1})
-        'pe.Graphics.
+        Dim p1 = New Point(tX, tY)
+        'Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
+        'Dim p3 = New Point(p1.X + ImageSize.Width, p1.Y + ImageSize.Height)
+        'Dim p4 = New Point(p1.X, p1.Y + ImageSize.Height)
+        g.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(p1, ImageSize))
     End Sub
     Private Sub DrawGrid(g As Graphics)
-        Dim ZP = New Point(tX * _zoomScale, tY * _zoomScale),
+        Dim ZP = New Point(tX, tY),
             X1 = New Point(ZP), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
             Y1 = New Point(ZP), Y2 = New Point(ZP.X + ImageSize.Width, ZP.Y)
         Dim delta = GridSpacing * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
@@ -145,8 +144,8 @@ Public Class PictureBoxPAZ
 
     Private Shadows Sub OnMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
         If Me._mouseDownButton = MouseButtons.Left Then
-            Dim shiftX As Integer = (e.X - Me._mouseDownPosition.X) / Me._zoomScale
-            Dim shiftY As Integer = (e.Y - Me._mouseDownPosition.Y) / Me._zoomScale
+            Dim shiftX As Integer = (e.X - Me._mouseDownPosition.X)
+            Dim shiftY As Integer = (e.Y - Me._mouseDownPosition.Y)
             If (shiftX = 0) AndAlso (shiftY = 0) Then
                 Return
             End If
@@ -203,8 +202,8 @@ Public Class PictureBoxPAZ
     End Sub
     Private Sub CheckT()
         'd*: Positive - Free client space, Negative - Hidden image space
-        Dim dx = (ClientSize.Width - ImageSize.Width) * 1 / _zoomScale
-        Dim dy = (ClientSize.Height - ImageSize.Height) * 1 / _zoomScale
+        Dim dx = (ClientSize.Width - ImageSize.Width) '* 1 / _zoomScale
+        Dim dy = (ClientSize.Height - ImageSize.Height) '* 1 / _zoomScale
         tX = IIf(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
         tY = IIf(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
     End Sub
@@ -212,15 +211,15 @@ Public Class PictureBoxPAZ
     ''' <summary>
     ''' Set the new zoom scale for the displayed image
     ''' </summary>
-    ''' <param name="zoomScale">The new zoom scale</param>
+    ''' <param name="newZoom">The new zoom scale</param>
     ''' <param name="fixPoint">The point to be fixed, in display coordinate</param>
-    Public Sub SetZoomScale(ByVal zoomScale As Double, ByVal fixPoint As Point)
-        If Image IsNot Nothing AndAlso _zoomScale <> zoomScale Then
+    Public Sub SetZoomScale(ByVal newZoom As Double, ByVal fixPoint As Point)
+        If Image IsNot Nothing AndAlso _zoomScale <> newZoom Then
             'fixPoint.X = Math.Min(fixPoint.X, CInt((Me.Image.Size.Width * _zoomScale)))
             'fixPoint.Y = Math.Min(fixPoint.Y, CInt((Me.Image.Size.Height * _zoomScale)))
-            Dim shiftX As Integer = (fixPoint.X * (zoomScale - _zoomScale) / zoomScale / _zoomScale)
-            Dim shiftY As Integer = (fixPoint.Y * (zoomScale - _zoomScale) / zoomScale / _zoomScale)
-            _zoomScale = zoomScale
+            Dim shiftX As Integer = (fixPoint.X * (newZoom - _zoomScale) / newZoom / _zoomScale)
+            Dim shiftY As Integer = (fixPoint.Y * (newZoom - _zoomScale) / newZoom / _zoomScale)
+            _zoomScale = newZoom
             tX += -shiftX
             tY += -shiftY
             CheckT()
