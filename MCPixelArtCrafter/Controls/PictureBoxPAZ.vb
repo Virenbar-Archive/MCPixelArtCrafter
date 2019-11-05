@@ -61,7 +61,7 @@ Public Class PictureBoxPAZ
         End Set
     End Property
 
-    Protected ReadOnly Property ImageSize() As Size
+    Protected ReadOnly Property ImageSize As Size
         Get
             Return New Size(CInt(Math.Round(Image.Size.Width * _zoomScale)), CInt(Math.Round(Image.Size.Height * _zoomScale)))
         End Get
@@ -80,7 +80,11 @@ Public Class PictureBoxPAZ
     ''' Grid spacing (0-No grid)
     ''' </summary>
     Public Property GridSpacing As Integer = 0
-
+    Public ReadOnly Property OriginPos As Point
+        Get
+            Return New Point(tX, tY)
+        End Get
+    End Property
     Public ReadOnly Property MousePos As Point
         Get
             Dim CP = PointToClient(MousePosition)
@@ -217,11 +221,11 @@ Public Class PictureBoxPAZ
         If Image IsNot Nothing AndAlso _zoomScale <> newZoom Then
             'fixPoint.X = Math.Min(fixPoint.X, CInt((Me.Image.Size.Width * _zoomScale)))
             'fixPoint.Y = Math.Min(fixPoint.Y, CInt((Me.Image.Size.Height * _zoomScale)))
-            Dim shiftX As Integer = (fixPoint.X * (newZoom - _zoomScale) / newZoom / _zoomScale)
-            Dim shiftY As Integer = (fixPoint.Y * (newZoom - _zoomScale) / newZoom / _zoomScale)
+            Dim shiftX As Integer = -((fixPoint.X - tX) / _zoomScale * (newZoom - _zoomScale))
+            Dim shiftY As Integer = -((fixPoint.Y - tY) / _zoomScale * (newZoom - _zoomScale))
             _zoomScale = newZoom
-            tX += -shiftX
-            tY += -shiftY
+            tX += shiftX
+            tY += shiftY
             CheckT()
             Invalidate()
         End If

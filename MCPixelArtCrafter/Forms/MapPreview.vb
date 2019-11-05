@@ -33,4 +33,8 @@ Public Class MapPreview
     Private Sub PB_Click(sender As Object, e As EventArgs) Handles PB.Click
         Console.WriteLine(PB.MousePos.ToString)
     End Sub
+
+    Private Sub PB_MouseMove(sender As Object, e As MouseEventArgs) Handles PB.MouseMove
+        TS_MousePos.Text = String.Format("X:{0}|Y:{1}", PB.MousePos.X, PB.MousePos.Y)
+    End Sub
 End Class
