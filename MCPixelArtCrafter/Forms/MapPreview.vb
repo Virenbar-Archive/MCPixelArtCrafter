@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Public Class MapPreview
+    Private ClickedColor As MapColorCount
     Public Property MapResult As MapResult
 
     Private Sub MapPreview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -30,8 +31,21 @@ Public Class MapPreview
         MapResult = Nothing
     End Sub
 
-    Private Sub PB_Click(sender As Object, e As EventArgs) Handles PB.Click
+    Private Sub PB_Click(sender As Object, e As EventArgs) Handles PB.MouseClick
         Console.WriteLine(PB.MousePos.ToString)
+        Try
+            If Not IsNothing(ClickedColor) Then ClickedColor.Highlight = False
+
+            Dim p = PB.MousePos
+            'If p.X > PB.Image.Size. Then Exit Sub
+            'Check range or leave Try?
+            Dim c = MapResult.ColorAtPixel(p)
+            If FLP_UsedColors.Controls.ContainsKey(c.ID) Then
+                ClickedColor = FLP_UsedColors.Controls(c.ID)
+                ClickedColor.Highlight = True
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub PB_MouseMove(sender As Object, e As MouseEventArgs) Handles PB.MouseMove

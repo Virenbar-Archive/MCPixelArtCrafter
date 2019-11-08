@@ -118,6 +118,7 @@ Partial Class MapPreview
         '
         'StatusStrip1
         '
+        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Control
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TS_MousePos})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 501)
         Me.StatusStrip1.Name = "StatusStrip1"

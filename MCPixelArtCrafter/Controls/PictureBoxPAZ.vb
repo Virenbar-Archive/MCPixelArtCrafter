@@ -63,7 +63,7 @@ Public Class PictureBoxPAZ
 
     Protected ReadOnly Property ImageSize As Size
         Get
-            Return New Size(CInt(Math.Round(Image.Size.Width * _zoomScale)), CInt(Math.Round(Image.Size.Height * _zoomScale)))
+            Return New Size(Math.Round(Image.Size.Width * _zoomScale), Math.Round(Image.Size.Height * _zoomScale))
         End Get
     End Property
 
@@ -88,9 +88,8 @@ Public Class PictureBoxPAZ
     Public ReadOnly Property MousePos As Point
         Get
             Dim CP = PointToClient(MousePosition)
-            Dim X = (tX - CP.X) / _zoomScale
-            Dim Y = (tY - CP.Y) / _zoomScale
-            Return New Point(X, Y)
+            Return New Point(Math.Ceiling((CP.X - tX) / _zoomScale),
+                             Math.Ceiling((CP.Y - tY) / _zoomScale))
             'Dim IP = New Point(tX, tY).Multiply(_zoomScale)
             'Return CP.Substract(IP).Divide(_zoomScale)
         End Get

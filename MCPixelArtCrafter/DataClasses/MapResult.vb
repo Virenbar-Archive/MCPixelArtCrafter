@@ -31,4 +31,7 @@
         Await Task.Delay(1 * 500)
         'MapColorsCollection.GetClosest()
     End Function
+    Public Function ColorAtPixel(p As Point) As MapColor
+        Return Map(p.X - 1, p.Y - 1)
+    End Function
 End Class

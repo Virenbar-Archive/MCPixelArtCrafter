@@ -85,7 +85,7 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Menu
+        Me.StatusStrip1.BackColor = System.Drawing.SystemColors.Control
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSProgressBar, Me.AnimationLabel, Me.lbl_Progress, Me.lbl_Elapsed})
         resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.Name = "StatusStrip1"
