@@ -15,7 +15,7 @@ Class SettingsHelper
     Public Class Settings
         Public BlacklistMC As New List(Of String)
         Public BlacklistB As New List(Of String)
-        Public LabMode As Boolean = True
+        Public LabMode As Boolean = False
     End Class
 End Class
 

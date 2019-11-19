@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.IO
 
 Public Class MapPreview
     Private ClickedColor As MapColorCount
@@ -17,8 +18,14 @@ Public Class MapPreview
     End Sub
 
     Private Sub B_Save_Click(sender As Object, e As EventArgs) Handles B_Save.Click
+        SFD.Filter = "PNG|*.png|Export to JSON|*.json"
         If SFD.ShowDialog = DialogResult.OK Then
-            MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
+            Select Case IO.Path.GetExtension(SFD.FileName)
+                Case ".png"
+                    MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
+                Case ".json"
+                    File.WriteAllText(SFD.FileName, MapResult.SaveToJSON)
+            End Select
         End If
     End Sub
 
@@ -40,8 +47,8 @@ Public Class MapPreview
             'If p.X > PB.Image.Size. Then Exit Sub
             'Check range or leave Try?
             Dim c = MapResult.ColorAtPixel(p)
-            If FLP_UsedColors.Controls.ContainsKey(c.ID) Then
-                ClickedColor = FLP_UsedColors.Controls(c.ID)
+            If FLP_UsedColors.Controls.ContainsKey(c.ID_str) Then
+                ClickedColor = FLP_UsedColors.Controls(c.ID_str)
                 ClickedColor.Highlight = True
             End If
         Catch ex As Exception

@@ -9,8 +9,8 @@ Public Class FormSettings
         For Each MC In MapColorsCollection.MapColorsFull
             Dim i = DGV_MapColors.Rows.Add()
 
-            DGV_MapColors.Rows(i).Cells(_ID.Index).Value = MC.ID
-            If Config.BlacklistMC.Contains(MC.ID) Then
+            DGV_MapColors.Rows(i).Cells(_ID.Index).Value = MC.ID_str
+            If Config.BlacklistMC.Contains(MC.ID_str) Then
                 DGV_MapColors.Rows(i).Cells(_Use.Index).Value = False
             Else
                 DGV_MapColors.Rows(i).Cells(_Use.Index).Value = True

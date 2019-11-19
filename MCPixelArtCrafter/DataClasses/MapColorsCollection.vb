@@ -27,8 +27,6 @@ Public NotInheritable Class MapColorsCollection
         End If
         MapColorsFull = JsonConvert.DeserializeObject(Of MapColor())(File.ReadAllText(config))
         For Each MC In MapColorsFull
-            Dim RGB() = Array.ConvertAll(MC.ColorStr.Split(", "), Function(str) Int32.Parse(str))
-            MC.Color = Color.FromArgb(RGB(0), RGB(1), RGB(2))
             MC.LabColor = Converter.ToLab(New RGBColor(MC.Color))
         Next
         CheckConfig()
@@ -40,7 +38,7 @@ Public NotInheritable Class MapColorsCollection
         Else
             Dim tmp = New List(Of MapColor)
             For Each MC In MapColorsFull
-                If Config.BlacklistMC.Contains(MC.ID) Then Continue For
+                If Config.BlacklistMC.Contains(MC.ID_str) Then Continue For
                 tmp.Add(MC)
             Next
             MapColors = tmp.ToArray
