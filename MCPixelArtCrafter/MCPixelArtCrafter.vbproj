@@ -167,6 +167,11 @@
     <Compile Include="DataClasses\MapColorsCollection.vb" />
     <Compile Include="DataClasses\MapResult.vb" />
     <Compile Include="Extensions.vb" />
+    <Compile Include="Locales\MyStrings.ru.Designer.vb">
+      <DependentUpon>MyStrings.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -190,6 +195,12 @@
     </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="StatusHelper.vb" />
+    <Compile Include="Locales\MyStrings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Messages.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.ru.resx">
@@ -216,6 +227,11 @@
     <EmbeddedResource Include="Forms\MapPreview.resx">
       <DependentUpon>MapPreview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Locales\MyStrings.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.ru.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -224,6 +240,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CheckGroupBox.resx">
       <DependentUpon>CheckGroupBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locales\MyStrings.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -272,4 +293,5 @@
     <Folder Include="My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <ProjectExtensions />
 </Project>

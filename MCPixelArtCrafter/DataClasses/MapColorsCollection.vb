@@ -1,7 +1,6 @@
 ﻿Imports System.IO
-Imports MCPixelArtCrafter.SettingsHelper
-Imports Newtonsoft.Json
 Imports Colourful
+Imports Newtonsoft.Json
 ''' <summary>
 ''' Storage for MapColors
 ''' </summary>
@@ -12,8 +11,7 @@ Public NotInheritable Class MapColorsCollection
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
     Private Shared ColorCache As New Dictionary(Of Color, Integer)
     Public Shared Property LabMode As Boolean = False
-    Public Sub New()
-    End Sub
+
     ''' <summary>
     ''' Loads config from folder and converts colors to Lab
     ''' </summary>
@@ -22,12 +20,13 @@ Public NotInheritable Class MapColorsCollection
         MapColors = Nothing
         Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
         If Not File.Exists(config) Then
-            MessageBox.Show(String.Format("Can't find {0}", config), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ShowError(String.Format("Can't find {0}", config))
             Exit Sub
         End If
         MapColorsFull = JsonConvert.DeserializeObject(Of MapColor())(File.ReadAllText(config))
         For Each MC In MapColorsFull
             MC.LabColor = Converter.ToLab(New RGBColor(MC.Color))
+            MC.ID_map = MC.ID * 4 + 2
         Next
         CheckConfig()
     End Sub

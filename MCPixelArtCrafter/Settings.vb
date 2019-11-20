@@ -1,21 +1,21 @@
 ﻿Imports System.IO
 Imports Newtonsoft.Json
 
-Class SettingsHelper
-    Private Shared SettingsFile As String = "Settings.json"
-    Public Shared Config As New Settings
-    Public Shared Sub Load()
-        If Not File.Exists(SettingsFile) Then Exit Sub
-        Config = JsonConvert.DeserializeObject(Of Settings)(File.ReadAllText(SettingsFile))
-    End Sub
-    Public Shared Sub Save()
-        Dim json = JsonConvert.SerializeObject(Config)
-        File.WriteAllText(SettingsFile, json)
-    End Sub
+Module SettingsHelper
+    Private ReadOnly ConfigFile As String = "Settings.json"
+    Public Config As New Settings
     Public Class Settings
         Public BlacklistMC As New List(Of String)
         Public BlacklistB As New List(Of String)
         Public LabMode As Boolean = False
+        Public Shared Sub Load()
+            If Not File.Exists(ConfigFile) Then Exit Sub
+            Config = JsonConvert.DeserializeObject(Of Settings)(File.ReadAllText(ConfigFile))
+        End Sub
+        Public Shared Sub Save()
+            Dim json = JsonConvert.SerializeObject(Config)
+            File.WriteAllText(ConfigFile, json)
+        End Sub
     End Class
-End Class
+End Module
 

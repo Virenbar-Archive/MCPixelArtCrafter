@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-
+Imports System.Globalization
 
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
@@ -11,7 +11,7 @@ Public Class FormMain
         OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
-        SettingsHelper.Load()
+        Settings.Load()
         MapColorsCollection.Load()
     End Sub
 
@@ -45,7 +45,7 @@ Public Class FormMain
 
     Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
         If Not SH.IsActive Then
-            Create.Text = "Cancel"
+            Create.Text = My.Resources.MyStrings.B_Cancel
             RunGenerator()
         Else
             CTS.Cancel()

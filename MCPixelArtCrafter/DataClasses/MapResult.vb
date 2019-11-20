@@ -39,10 +39,9 @@ Public Class MapResult
     Structure MapJSON
         Public Map(,) As Integer
         Public MapColors() As MapColor
-
     End Structure
 
-    Public Function SaveToJSON() As String
+    Public Function ToJSON() As String
         Dim f As MapJSON
         ReDim f.Map(Map.GetUpperBound(0), Map.GetUpperBound(1))
         f.MapColors = UsedMapColors.Keys.ToArray
@@ -52,7 +51,6 @@ Public Class MapResult
                 f.Map(i, j) = Map(i, j).ID
             Next
         Next
-
         'Return JsonConvert.SerializeObject(Map, New JsonSerializerSettings With {.PreserveReferencesHandling = PreserveReferencesHandling.Objects})
         Return JsonConvert.SerializeObject(f)
     End Function

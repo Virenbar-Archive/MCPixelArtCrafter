@@ -24,7 +24,7 @@ Public Class MapPreview
                 Case ".png"
                     MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
                 Case ".json"
-                    File.WriteAllText(SFD.FileName, MapResult.SaveToJSON)
+                    File.WriteAllText(SFD.FileName, MapResult.ToJSON)
             End Select
         End If
     End Sub
