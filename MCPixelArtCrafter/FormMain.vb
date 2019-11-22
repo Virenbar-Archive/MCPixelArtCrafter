@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Globalization
+Imports MCPixelArtCrafter.DataIO
 
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
@@ -8,7 +9,7 @@ Public Class FormMain
     Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
+        OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|Import mcpac|*.mcpac|Import JSON|*.json|All files (*.*)|*.*"
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
         Settings.Load()
@@ -21,7 +22,16 @@ Public Class FormMain
 
     Private Sub SelectImage_Click(sender As Object, e As EventArgs) Handles SelectImage.Click
         If OFD.ShowDialog() = DialogResult.OK Then
-            SetImage(OFD.FileName)
+            Select Case Path.GetExtension(OFD.FileName)
+                Case ".mcpac"
+                    Dim Result = New MapResult
+                    Result.LoadMCPAC(OFD.FileName)
+                    MapPreview.Close()
+                    MapPreview.MapResult = Result
+                    MapPreview.Show()
+                Case ".json"  'LoadFromMCPAC()
+                Case Else : SetImage(OFD.FileName)
+            End Select
         End If
     End Sub
 

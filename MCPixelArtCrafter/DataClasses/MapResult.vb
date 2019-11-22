@@ -1,9 +1,11 @@
 ﻿Imports Newtonsoft.Json
+Imports MCPixelArtCrafter.DataIO
+
 Public Class MapResult
     Implements IResult
     Private Map(,) As MapColor
     Public ReadOnly Property OutImage As Bitmap Implements IResult.OutImage
-    Public UsedMapColors As New Dictionary(Of MapColor, Integer)
+    Public ReadOnly UsedMapColors As New Dictionary(Of MapColor, Integer)
     Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
@@ -36,22 +38,36 @@ Public Class MapResult
         Return Map(p.X - 1, p.Y - 1)
     End Function
 
-    Structure MapJSON
-        Public Map(,) As Integer
-        Public MapColors() As MapColor
-    End Structure
-
     Public Function ToJSON() As String
-        Dim f As MapJSON
-        ReDim f.Map(Map.GetUpperBound(0), Map.GetUpperBound(1))
-        f.MapColors = UsedMapColors.Keys.ToArray
+        Dim tmp As MapJSON
+        ReDim tmp.Map(Map.GetUpperBound(0), Map.GetUpperBound(1))
+        tmp.MapColors = UsedMapColors.Keys.ToArray
 
         For i = 0 To Map.GetUpperBound(0)
             For j = 0 To Map.GetUpperBound(1)
-                f.Map(i, j) = Map(i, j).ID
+                tmp.Map(i, j) = Map(i, j).ID
             Next
         Next
-        'Return JsonConvert.SerializeObject(Map, New JsonSerializerSettings With {.PreserveReferencesHandling = PreserveReferencesHandling.Objects})
-        Return JsonConvert.SerializeObject(f)
+        Return JsonConvert.SerializeObject(tmp)
+        'Return tmp
     End Function
+
+    Public Sub LoadMCPAC(infile As String)
+        Dim json = LoadFromMCPAC(infile)
+        Dim w = json.Map.GetLength(0), h = json.Map.GetLength(1)
+        ReDim Map(w - 1, h - 1)
+        _OutImage = New Bitmap(w, h)
+
+        For x = 0 To w - 1
+            For y = 0 To h - 1
+                Dim color = json.MapColors(json.Map(x, y))
+
+                Map(x, y) = color
+                OutImage.SetPixel(x, y, color.Color)
+
+                If Not UsedMapColors.ContainsKey(color) Then UsedMapColors.Add(color, 0)
+                UsedMapColors(color) += 1
+            Next
+        Next
+    End Sub
 End Class
