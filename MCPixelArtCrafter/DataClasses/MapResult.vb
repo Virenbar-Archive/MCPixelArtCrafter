@@ -41,11 +41,15 @@ Public Class MapResult
     Public Function ToJSON() As String
         Dim tmp As MapJSON
         ReDim tmp.Map(Map.GetUpperBound(0), Map.GetUpperBound(1))
-        tmp.MapColors = UsedMapColors.Keys.ToArray
+        Dim index = New Dictionary(Of UInteger, UInteger)
 
+        tmp.MapColors = UsedMapColors.Keys.ToArray
+        For i = 0 To tmp.MapColors.GetUpperBound(0)
+            index.Add(tmp.MapColors(i).ID, i)
+        Next
         For i = 0 To Map.GetUpperBound(0)
             For j = 0 To Map.GetUpperBound(1)
-                tmp.Map(i, j) = Map(i, j).ID
+                tmp.Map(i, j) = index(Map(i, j).ID)
             Next
         Next
         Return JsonConvert.SerializeObject(tmp)

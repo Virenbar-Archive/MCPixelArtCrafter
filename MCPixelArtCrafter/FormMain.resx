@@ -382,7 +382,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="ImagePathText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 12</value>
+    <value>114, 10</value>
   </data>
   <data name="ImagePathText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
