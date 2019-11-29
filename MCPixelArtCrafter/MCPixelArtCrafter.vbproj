@@ -133,12 +133,6 @@
     <Compile Include="Controls\PictureBoxPAZ.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SmartPB.Designer.vb">
-      <DependentUpon>SmartPB.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SmartPB.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -217,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MapColorCount.resx">
       <DependentUpon>MapColorCount.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SmartPB.resx">
-      <DependentUpon>SmartPB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
