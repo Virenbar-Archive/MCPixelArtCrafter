@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Globalization
 Imports MCPixelArtCrafter.DataIO
+Imports System.Reflection
+Imports System.Runtime
 
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
@@ -9,6 +11,7 @@ Public Class FormMain
     Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Text += " (v" + Assembly.GetEntryAssembly().GetName().Version.ToString + ")"
         OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|Import mcpac|*.mcpac|Import JSON|*.json|All files (*.*)|*.*"
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
