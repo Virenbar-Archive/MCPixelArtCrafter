@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="B_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="B_CreateImage" xml:space="preserve">
+    <value>Create Image</value>
+  </data>
 </root>

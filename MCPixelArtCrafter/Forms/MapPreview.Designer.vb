@@ -94,7 +94,7 @@ Partial Class MapPreview
         'B_Save
         '
         Me.B_Save.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Save.Location = New System.Drawing.Point(781, 475)
+        Me.B_Save.Location = New System.Drawing.Point(782, 475)
         Me.B_Save.Name = "B_Save"
         Me.B_Save.Size = New System.Drawing.Size(78, 23)
         Me.B_Save.TabIndex = 1
@@ -109,7 +109,7 @@ Partial Class MapPreview
         '
         Me.CB_Grid.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CB_Grid.AutoSize = True
-        Me.CB_Grid.Location = New System.Drawing.Point(13, 481)
+        Me.CB_Grid.Location = New System.Drawing.Point(12, 479)
         Me.CB_Grid.Name = "CB_Grid"
         Me.CB_Grid.Size = New System.Drawing.Size(75, 17)
         Me.CB_Grid.TabIndex = 2

@@ -20,14 +20,14 @@
     Sub New(ByRef _color As MapColor, ByRef count As Integer)
         InitializeComponent()
         Color = _color
-        Name = Color.ID
+        Name = Color.ID_str
         p_color.BackColor = Color.Color
         lbl_count.Text = "x" + Format(count, "N0")
     End Sub
     Sub New(ByRef count As KeyValuePair(Of MapColor, Integer))
         InitializeComponent()
         Color = count.Key
-        Name = Color.ID
+        Name = Color.ID_str
         p_color.BackColor = Color.Color
         lbl_count.Text = "x" + Format(count.Value, "N0")
     End Sub

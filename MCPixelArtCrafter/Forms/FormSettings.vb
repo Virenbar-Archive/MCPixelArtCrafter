@@ -1,5 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports MCPixelArtCrafter.SettingsHelper
 
 Public Class FormSettings
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -9,8 +8,8 @@ Public Class FormSettings
         For Each MC In MapColorsCollection.MapColorsFull
             Dim i = DGV_MapColors.Rows.Add()
 
-            DGV_MapColors.Rows(i).Cells(_ID.Index).Value = MC.ID
-            If Config.BlacklistMC.Contains(MC.ID) Then
+            DGV_MapColors.Rows(i).Cells(_ID.Index).Value = MC.ID_str
+            If Config.BlacklistMC.Contains(MC.ID_str) Then
                 DGV_MapColors.Rows(i).Cells(_Use.Index).Value = False
             Else
                 DGV_MapColors.Rows(i).Cells(_Use.Index).Value = True
@@ -36,7 +35,7 @@ Public Class FormSettings
 
     Private Sub FormSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         MapColorsCollection.CheckConfig()
-        Save()
+        Settings.Save()
     End Sub
 
     Private Sub CB_LabMode_CheckedChanged(sender As Object, e As EventArgs) Handles CB_LabMode.CheckedChanged
@@ -45,13 +44,13 @@ Public Class FormSettings
     End Sub
 
     Private Sub B_Cancel_Click(sender As Object, e As EventArgs) Handles B_Cancel.Click
-        SettingsHelper.Load()
+        Settings.Load()
         MapColorsCollection.CheckConfig()
         Me.Close()
     End Sub
 
     Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
-        Save()
+        Settings.Save()
         MapColorsCollection.CheckConfig()
         Me.Close()
     End Sub

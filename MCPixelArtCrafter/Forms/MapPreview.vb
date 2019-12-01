@@ -1,4 +1,6 @@
 ﻿Imports System.ComponentModel
+Imports System.IO
+Imports MCPixelArtCrafter.DataIO
 
 Public Class MapPreview
     Private ClickedColor As MapColorCount
@@ -17,8 +19,17 @@ Public Class MapPreview
     End Sub
 
     Private Sub B_Save_Click(sender As Object, e As EventArgs) Handles B_Save.Click
+        SFD.FileName = ""
+        SFD.Filter = "PNG|*.png|Export to mcpac|*.mcpac|Export to JSON|*.json"
         If SFD.ShowDialog = DialogResult.OK Then
-            MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
+            Select Case IO.Path.GetExtension(SFD.FileName)
+                Case ".png"
+                    MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
+                Case ".mcpac"
+                    SaveToMCPAC(SFD.FileName, MapResult)
+                Case ".json"
+                    File.WriteAllText(SFD.FileName, MapResult.ToJSON)
+            End Select
         End If
     End Sub
 
@@ -40,8 +51,8 @@ Public Class MapPreview
             'If p.X > PB.Image.Size. Then Exit Sub
             'Check range or leave Try?
             Dim c = MapResult.ColorAtPixel(p)
-            If FLP_UsedColors.Controls.ContainsKey(c.ID) Then
-                ClickedColor = FLP_UsedColors.Controls(c.ID)
+            If FLP_UsedColors.Controls.ContainsKey(c.ID_str) Then
+                ClickedColor = FLP_UsedColors.Controls(c.ID_str)
                 ClickedColor.Highlight = True
             End If
         Catch ex As Exception
@@ -50,5 +61,9 @@ Public Class MapPreview
 
     Private Sub PB_MouseMove(sender As Object, e As MouseEventArgs) Handles PB.MouseMove
         TS_MousePos.Text = String.Format("X:{0}|Y:{1}", PB.MousePos.X, PB.MousePos.Y)
+    End Sub
+
+    Private Sub MapPreview_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        FormMain.Focus()
     End Sub
 End Class

@@ -90,8 +90,6 @@ Public Class PictureBoxPAZ
             Dim CP = PointToClient(MousePosition)
             Return New Point(Math.Ceiling((CP.X - tX) / _zoomScale),
                              Math.Ceiling((CP.Y - tY) / _zoomScale))
-            'Dim IP = New Point(tX, tY).Multiply(_zoomScale)
-            'Return CP.Substract(IP).Divide(_zoomScale)
         End Get
     End Property
 #End Region
@@ -103,45 +101,36 @@ Public Class PictureBoxPAZ
                 Dim mode As InterpolationMode = IIf(_zoomScale < 0, InterpolationMode.Default, InterpolationMode)
                 If .InterpolationMode <> mode Then .InterpolationMode = mode
                 If .PixelOffsetMode <> PixelOffsetMode.Half Then .PixelOffsetMode = PixelOffsetMode.Half
-                'DrawBox(pe)
-                'Using transform As Matrix = .Transform
-                '    If _zoomScale <> 1.0 Then transform.Scale(_zoomScale, _zoomScale, MatrixOrder.Append)
-                '    If tX <> 0 OrElse tY <> 0 Then transform.Translate(tX, tY)
-
-                '    .Transform = transform
-                '    MyBase.OnPaint(pe)
-                '    'DrawBox(pe)
-                'End Using
-                .DrawImage(Image, New Rectangle(New Point(tX, tY), ImageSize))
+                .DrawImage(Image, New Rectangle(OriginPos, ImageSize))
+                .DrawRectangle(New Pen(Color.Black, 1), New Rectangle(OriginPos, ImageSize))
             End With
-            DrawBox(pe.Graphics)
-            If ShowGrid Then DrawGrid(pe.Graphics)
+            If ShowGrid Then
+                If _zoomScale > 7.5 Then DrawGrid(pe.Graphics, Color.Gray)
+                DrawGrid(pe.Graphics, 16)
+            End If
         Else
             MyBase.OnPaint(pe)
         End If
     End Sub
-    Private Sub DrawBox(g As Graphics)
-        g.ResetTransform()
-        Dim p1 = New Point(tX, tY)
-        'Dim p2 = New Point(p1.X + ImageSize.Width, p1.Y)
-        'Dim p3 = New Point(p1.X + ImageSize.Width, p1.Y + ImageSize.Height)
-        'Dim p4 = New Point(p1.X, p1.Y + ImageSize.Height)
-        g.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(p1, ImageSize))
+
+    Private Sub DrawGrid(g As Graphics, Optional gridsize As Integer = 1)
+        DrawGrid(g, Color.Black, gridsize)
     End Sub
-    Private Sub DrawGrid(g As Graphics)
+    Private Sub DrawGrid(g As Graphics, clr As Color, Optional gridsize As Integer = 1)
         Dim ZP = New Point(tX, tY),
             X1 = New Point(ZP), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
             Y1 = New Point(ZP), Y2 = New Point(ZP.X + ImageSize.Width, ZP.Y)
-        Dim delta = GridSpacing * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
-        For i = 1 To Math.Floor(Image.Width / GridSpacing) - 1
+        Dim delta = gridsize * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
+
+        For i = 1 To Math.Floor(Image.Width / gridsize) - 1
             Xd += delta
             X1.X = Xd : X2.X = Xd
-            g.DrawLine(New Pen(Color.Black, 1), X1, X2)
+            g.DrawLine(New Pen(clr, 1), X1, X2)
         Next
-        For i = 1 To Math.Floor(Image.Height / GridSpacing) - 1
+        For i = 1 To Math.Floor(Image.Height / gridsize) - 1
             Yd += delta
             Y1.Y = Yd : Y2.Y = Yd
-            g.DrawLine(New Pen(Color.Black, 1), Y1, Y2)
+            g.DrawLine(New Pen(clr, 1), Y1, Y2)
         Next
     End Sub
 
@@ -175,12 +164,10 @@ Public Class PictureBoxPAZ
             Cursor = Cursors.Hand
         End If
     End Sub
-
     Private Shadows Sub OnMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
         Cursor = _defaultCursor
         _mouseDownButton = MouseButtons.None
     End Sub
-
     Private Shadows Sub OnMouseEnter(ByVal sender As Object, ByVal e As EventArgs)
         'set this as the active control 
         Dim f As Form = CType(TopLevelControl, Form)
@@ -188,14 +175,12 @@ Public Class PictureBoxPAZ
             f.ActiveControl = Me
         End If
     End Sub
-
     Private Shadows Sub OnMouseWheel(ByVal sender As Object, ByVal e As MouseEventArgs)
         If e.Delta <> 0 Then
             Dim zoom As Double = Math.Max(Math.Min(_zoomScale + _zoomScale * e.Delta / 1000, _zoomMax), _zoomMin)
             If zoom <> _zoomScale Then SetZoomScale((zoom), e.Location)
         End If
     End Sub
-
     Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)
         If Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
             SetZoomMin()
@@ -209,6 +194,10 @@ Public Class PictureBoxPAZ
         Dim dy = (ClientSize.Height - ImageSize.Height) '* 1 / _zoomScale
         tX = IIf(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
         tY = IIf(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
+    End Sub
+    Private Sub SetZoomMin(Optional min As Double = 0)
+        _zoomMin = IIf(min = 0, Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
+        _zoomScale = Math.Max(_zoomScale, _zoomMin)
     End Sub
 
     ''' <summary>
@@ -241,13 +230,8 @@ Public Class PictureBoxPAZ
         tY = ClientSize.Height / 2 - Image.Height / 2
     End Sub
 
-    Private Sub SetZoomMin(Optional min As Double = 0)
-        _zoomMin = IIf(min = 0, Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
-        _zoomScale = Math.Max(_zoomScale, _zoomMin)
-    End Sub
 End Class
-'TODO: Fix grid 
-'Try alternative pixel render
-'https://stackoverflow.com/questions/40498312/c-sharp-create-grid-for-painting-pixels-and-rendering-text
-'Or make new bitmap with max zoom and grid
+'TODO: Fix grid - Done
+'-Try alternative pixel render https://stackoverflow.com/questions/40498312/c-sharp-create-grid-for-painting-pixels-and-rendering-text
+'>>>Or make new bitmap with max zoom and grid
 

@@ -1,5 +1,8 @@
 ﻿Imports System.IO
-
+Imports System.Globalization
+Imports MCPixelArtCrafter.DataIO
+Imports System.Reflection
+Imports System.Runtime
 
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
@@ -8,10 +11,11 @@ Public Class FormMain
     Private WithEvents SH As New StatusHelper(50)
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
+        Text += " (v" + Assembly.GetEntryAssembly().GetName().Version.ToString + ")"
+        OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|Import mcpac|*.mcpac|Import JSON|*.json|All files (*.*)|*.*"
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
-        SettingsHelper.Load()
+        Settings.Load()
         MapColorsCollection.Load()
     End Sub
 
@@ -21,7 +25,16 @@ Public Class FormMain
 
     Private Sub SelectImage_Click(sender As Object, e As EventArgs) Handles SelectImage.Click
         If OFD.ShowDialog() = DialogResult.OK Then
-            SetImage(OFD.FileName)
+            Select Case Path.GetExtension(OFD.FileName)
+                Case ".mcpac"
+                    Dim Result = New MapResult
+                    Result.LoadMCPAC(OFD.FileName)
+                    MapPreview.Close()
+                    MapPreview.MapResult = Result
+                    MapPreview.Show()
+                Case ".json"  'LoadFromMCPAC()
+                Case Else : SetImage(OFD.FileName)
+            End Select
         End If
     End Sub
 
@@ -45,7 +58,7 @@ Public Class FormMain
 
     Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
         If Not SH.IsActive Then
-            Create.Text = "Cancel"
+            Create.Text = My.Resources.MyStrings.B_Cancel
             RunGenerator()
         Else
             CTS.Cancel()

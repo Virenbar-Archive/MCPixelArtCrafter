@@ -1,5 +1,6 @@
 ﻿Module JSONGenerator
+    Public DefaultDir = "Input"
     Sub Main()
-        Throw New NotImplementedException
+        OldToNew()
     End Sub
 End Module

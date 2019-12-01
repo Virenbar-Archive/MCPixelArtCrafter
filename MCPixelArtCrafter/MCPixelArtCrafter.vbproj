@@ -13,7 +13,7 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <Deterministic>false</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -73,19 +73,21 @@
       <HintPath>..\packages\Colourful.2.0.3\lib\net45\Colourful.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -131,12 +133,6 @@
     <Compile Include="Controls\PictureBoxPAZ.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SmartPB.Designer.vb">
-      <DependentUpon>SmartPB.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SmartPB.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +163,11 @@
     <Compile Include="DataClasses\MapColorsCollection.vb" />
     <Compile Include="DataClasses\MapResult.vb" />
     <Compile Include="Extensions.vb" />
+    <Compile Include="Locales\MyStrings.ru.Designer.vb">
+      <DependentUpon>MyStrings.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -190,6 +191,13 @@
     </Compile>
     <Compile Include="Settings.vb" />
     <Compile Include="StatusHelper.vb" />
+    <Compile Include="Locales\MyStrings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\DataIO.vb" />
+    <Compile Include="Utils\Messages.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.ru.resx">
@@ -204,9 +212,6 @@
     <EmbeddedResource Include="Controls\MapColorCount.resx">
       <DependentUpon>MapColorCount.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SmartPB.resx">
-      <DependentUpon>SmartPB.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +221,11 @@
     <EmbeddedResource Include="Forms\MapPreview.resx">
       <DependentUpon>MapPreview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Locales\MyStrings.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.ru.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -224,6 +234,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CheckGroupBox.resx">
       <DependentUpon>CheckGroupBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locales\MyStrings.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -272,4 +287,5 @@
     <Folder Include="My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <ProjectExtensions />
 </Project>
