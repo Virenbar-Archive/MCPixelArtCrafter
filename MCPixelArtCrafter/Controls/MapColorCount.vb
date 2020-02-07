@@ -27,15 +27,16 @@
     Sub New(ByRef count As KeyValuePair(Of MapColor, Integer))
         InitializeComponent()
         Color = count.Key
-        Name = Color.ID_str
+        Name = Color.ID_map.ToString
         p_color.BackColor = Color.Color
         lbl_count.Text = "x" + Format(count.Value, "N0")
     End Sub
 
     Sub SetToolTip(ByRef tt As ToolTip)
         ToolTip = tt
-        ToolTip.SetToolTip(Me, Color.Full)
-        ToolTip.SetToolTip(Me.lbl_count, Color.Full)
-        ToolTip.SetToolTip(Me.p_color, Color.Full)
+        Dim text = Color.TypeT.ToString + ": " + Color.Full
+        ToolTip.SetToolTip(Me, text)
+        ToolTip.SetToolTip(Me.lbl_count, text)
+        ToolTip.SetToolTip(Me.p_color, text)
     End Sub
 End Class

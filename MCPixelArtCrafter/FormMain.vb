@@ -56,6 +56,17 @@ Public Class FormMain
         lbl_Elapsed.Text = SH.Elapsed
     End Sub
 
+    Private Sub ColorModeChanged(sender As Object, e As EventArgs) Handles RB_Staircase.CheckedChanged, RB_Flat.CheckedChanged, RB_All.CheckedChanged
+        If RB_Flat.Checked Then
+            MapColorsCollection.ColorTypes = {MapColor.Type.Normal}
+        ElseIf RB_Staircase.Checked Then
+            MapColorsCollection.ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down}
+        ElseIf RB_All.Checked Then
+            MapColorsCollection.ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down, MapColor.Type.Dark}
+        End If
+        If CType(sender, Control).Focused Then MapColorsCollection.CheckConfig()
+    End Sub
+
     Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
         If Not SH.IsActive Then
             Create.Text = My.Resources.MyStrings.B_Cancel

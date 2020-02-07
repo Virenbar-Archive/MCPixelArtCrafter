@@ -51,8 +51,8 @@ Public Class MapPreview
             'If p.X > PB.Image.Size. Then Exit Sub
             'Check range or leave Try?
             Dim c = MapResult.ColorAtPixel(p)
-            If FLP_UsedColors.Controls.ContainsKey(c.ID_str) Then
-                ClickedColor = FLP_UsedColors.Controls(c.ID_str)
+            If FLP_UsedColors.Controls.ContainsKey(c.ID_map.ToString) Then
+                ClickedColor = FLP_UsedColors.Controls(c.ID_map.ToString)
                 ClickedColor.Highlight = True
             End If
         Catch ex As Exception

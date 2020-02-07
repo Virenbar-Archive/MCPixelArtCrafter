@@ -5,7 +5,7 @@ Public Class FormSettings
         CB_LabMode.Checked = Config.LabMode
 
         DGV_MapColors.Rows.Clear()
-        For Each MC In MapColorsCollection.MapColorsFull
+        For Each MC In MapColorsCollection.MapBaseColors
             Dim i = DGV_MapColors.Rows.Add()
 
             DGV_MapColors.Rows(i).Cells(_ID.Index).Value = MC.ID_str
@@ -34,8 +34,8 @@ Public Class FormSettings
     End Sub
 
     Private Sub FormSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Settings.Load()
         MapColorsCollection.CheckConfig()
-        Settings.Save()
     End Sub
 
     Private Sub CB_LabMode_CheckedChanged(sender As Object, e As EventArgs) Handles CB_LabMode.CheckedChanged

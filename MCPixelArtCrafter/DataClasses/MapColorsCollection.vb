@@ -5,28 +5,32 @@ Imports Newtonsoft.Json
 ''' Storage for MapColors
 ''' </summary>
 Public NotInheritable Class MapColorsCollection
-    Public Shared MapColorsFull() As MapColor
-    Private Shared MapColors() As MapColor
+    Public Shared MapBaseColors As List(Of MapBaseColor)
+    Public Shared MapColorsFull As New List(Of MapColor)
+    Private Shared MapColors As New List(Of MapColor)
+
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
     Private Shared ColorCache As New Dictionary(Of Color, Integer)
     Public Shared Property LabMode As Boolean = False
+    Public Shared Property ColorTypes As MapColor.Type() = {MapColor.Type.Normal}
 
     ''' <summary>
     ''' Loads config from folder and converts colors to Lab
     ''' </summary>
     ''' <param name="folder">Folder with config</param>
     Public Shared Sub Load(Optional folder As String = "Default")
-        MapColors = Nothing
         Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
         If Not File.Exists(config) Then
             ShowError(String.Format("Can't find {0}", config))
             Exit Sub
         End If
-        MapColorsFull = JsonConvert.DeserializeObject(Of MapColor())(File.ReadAllText(config))
-        For Each MC In MapColorsFull
-            MC.LabColor = Converter.ToLab(New RGBColor(MC.Color))
-            MC.ID_map = MC.ID * 4 + 2
+        MapBaseColors = JsonConvert.DeserializeObject(Of List(Of MapBaseColor))(File.ReadAllText(config))
+        For Each MC In MapBaseColors
+            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Down))
+            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Normal))
+            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Up))
+            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Dark))
         Next
         CheckConfig()
     End Sub
@@ -35,12 +39,11 @@ Public NotInheritable Class MapColorsCollection
         If Config.BlacklistMC.Count = 0 Then
             MapColors = MapColorsFull
         Else
-            Dim tmp = New List(Of MapColor)
+            MapColors.Clear()
             For Each MC In MapColorsFull
-                If Config.BlacklistMC.Contains(MC.ID_str) Then Continue For
-                tmp.Add(MC)
+                If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For
+                MapColors.Add(MC)
             Next
-            MapColors = tmp.ToArray
             ColorCache.Clear()
         End If
     End Sub

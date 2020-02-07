@@ -7,10 +7,9 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MCPixelArtCrafter", "MCPixe
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JSONGenerator", "JSONGenerator\JSONGenerator.vbproj", "{A312A9E3-8C9C-4075-A1DF-E6013B87DEBD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48CE5E25-FDF2-4DB4-B760-BA89EEBBC7E7}"
+EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -30,6 +29,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D0BF568-027F-4BD0-B23F-411704B4F651}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
