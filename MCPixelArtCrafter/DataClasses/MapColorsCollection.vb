@@ -29,17 +29,17 @@ Public NotInheritable Class MapColorsCollection
         For Each MC In MapBaseColors
             MapColorsFull.Add(New MapColor(MC, MapColor.Type.Down))
             MapColorsFull.Add(New MapColor(MC, MapColor.Type.Normal))
-            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Up))
+            MapColorsFull.Add(New MapColor(MC, MapColor.Type.Up)) 'Same as base color
             MapColorsFull.Add(New MapColor(MC, MapColor.Type.Dark))
         Next
         CheckConfig()
     End Sub
     Public Shared Sub CheckConfig()
         LabMode = Config.LabMode
+        MapColors.Clear()
         If Config.BlacklistMC.Count = 0 Then
-            MapColors = MapColorsFull
+            MapColors.AddRange(MapColorsFull)
         Else
-            MapColors.Clear()
             For Each MC In MapColorsFull
                 If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For
                 MapColors.Add(MC)
