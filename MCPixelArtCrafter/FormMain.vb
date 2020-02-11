@@ -13,6 +13,7 @@ Public Class FormMain
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Text += " (v" + Assembly.GetEntryAssembly().GetName().Version.ToString + ")"
         OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|Import mcpac|*.mcpac|Import JSON|*.json|All files (*.*)|*.*"
+        CType(PB, Control).AllowDrop = True
 
         SetImage(Path.GetFullPath("DefaultImage.png"))
         Settings.Load()
@@ -45,7 +46,7 @@ Public Class FormMain
             PB.SetImage(InputImage)
             SH.Amount = InputImage.Width * InputImage.Height : TSProgressBar.Maximum = SH.Amount
         Catch ex As Exception
-            MessageBox.Show("Can't load image: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Can't load image: " + ImagePath, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -65,6 +66,17 @@ Public Class FormMain
             MapColorsCollection.ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down, MapColor.Type.Dark}
         End If
         If CType(sender, Control).Focused Then MapColorsCollection.CheckConfig()
+    End Sub
+    Private Sub PB_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles PB.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        Else
+            e.Effect = DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub PB_DragDrop(sender As Object, e As DragEventArgs) Handles PB.DragDrop
+        SetImage(CType(e.Data.GetData(DataFormats.FileDrop), String()).First)
     End Sub
 
     Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
