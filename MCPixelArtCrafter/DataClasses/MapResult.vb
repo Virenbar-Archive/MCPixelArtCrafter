@@ -3,9 +3,15 @@ Imports MCPixelArtCrafter.DataIO
 
 Public Class MapResult
     Implements IResult
+    Public ReadOnly W As Integer
     Private Map(,) As MapColor
-    Public ReadOnly Property OutImage As Bitmap Implements IResult.OutImage
     Public ReadOnly UsedMapColors As New Dictionary(Of MapColor, Integer)
+    Public ReadOnly Property OutImage As Bitmap Implements IResult.OutImage
+    Public ReadOnly Property Array As MapColor(,)
+        Get
+            Return Map
+        End Get
+    End Property
     Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
@@ -23,10 +29,13 @@ Public Class MapResult
                         End If
                         If InImage.GetPixel(x, y).A < 256 / 2 Then Continue For
                         closest = MapColorsCollection.GetClosest(InImage.GetPixel(x, y))
-                        Map(x, y) = closest
+                        If False Then
+                            FSDither.ApplyDither(InImage, closest.Color, x, y)
+                        End If
                         OutImage.SetPixel(x, y, closest.Color)
                         If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
                         UsedMapColors(closest) += 1
+                        Map(x, y) = closest
                     Next
                     progress.Report((x + 1) * h)
                 Next

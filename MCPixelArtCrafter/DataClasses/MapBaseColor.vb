@@ -6,7 +6,7 @@ Public Class MapBaseColor
     ''' Base ID
     ''' </summary>
     ''' <returns></returns>
-    Public Property ID As UInteger
+    Public Property ID As Byte
     ''' <summary>
     ''' Name of color
     ''' </summary>

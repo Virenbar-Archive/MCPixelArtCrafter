@@ -20,7 +20,7 @@ Public Class MapColor
     ''' Base ID
     ''' </summary>
     ''' <returns></returns>
-    Public ReadOnly Property ID As UInteger
+    Public ReadOnly Property ID As Byte
         Get
             Return BaseColor.ID
         End Get
@@ -57,7 +57,7 @@ Public Class MapColor
     ''' In game map color ID
     ''' </summary>
     ''' <returns></returns>
-    Public ReadOnly Property ID_map As UInteger
+    Public ReadOnly Property ID_map As Byte
     ''' <summary>
     ''' Type of placement
     ''' </summary>
@@ -83,7 +83,7 @@ Public Class MapColor
     Private Shared Function Convert(color As Color, mult As Integer) As Color
         Return Color.FromArgb(Math.Floor(color.R * mult / 255), Math.Floor(color.G * mult / 255), Math.Floor(color.B * mult / 255))
     End Function
-    Public Enum Type
+    Public Enum Type As Byte
         Down = 0
         Normal = 1
         Up = 2

@@ -11,7 +11,7 @@
     <AssemblyName>MCPixelArtCrafter</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>false</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -29,6 +29,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,7 +38,8 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>MCPixelArtCrafter.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -47,7 +49,8 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>MCPixelArtCrafter.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -68,9 +71,15 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Colourful, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Colourful.2.0.3\lib\net45\Colourful.dll</HintPath>
+    </Reference>
+    <Reference Include="fNbt, Version=0.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fNbt.0.6.4\lib\net35-client\fNbt.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -111,6 +120,7 @@
   <ItemGroup>
     <Compile Include="DataClasses\BlockResult.vb" />
     <Compile Include="DataClasses\MapBaseColor.vb" />
+    <Compile Include="DataClasses\MapStaircase.vb" />
     <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
@@ -198,7 +208,9 @@
       <DependentUpon>MyStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\DataIO.vb" />
+    <Compile Include="Utils\FSDither.vb" />
     <Compile Include="Utils\Messages.vb" />
+    <Compile Include="Utils\NBTExporter.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.ru.resx">
@@ -289,4 +301,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions />
+  <PropertyGroup>
+    <PostBuildEvent>robocopy "$(TargetDir)\" "$(TargetDir)lib\\" *.dll *.xml /purge /mov /is
+if %25errorlevel%25 leq 3 exit 0 else exit %25errorlevel%25</PostBuildEvent>
+  </PropertyGroup>
 </Project>
