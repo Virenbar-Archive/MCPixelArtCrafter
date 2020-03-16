@@ -2,7 +2,7 @@
 Imports System.IO.Compression
 Imports Newtonsoft.Json
 
-Namespace DataIO
+Namespace Data.IO
     Module DataConvertion
         Private ReadOnly MapResultFN As String = "MapResult.json"
         Private ReadOnly ImageFN As String = ""

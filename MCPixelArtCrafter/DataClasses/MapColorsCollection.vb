@@ -8,12 +8,18 @@ Public NotInheritable Class MapColorsCollection
     Public Shared MapBaseColors As List(Of MapBaseColor)
     Public Shared MapColorsFull As New List(Of MapColor)
     Private Shared MapColors As New List(Of MapColor)
+    Private Shared DefaultCache As New Dictionary(Of Color, Integer)
 
     Private Shared Converter As New Conversion.ColourfulConverter
     Private Shared Comparer As New Difference.CIEDE2000ColorDifference
     Private Shared ColorCache As New Dictionary(Of Color, Integer)
     Public Shared Property LabMode As Boolean = False
     Public Shared Property ColorTypes As MapColor.Type() = {MapColor.Type.Normal}
+    Public Shared ReadOnly Property Palette As List(Of Color)
+        Get
+            Return DefaultCache.Keys.ToList
+        End Get
+    End Property
 
     ''' <summary>
     ''' Loads config from folder and converts colors to Lab
@@ -46,7 +52,15 @@ Public NotInheritable Class MapColorsCollection
             Next
             ColorCache.Clear()
         End If
+        CreateCache()
     End Sub
+    Private Shared Sub CreateCache()
+        DefaultCache.Clear()
+        For Each color In MapColors
+            DefaultCache.Add(color.Color, color.ID_map)
+        Next
+    End Sub
+
     ''' <summary>
     ''' Returns closest color
     ''' </summary>

@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
-Imports MCPixelArtCrafter.DataIO
+Imports MCPixelArtCrafter.Data.IO
 
 Public Class MapPreview
     Private ClickedColor As MapColorCount

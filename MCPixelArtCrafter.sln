@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MCPixelArtCrafter", "MCPixelArtCrafter\MCPixelArtCrafter.vbproj", "{5CE282FC-EC17-4A6D-A9CF-A231D8663E9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37812A22-91F3-4220-891E-5C26DA64A975} = {37812A22-91F3-4220-891E-5C26DA64A975}
+	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JSONGenerator", "JSONGenerator\JSONGenerator.vbproj", "{A312A9E3-8C9C-4075-A1DF-E6013B87DEBD}"
 EndProject

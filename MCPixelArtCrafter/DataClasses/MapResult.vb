@@ -1,5 +1,6 @@
 ﻿Imports Newtonsoft.Json
-Imports MCPixelArtCrafter.DataIO
+Imports MCPixelArtCrafter.Data.IO
+Imports MCPixelArtCrafter.Helpers
 
 Public Class MapResult
     Implements IResult
@@ -13,6 +14,7 @@ Public Class MapResult
         End Get
     End Property
     Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
+        ' Dim t = MapResultCreator.CreateMap(Image)
         Dim InImage = New Bitmap(Image)
         Dim w = InImage.Width
         Dim h = InImage.Height
@@ -27,10 +29,11 @@ Public Class MapResult
                         If token.IsCancellationRequested Then
                             token.ThrowIfCancellationRequested()
                         End If
-                        If InImage.GetPixel(x, y).A < 256 / 2 Then Continue For
-                        closest = MapColorsCollection.GetClosest(InImage.GetPixel(x, y))
-                        If False Then
-                            FSDither.ApplyDither(InImage, closest.Color, x, y)
+                        Dim sPixel = InImage.GetPixel(x, y)
+                        If sPixel.A < 256 / 2 Then Continue For
+                        closest = MapColorsCollection.GetClosest(sPixel)
+                        If True Then
+                            FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
                         End If
                         OutImage.SetPixel(x, y, closest.Color)
                         If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)

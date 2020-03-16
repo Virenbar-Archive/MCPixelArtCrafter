@@ -1,6 +1,6 @@
 ﻿Imports fNbt
 
-Namespace DataIO
+Namespace Data.IO
     Public Class NBTExporter
         Public Shared Sub ExportToMap(result As MapResult)
             Dim i = result.W \ 128

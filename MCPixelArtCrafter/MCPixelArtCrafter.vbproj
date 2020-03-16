@@ -121,6 +121,7 @@
     <Compile Include="DataClasses\BlockResult.vb" />
     <Compile Include="DataClasses\MapBaseColor.vb" />
     <Compile Include="DataClasses\MapStaircase.vb" />
+    <Compile Include="Data\DirectBitmap.vb" />
     <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
@@ -169,11 +170,12 @@
     <Compile Include="Forms\MapPreview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Helpers\MapResultCreator.vb" />
     <Compile Include="Interfaces\IResult.vb" />
     <Compile Include="DataClasses\MapColor.vb" />
     <Compile Include="DataClasses\MapColorsCollection.vb" />
     <Compile Include="DataClasses\MapResult.vb" />
-    <Compile Include="Extensions.vb" />
+    <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Locales\MyStrings.ru.Designer.vb">
       <DependentUpon>MyStrings.ru.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -201,16 +203,18 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
-    <Compile Include="StatusHelper.vb" />
+    <Compile Include="Helpers\StatusHelper.vb" />
     <Compile Include="Locales\MyStrings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DataIO.vb" />
-    <Compile Include="Utils\FSDither.vb" />
-    <Compile Include="Utils\Messages.vb" />
-    <Compile Include="Utils\NBTExporter.vb" />
+    <Compile Include="Data\IO\DataIO.vb" />
+    <Compile Include="Data\SPQ\FloydSteinbergDithererIP.vb" />
+    <Compile Include="Helpers\FSDither.vb" />
+    <Compile Include="Data\SPQ\MapColorQuantizer.vb" />
+    <Compile Include="Helpers\Messages.vb" />
+    <Compile Include="Data\IO\NBTExporter.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.ru.resx">
@@ -298,6 +302,12 @@
   <ItemGroup>
     <Folder Include="Default\Textures\" />
     <Folder Include="My Project\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
+      <Project>{37812a22-91f3-4220-891e-5c26da64a975}</Project>
+      <Name>SimplePaletteQuantizer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions />
