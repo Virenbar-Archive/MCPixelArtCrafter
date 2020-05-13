@@ -43,15 +43,11 @@ Public NotInheritable Class MapColorsCollection
     Public Shared Sub CheckConfig()
         LabMode = Config.LabMode
         MapColors.Clear()
-        If Config.BlacklistMC.Count = 0 Then
-            MapColors.AddRange(MapColorsFull)
-        Else
-            For Each MC In MapColorsFull
-                If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For
-                MapColors.Add(MC)
-            Next
-            ColorCache.Clear()
-        End If
+        For Each MC In MapColorsFull
+            If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For
+            MapColors.Add(MC)
+        Next
+        ColorCache.Clear()
         CreateCache()
     End Sub
     Private Shared Sub CreateCache()

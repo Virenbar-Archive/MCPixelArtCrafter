@@ -25,18 +25,19 @@ Partial Class FormSettings
         Me.components = New System.ComponentModel.Container()
         Me.TC_Settings = New System.Windows.Forms.TabControl()
         Me.MapColorsSettings = New System.Windows.Forms.TabPage()
-        Me.DGV_MapColors = New System.Windows.Forms.DataGridView()
-        Me.BlocksSettings = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.CheckGroupBox1 = New MCPixelArtCrafter.CheckGroupBox()
+        Me.DGV_MapColors = New System.Windows.Forms.DataGridView()
         Me._ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me._Color = New System.Windows.Forms.DataGridViewImageColumn()
         Me._Use = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me._Full = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BlocksSettings = New System.Windows.Forms.TabPage()
+        Me.CheckGroupBox1 = New MCPixelArtCrafter.CheckGroupBox()
         Me.CB_LabMode = New System.Windows.Forms.CheckBox()
         Me.SettingsTT = New System.Windows.Forms.ToolTip(Me.components)
         Me.B_Cancel = New System.Windows.Forms.Button()
         Me.B_OK = New System.Windows.Forms.Button()
+        Me.CB_Dither = New System.Windows.Forms.CheckBox()
         Me.TC_Settings.SuspendLayout()
         Me.MapColorsSettings.SuspendLayout()
         CType(Me.DGV_MapColors, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +67,15 @@ Partial Class FormSettings
         Me.MapColorsSettings.Text = "Map Colors"
         Me.MapColorsSettings.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(6, 321)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'DGV_MapColors
         '
         Me.DGV_MapColors.AllowUserToAddRows = False
@@ -79,41 +89,12 @@ Partial Class FormSettings
         Me.DGV_MapColors.Size = New System.Drawing.Size(786, 312)
         Me.DGV_MapColors.TabIndex = 0
         '
-        'BlocksSettings
-        '
-        Me.BlocksSettings.Controls.Add(Me.CheckGroupBox1)
-        Me.BlocksSettings.Location = New System.Drawing.Point(4, 22)
-        Me.BlocksSettings.Name = "BlocksSettings"
-        Me.BlocksSettings.Padding = New System.Windows.Forms.Padding(3)
-        Me.BlocksSettings.Size = New System.Drawing.Size(792, 350)
-        Me.BlocksSettings.TabIndex = 1
-        Me.BlocksSettings.Text = "Blocks"
-        Me.BlocksSettings.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(6, 321)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'CheckGroupBox1
-        '
-        Me.CheckGroupBox1.Checked = False
-        Me.CheckGroupBox1.Location = New System.Drawing.Point(228, 103)
-        Me.CheckGroupBox1.Name = "CheckGroupBox1"
-        Me.CheckGroupBox1.Size = New System.Drawing.Size(145, 64)
-        Me.CheckGroupBox1.TabIndex = 0
-        '
         '_ID
         '
         Me._ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me._ID.HeaderText = "ID"
         Me._ID.Name = "_ID"
         Me._ID.Visible = False
-        Me._ID.Width = 43
         '
         '_Color
         '
@@ -137,6 +118,25 @@ Partial Class FormSettings
         Me._Full.Name = "_Full"
         Me._Full.ReadOnly = True
         Me._Full.Width = 83
+        '
+        'BlocksSettings
+        '
+        Me.BlocksSettings.Controls.Add(Me.CheckGroupBox1)
+        Me.BlocksSettings.Location = New System.Drawing.Point(4, 22)
+        Me.BlocksSettings.Name = "BlocksSettings"
+        Me.BlocksSettings.Padding = New System.Windows.Forms.Padding(3)
+        Me.BlocksSettings.Size = New System.Drawing.Size(792, 350)
+        Me.BlocksSettings.TabIndex = 1
+        Me.BlocksSettings.Text = "Blocks"
+        Me.BlocksSettings.UseVisualStyleBackColor = True
+        '
+        'CheckGroupBox1
+        '
+        Me.CheckGroupBox1.Checked = False
+        Me.CheckGroupBox1.Location = New System.Drawing.Point(228, 103)
+        Me.CheckGroupBox1.Name = "CheckGroupBox1"
+        Me.CheckGroupBox1.Size = New System.Drawing.Size(145, 64)
+        Me.CheckGroupBox1.TabIndex = 0
         '
         'CB_LabMode
         '
@@ -170,12 +170,24 @@ Partial Class FormSettings
         Me.B_OK.Text = "OK"
         Me.B_OK.UseVisualStyleBackColor = True
         '
+        'CB_Dither
+        '
+        Me.CB_Dither.AutoSize = True
+        Me.CB_Dither.Location = New System.Drawing.Point(82, 421)
+        Me.CB_Dither.Name = "CB_Dither"
+        Me.CB_Dither.Size = New System.Drawing.Size(74, 17)
+        Me.CB_Dither.TabIndex = 5
+        Me.CB_Dither.Text = "Use dither"
+        Me.SettingsTT.SetToolTip(Me.CB_Dither, "Use dither")
+        Me.CB_Dither.UseVisualStyleBackColor = True
+        '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.ControlBox = False
+        Me.Controls.Add(Me.CB_Dither)
         Me.Controls.Add(Me.B_OK)
         Me.Controls.Add(Me.B_Cancel)
         Me.Controls.Add(Me.CB_LabMode)
@@ -207,4 +219,5 @@ Partial Class FormSettings
     Friend WithEvents SettingsTT As ToolTip
     Friend WithEvents B_Cancel As Button
     Friend WithEvents B_OK As Button
+    Friend WithEvents CB_Dither As CheckBox
 End Class

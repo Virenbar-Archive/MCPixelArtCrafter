@@ -8,7 +8,7 @@ Module SettingsHelper
         Public BlacklistMC As New List(Of String)
         Public BlacklistB As New List(Of String)
         Public LabMode As Boolean = False
-
+        Public Dither As Boolean = True
         Public Shared Sub Load()
             If Not File.Exists(ConfigFile) Then Exit Sub
             Config = JsonConvert.DeserializeObject(Of Settings)(File.ReadAllText(ConfigFile))

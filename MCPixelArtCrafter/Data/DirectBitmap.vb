@@ -21,8 +21,8 @@ Namespace Data
             Bitmap = New Bitmap(Width, Height, Width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject())
         End Sub
         Public Sub New(bitmapIn As Bitmap)
-            Width = Bitmap.Width
-            Height = Bitmap.Height
+            Width = bitmapIn.Width
+            Height = bitmapIn.Height
             Bits = New Integer(Width * Height) {}
             BitsHandle = GCHandle.Alloc(Bits, GCHandleType.Pinned)
             Bitmap = New Bitmap(Width, Height, Width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject())

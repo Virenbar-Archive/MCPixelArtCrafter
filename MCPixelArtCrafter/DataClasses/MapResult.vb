@@ -1,6 +1,7 @@
 ﻿Imports Newtonsoft.Json
 Imports MCPixelArtCrafter.Data.IO
 Imports MCPixelArtCrafter.Helpers
+Imports MCPixelArtCrafter.Data
 
 Public Class MapResult
     Implements IResult
@@ -15,13 +16,13 @@ Public Class MapResult
     End Property
     Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
         ' Dim t = MapResultCreator.CreateMap(Image)
-        Dim InImage = New Bitmap(Image)
-        Dim w = InImage.Width
-        Dim h = InImage.Height
-        ReDim Map(w - 1, h - 1)
-        _OutImage = New Bitmap(w, h)
-        Dim closest As MapColor
-        Await Task.Run(
+        Using InImage = New DirectBitmap(Image)
+            Dim w = InImage.Width
+            Dim h = InImage.Height
+            ReDim Map(w - 1, h - 1)
+            _OutImage = New Bitmap(w, h)
+            Dim closest As MapColor
+            Await Task.Run(
             Sub()
                 For x = 0 To w - 1
                     For y = 0 To h - 1
@@ -32,7 +33,7 @@ Public Class MapResult
                         Dim sPixel = InImage.GetPixel(x, y)
                         If sPixel.A < 256 / 2 Then Continue For
                         closest = MapColorsCollection.GetClosest(sPixel)
-                        If True Then
+                        If Config.Dither Then
                             FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
                         End If
                         OutImage.SetPixel(x, y, closest.Color)
@@ -43,6 +44,7 @@ Public Class MapResult
                     progress.Report((x + 1) * h)
                 Next
             End Sub)
+        End Using
         Await Task.Delay(1 * 500)
         'MapColorsCollection.GetClosest()
     End Function

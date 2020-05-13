@@ -22,7 +22,7 @@ Public Class MapPreview
         SFD.FileName = ""
         SFD.Filter = "PNG|*.png|Export to mcpac|*.mcpac|Export to JSON|*.json"
         If SFD.ShowDialog = DialogResult.OK Then
-            Select Case IO.Path.GetExtension(SFD.FileName)
+            Select Case Path.GetExtension(SFD.FileName)
                 Case ".png"
                     MapResult.OutImage.Save(SFD.FileName, Imaging.ImageFormat.Png)
                 Case ".mcpac"

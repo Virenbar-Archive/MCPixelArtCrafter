@@ -3,6 +3,7 @@
 Public Class FormSettings
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CB_LabMode.Checked = Config.LabMode
+        CB_Dither.Checked = Config.Dither
 
         DGV_MapColors.Rows.Clear()
         For Each MC In MapColorsCollection.MapBaseColors
@@ -43,15 +44,19 @@ Public Class FormSettings
         Config.LabMode = CB_LabMode.Checked
     End Sub
 
+    Private Sub CB_Dither_CheckedChanged(sender As Object, e As EventArgs) Handles CB_Dither.CheckedChanged
+        If Not CType(sender, Control).Focused Then Exit Sub
+        Config.Dither = CB_Dither.Checked
+    End Sub
+
     Private Sub B_Cancel_Click(sender As Object, e As EventArgs) Handles B_Cancel.Click
-        Settings.Load()
-        MapColorsCollection.CheckConfig()
+        'Settings.Load()
         Me.Close()
     End Sub
 
     Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
         Settings.Save()
-        MapColorsCollection.CheckConfig()
         Me.Close()
     End Sub
+
 End Class

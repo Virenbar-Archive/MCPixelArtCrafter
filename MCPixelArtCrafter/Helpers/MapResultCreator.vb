@@ -10,6 +10,42 @@ Namespace Helpers
         Dim targetImage As Image
         Private Shared activeQuantizer As IColorQuantizer = New MapColorQuantizer
         Private Shared activeDitherer As IColorDitherer = New FilterLiteSierra 'New FloydSteinbergDitherer
+
+        'Public Shared Async Function CreateMap(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task(Of MapResult)
+        '    Dim result As MapResult
+
+        '    ' Dim t = MapResultCreator.CreateMap(Image)
+        '    Dim InImage = New Bitmap(Image)
+        '    Dim w = InImage.Width
+        '    Dim h = InImage.Height
+        '    ReDim Map(w - 1, h - 1)
+        '    _OutImage = New Bitmap(w, h)
+        '    Dim closest As MapColor
+        '    Await Task.Run(
+        '        Sub()
+        '            For x = 0 To w - 1
+        '                For y = 0 To h - 1
+        '                'progress.Report(x * h + (y + 1))
+        '                If token.IsCancellationRequested Then
+        '                        token.ThrowIfCancellationRequested()
+        '                    End If
+        '                    Dim sPixel = InImage.GetPixel(x, y)
+        '                    If sPixel.A < 256 / 2 Then Continue For
+        '                    closest = MapColorsCollection.GetClosest(sPixel)
+        '                    If Config.Dither Then
+        '                        FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
+        '                    End If
+        '                    OutImage.SetPixel(x, y, closest.Color)
+        '                    If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
+        '                    UsedMapColors(closest) += 1
+        '                    Map(x, y) = closest
+        '                Next
+        '                progress.Report((x + 1) * h)
+        '            Next
+        '        End Sub)
+        '    Await Task.Delay(1 * 500)
+        'End Function
+
         Public Shared Async Function CreateMap(image As Image) As Task(Of Object)
             MapColorQuantizer.SetPalette(MapColorsCollection.Palette)
             Dim targetImage = Await Quantize(image.Clone)
