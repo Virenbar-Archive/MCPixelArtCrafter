@@ -1,91 +1,79 @@
-﻿Imports Newtonsoft.Json
-Imports MCPixelArtCrafter.Data.IO
-Imports MCPixelArtCrafter.Helpers
-Imports MCPixelArtCrafter.Data
+﻿Imports MCPixelArtCrafter.Data
 
 Public Class MapResult
-    Implements IResult
-    Public ReadOnly W As Integer
-    Private Map(,) As MapColor
-    Public ReadOnly UsedMapColors As New Dictionary(Of MapColor, Integer)
-    Public ReadOnly Property OutImage As Bitmap Implements IResult.OutImage
-    Public ReadOnly Property Array As MapColor(,)
+    Private _Image
+
+    Public Sub New(w As Integer, h As Integer)
+        Width = w
+        Height = h
+        Map = New MapColor(w * h - 1) {}
+        _Image = New Bitmap(w, h)
+    End Sub
+
+    Public ReadOnly Property Height As Integer
+
+    Public ReadOnly Property Image As Bitmap
         Get
-            Return Map
+            Return _Image
         End Get
     End Property
-    Public Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task Implements IResult.Generate
-        ' Dim t = MapResultCreator.CreateMap(Image)
-        Using InImage = New DirectBitmap(Image)
-            Dim w = InImage.Width
-            Dim h = InImage.Height
-            ReDim Map(w - 1, h - 1)
-            _OutImage = New Bitmap(w, h)
-            Dim closest As MapColor
-            Await Task.Run(
-            Sub()
-                For x = 0 To w - 1
-                    For y = 0 To h - 1
-                        'progress.Report(x * h + (y + 1))
-                        If token.IsCancellationRequested Then
-                            token.ThrowIfCancellationRequested()
-                        End If
-                        Dim sPixel = InImage.GetPixel(x, y)
-                        If sPixel.A < 256 / 2 Then Continue For
-                        closest = MapColorsCollection.GetClosest(sPixel)
-                        If Config.Dither Then
-                            FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
-                        End If
-                        OutImage.SetPixel(x, y, closest.Color)
-                        If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
-                        UsedMapColors(closest) += 1
-                        Map(x, y) = closest
-                    Next
-                    progress.Report((x + 1) * h)
-                Next
-            End Sub)
-        End Using
-        Await Task.Delay(1 * 500)
-        'MapColorsCollection.GetClosest()
-    End Function
+
+    Public ReadOnly Property Map As MapColor()
+    Public ReadOnly Property UsedMapColors As New Dictionary(Of MapColor, Integer)
+    Public ReadOnly Property Width As Integer
+
+    Default Public Property Item(X As Integer, Y As Integer) As MapColor
+        Get
+            If 0 > X Or X > Width - 1 Or 0 > Y Or Y > Height - 1 Then Return Nothing
+            Return Map(X + Y * Width)
+        End Get
+        Set(value As MapColor)
+            Map(X + Y * Width) = value
+            'Image.SetPixel(X, Y, value.Color)
+        End Set
+    End Property
+
+    Default Public ReadOnly Property Item(P As Point) As MapColor
+        Get
+            If 1 > P.X Or P.X > Width - 1 Or 0 > P.Y Or P.Y > Height - 1 Then Return Nothing
+            Return Item(P.X, P.Y)
+        End Get
+    End Property
+
     Public Function ColorAtPixel(p As Point) As MapColor
-        Return Map(p.X - 1, p.Y - 1)
+        If 1 > p.X Or p.X > Width - 1 Or 0 > p.Y Or p.Y > Height - 1 Then Return Nothing
+        Return Item(p.X - 1, p.Y - 1)
     End Function
 
-    Public Function ToJSON() As String
-        Dim tmp As MapJSON
-        ReDim tmp.Map(Map.GetUpperBound(0), Map.GetUpperBound(1))
-        Dim index = New Dictionary(Of UInteger, UInteger)
-
-        tmp.MapColors = UsedMapColors.Keys.ToArray
-        For i = 0 To tmp.MapColors.GetUpperBound(0)
-            index.Add(tmp.MapColors(i).ID, i)
-        Next
-        For i = 0 To Map.GetUpperBound(0)
-            For j = 0 To Map.GetUpperBound(1)
-                tmp.Map(i, j) = index(Map(i, j).ID)
-            Next
-        Next
-        Return JsonConvert.SerializeObject(tmp)
-        'Return tmp
-    End Function
-
-    Public Sub LoadMCPAC(infile As String)
-        Dim json = LoadFromMCPAC(infile)
-        Dim w = json.Map.GetLength(0), h = json.Map.GetLength(1)
-        ReDim Map(w - 1, h - 1)
-        _OutImage = New Bitmap(w, h)
-
-        For x = 0 To w - 1
-            For y = 0 To h - 1
-                Dim color = json.MapColors(json.Map(x, y))
-
-                Map(x, y) = color
-                OutImage.SetPixel(x, y, color.Color)
-
-                If Not UsedMapColors.ContainsKey(color) Then UsedMapColors.Add(color, 0)
-                UsedMapColors(color) += 1
-            Next
+    Friend Sub CountUsedMapColors()
+        UsedMapColors.Clear()
+        For Each MC In Map
+            If MC Is Nothing Then Continue For
+            If Not UsedMapColors.ContainsKey(MC) Then UsedMapColors.Add(MC, 0)
+            UsedMapColors(MC) += 1
         Next
     End Sub
+
+    Friend Sub RedoImage()
+        Using tmpImage = New DirectBitmap(Width, Height)
+            For x = 0 To Width - 1
+                For y = 0 To Height - 1
+                    tmpImage.SetPixel(x, y, If(Item(x, y) Is Nothing, Color.Transparent, Item(x, y).Color))
+                Next
+            Next
+            _Image = New Bitmap(tmpImage.Bitmap)
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' Sets color on map and image
+    ''' </summary>
+    ''' <param name="x"></param>
+    ''' <param name="y"></param>
+    ''' <param name="MC"></param>
+    Friend Sub SetColor(x As Integer, y As Integer, MC As MapColor)
+        Item(x, y) = MC
+        Image.SetPixel(x, y, MC.Color)
+    End Sub
+
 End Class

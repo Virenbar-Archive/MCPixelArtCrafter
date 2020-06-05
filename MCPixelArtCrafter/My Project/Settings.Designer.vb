@@ -56,13 +56,13 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property Параметр() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property TestBool() As Boolean
             Get
-                Return CType(Me("Параметр"),String)
+                Return CType(Me("TestBool"),Boolean)
             End Get
             Set
-                Me("Параметр") = value
+                Me("TestBool") = value
             End Set
         End Property
     End Class

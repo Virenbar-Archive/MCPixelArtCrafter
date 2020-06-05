@@ -91,6 +91,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -98,11 +100,15 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -118,9 +124,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TextureSelector.Designer.vb">
+      <DependentUpon>TextureSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextureSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DataClasses\BlockResult.vb" />
     <Compile Include="DataClasses\MapBaseColor.vb" />
     <Compile Include="DataClasses\MapStaircase.vb" />
+    <Compile Include="Data\IO\JSONConverter.vb" />
+    <Compile Include="Data\List2D.vb" />
     <Compile Include="Data\DirectBitmap.vb" />
     <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
@@ -170,12 +184,13 @@
     <Compile Include="Forms\MapPreview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Helpers\Const.vb" />
     <Compile Include="Helpers\MapResultCreator.vb" />
-    <Compile Include="Interfaces\IResult.vb" />
     <Compile Include="DataClasses\MapColor.vb" />
     <Compile Include="DataClasses\MapColorsCollection.vb" />
     <Compile Include="DataClasses\MapResult.vb" />
     <Compile Include="Helpers\Extensions.vb" />
+    <Compile Include="Helpers\TexturesCollection.vb" />
     <Compile Include="Locales\MyStrings.ru.Designer.vb">
       <DependentUpon>MyStrings.ru.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -209,7 +224,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\IO\DataIO.vb" />
+    <Compile Include="Data\IO\MCPACConverter.vb" />
     <Compile Include="Data\SPQ\FloydSteinbergDithererIP.vb" />
     <Compile Include="Helpers\FSDither.vb" />
     <Compile Include="Data\SPQ\MapColorQuantizer.vb" />
@@ -217,6 +232,9 @@
     <Compile Include="Data\IO\NBTExporter.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\TextureSelector.resx">
+      <DependentUpon>TextureSelector.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.ru.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -265,9 +283,470 @@
     <Content Include="Default\Blocks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Default\Textures\1-GRASS\grass_block.png" />
+    <Content Include="Default\Textures\1-GRASS\slime_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\brown_mushroom_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\coarse_dirt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\dirt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\granite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\grass_path_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\jungle_log_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\jungle_planks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\10-DIRT\polished_granite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\andesite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\cobblestone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\cracked_stone_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\mossy_cobblestone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\mossy_stone_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\polished_andesite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\smooth_stone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\stone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\11-STONE\stone_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\12-WATER\water.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\13-WOOD\oak_log_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\13-WOOD\oak_planks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\chiseled_quartz_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\chiseled_quartz_block_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\diorite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\polished_diorite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\quartz_block_bottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\quartz_block_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\14-QUARTZ\quartz_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\15-COLOR_ORANGE\orange_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\15-COLOR_ORANGE\orange_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\15-COLOR_ORANGE\orange_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\15-COLOR_ORANGE\orange_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\15-COLOR_ORANGE\orange_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\16-COLOR_MAGENTA\magenta_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\16-COLOR_MAGENTA\magenta_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\16-COLOR_MAGENTA\magenta_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\16-COLOR_MAGENTA\magenta_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\16-COLOR_MAGENTA\magenta_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\17-COLOR_LIGHT_BLUE\light_blue_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\17-COLOR_LIGHT_BLUE\light_blue_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\17-COLOR_LIGHT_BLUE\light_blue_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\17-COLOR_LIGHT_BLUE\light_blue_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\17-COLOR_LIGHT_BLUE\light_blue_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\18-COLOR_YELLOW\yellow_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\18-COLOR_YELLOW\yellow_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\18-COLOR_YELLOW\yellow_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\18-COLOR_YELLOW\yellow_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\18-COLOR_YELLOW\yellow_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\19-COLOR_LIGHT_GREEN\lime_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\19-COLOR_LIGHT_GREEN\lime_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\19-COLOR_LIGHT_GREEN\lime_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\19-COLOR_LIGHT_GREEN\lime_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\19-COLOR_LIGHT_GREEN\lime_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\birch_log_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\birch_planks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\bone_block_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\end_stone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\end_stone_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\glowstone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\sand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\2-SAND\sandstone_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\20-COLOR_PINK\pink_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\20-COLOR_PINK\pink_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\20-COLOR_PINK\pink_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\20-COLOR_PINK\pink_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\20-COLOR_PINK\pink_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\21-COLOR_GRAY\gray_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\21-COLOR_GRAY\gray_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\21-COLOR_GRAY\gray_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\21-COLOR_GRAY\gray_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\21-COLOR_GRAY\gray_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\22-COLOR_LIGHT_GRAY\light_gray_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\22-COLOR_LIGHT_GRAY\light_gray_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\22-COLOR_LIGHT_GRAY\light_gray_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\22-COLOR_LIGHT_GRAY\light_gray_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\22-COLOR_LIGHT_GRAY\light_gray_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\23-COLOR_CYAN\cyan_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\23-COLOR_CYAN\cyan_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\23-COLOR_CYAN\cyan_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\23-COLOR_CYAN\cyan_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\23-COLOR_CYAN\cyan_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\24-COLOR_PURPLE\purple_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\24-COLOR_PURPLE\purple_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\24-COLOR_PURPLE\purple_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\24-COLOR_PURPLE\purple_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\24-COLOR_PURPLE\purple_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\25-COLOR_BLUE\blue_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\25-COLOR_BLUE\blue_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\25-COLOR_BLUE\blue_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\25-COLOR_BLUE\blue_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\25-COLOR_BLUE\blue_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\26-COLOR_BROWN\brown_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\26-COLOR_BROWN\brown_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\26-COLOR_BROWN\brown_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\26-COLOR_BROWN\brown_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\26-COLOR_BROWN\brown_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\27-COLOR_GREEN\green_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\27-COLOR_GREEN\green_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\27-COLOR_GREEN\green_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\27-COLOR_GREEN\green_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\27-COLOR_GREEN\green_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\nether_wart_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_mushroom_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\28-COLOR_RED\red_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\29-COLOR_BLACK\black_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\29-COLOR_BLACK\black_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\29-COLOR_BLACK\black_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\29-COLOR_BLACK\black_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\29-COLOR_BLACK\black_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\3-WOOL\mushroom_stem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\30-GOLD\gold_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\31-DIAMOND\dark_prismarine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\31-DIAMOND\diamond_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\31-DIAMOND\prismarine_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\32-LAPIS\lapis_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\33-EMERALD\emerald_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\34-PODZOL\podzol_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\34-PODZOL\spruce_planks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\35-NETHERRACK\crimson_planks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\35-NETHERRACK\netherrack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\35-NETHERRACK\nether_bricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\36-TERRACOTTA_WHITE\white_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\37-TERRACOTTA_ORANGE\orange_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\38-TERRACOTTA_MAGENTA\magenta_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\39-TERRACOTTA_LIGHT_BLUE\light_blue_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\4-FIRE\redstone_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\4-FIRE\tnt_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\40-TERRACOTTA_YELLOW\yellow_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\41-TERRACOTTA_LIGHT_GREEN\lime_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\42-TERRACOTTA_PINK\pink_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\43-TERRACOTTA_GRAY\gray_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\44-TERRACOTTA_LIGHT_GRAY\light_gray_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\45-TERRACOTTA_CYAN\cyan_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\46-TERRACOTTA_PURPLE\purple_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\47-TERRACOTTA_BLUE\blue_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\48-TERRACOTTA_BROWN\brown_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\49-TERRACOTTA_GREEN\green_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\5-ICE\packed_ice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\50-TERRACOTTA_RED\red_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\51-TERRACOTTA_BLACK\black_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\6-METAL\iron_block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\7-PLANT\oak_leaves.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\snow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\white_concrete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\white_concrete_powder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\white_glazed_terracotta.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\white_stained_glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\8-SNOW\white_wool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default\Textures\9-CLAY\clay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Logo\Logo.svg" />
     <Content Include="Logo\Logo.svg.png" />
-    <None Include="Default\BlocksTemp.json" />
+    <None Include="My Project\DataSources\MCPixelArtCrafter.Helpers.TexturesCollection+Texture.datasource" />
+    <None Include="My Project\DataSources\MCPixelArtCrafter.Helpers.TexturesCollection+TextureSelection.datasource" />
     <None Include="Resources\Logo.ico" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
@@ -299,10 +778,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Default\Textures\" />
-    <Folder Include="My Project\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
       <Project>{37812a22-91f3-4220-891e-5c26da64a975}</Project>

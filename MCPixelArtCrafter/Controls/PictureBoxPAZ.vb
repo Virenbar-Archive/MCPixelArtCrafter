@@ -1,8 +1,9 @@
 ﻿'----------------------------------------------------------------------------
-' Based on Emgu.CV.UI.PanAndZoomPictureBox.cs   
+' Based on Emgu.CV.UI.PanAndZoomPictureBox.cs
 '----------------------------------------------------------------------------
 Imports System.Drawing.Drawing2D
 Imports System.ComponentModel
+
 ''' <summary>
 ''' A picture box with pan and zoom functionality
 ''' </summary>
@@ -31,7 +32,9 @@ Public Class PictureBoxPAZ
         BorderStyle = BorderStyle.Fixed3D
         PanableAndZoomable = True
     End Sub
+
 #Region "Properties"
+
     ''' <summary>
     ''' Get or Set the property to enable(disable) Pan and Zoom
     ''' </summary>
@@ -71,20 +74,24 @@ Public Class PictureBoxPAZ
     ''' Get or Set the interpolation mode for zooming operation
     ''' </summary>
     Public Property InterpolationMode As InterpolationMode = InterpolationMode.NearestNeighbor
+
     ''' <summary>
     ''' Get or Set drawing of grid
     ''' </summary>
     ''' <returns></returns>
     Public Property ShowGrid As Boolean = False
+
     ''' <summary>
     ''' Grid spacing (0-No grid)
     ''' </summary>
     Public Property GridSpacing As Integer = 0
+
     Public ReadOnly Property OriginPos As Point
         Get
             Return New Point(tX, tY)
         End Get
     End Property
+
     Public ReadOnly Property MousePos As Point
         Get
             Dim CP = PointToClient(MousePosition)
@@ -92,7 +99,9 @@ Public Class PictureBoxPAZ
                              Math.Ceiling((CP.Y - tY) / _zoomScale))
         End Get
     End Property
+
 #End Region
+
     Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
         If IsDisposed Then Return
 
@@ -116,6 +125,7 @@ Public Class PictureBoxPAZ
     Private Sub DrawGrid(g As Graphics, Optional gridsize As Integer = 1)
         DrawGrid(g, Color.Black, gridsize)
     End Sub
+
     Private Sub DrawGrid(g As Graphics, clr As Color, Optional gridsize As Integer = 1)
         Dim ZP = New Point(tX, tY),
             X1 = New Point(ZP), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
@@ -164,23 +174,27 @@ Public Class PictureBoxPAZ
             Cursor = Cursors.Hand
         End If
     End Sub
+
     Private Shadows Sub OnMouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
         Cursor = _defaultCursor
         _mouseDownButton = MouseButtons.None
     End Sub
+
     Private Shadows Sub OnMouseEnter(ByVal sender As Object, ByVal e As EventArgs)
-        'set this as the active control 
+        'set this as the active control
         Dim f As Form = CType(TopLevelControl, Form)
         If (Not (f) Is Nothing) Then
             f.ActiveControl = Me
         End If
     End Sub
+
     Private Shadows Sub OnMouseWheel(ByVal sender As Object, ByVal e As MouseEventArgs)
         If e.Delta <> 0 Then
             Dim zoom As Double = Math.Max(Math.Min(_zoomScale + _zoomScale * e.Delta / 1000, _zoomMax), _zoomMin)
             If zoom <> _zoomScale Then SetZoomScale((zoom), e.Location)
         End If
     End Sub
+
     Private Shadows Sub OnResize(ByVal sender As Object, ByVal e As EventArgs)
         If Image IsNot Nothing AndAlso ClientSize.Width > 0 AndAlso ClientSize.Height > 0 Then
             SetZoomMin()
@@ -188,6 +202,7 @@ Public Class PictureBoxPAZ
             Invalidate()
         End If
     End Sub
+
     Private Sub CheckT()
         'd*: Positive - Free client space, Negative - Hidden image space
         Dim dx = (ClientSize.Width - ImageSize.Width) '* 1 / _zoomScale
@@ -195,6 +210,7 @@ Public Class PictureBoxPAZ
         tX = IIf(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
         tY = IIf(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
     End Sub
+
     Private Sub SetZoomMin(Optional min As Double = 0)
         _zoomMin = IIf(min = 0, Math.Min(Math.Min(ClientSize.Width / Image.Width, ClientSize.Height / Image.Height), 1), min)
         _zoomScale = Math.Max(_zoomScale, _zoomMin)
@@ -218,6 +234,7 @@ Public Class PictureBoxPAZ
             Invalidate()
         End If
     End Sub
+
     ''' <summary>
     ''' Set image and center it
     ''' </summary>
@@ -234,4 +251,3 @@ End Class
 'TODO: Fix grid - Done
 '-Try alternative pixel render https://stackoverflow.com/questions/40498312/c-sharp-create-grid-for-painting-pixels-and-rendering-text
 '>>>Or make new bitmap with max zoom and grid
-

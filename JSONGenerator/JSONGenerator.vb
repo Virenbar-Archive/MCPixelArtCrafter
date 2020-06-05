@@ -1,6 +1,9 @@
 ﻿Module JSONGenerator
     Public DefaultDir = "Input"
+
     Sub Main()
-        OldToNew()
+        'OldToNew()
+        'Textures.CreateFolders()
     End Sub
+
 End Module

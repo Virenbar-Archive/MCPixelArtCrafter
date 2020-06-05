@@ -1,6 +1,11 @@
 {
-    "Blocks": [
-        {"ID": "stone","name": "Stone","texture": "stone.png","default": true},
-        {}
-    ]
+  "Blocks": [
+    {
+      "ID": "stone",
+      "name": "Stone",
+      "texture": "stone.png",
+      "ID_color": 0
+    },
+    {}
+  ]
 }

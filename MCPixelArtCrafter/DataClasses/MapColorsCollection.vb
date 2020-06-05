@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports Colourful
 Imports Newtonsoft.Json
+
 ''' <summary>
 ''' Storage for MapColors
 ''' </summary>
@@ -15,6 +16,7 @@ Public NotInheritable Class MapColorsCollection
     Private Shared ColorCache As New Dictionary(Of Color, Integer)
     Public Shared Property LabMode As Boolean = False
     Public Shared Property ColorTypes As MapColor.Type() = {MapColor.Type.Normal}
+
     Public Shared ReadOnly Property Palette As List(Of Color)
         Get
             Return DefaultCache.Keys.ToList
@@ -40,6 +42,7 @@ Public NotInheritable Class MapColorsCollection
         Next
         CheckConfig()
     End Sub
+
     Public Shared Sub CheckConfig()
         LabMode = Config.LabMode
         MapColors.Clear()
@@ -50,6 +53,7 @@ Public NotInheritable Class MapColorsCollection
         ColorCache.Clear()
         CreateCache()
     End Sub
+
     Private Shared Sub CreateCache()
         DefaultCache.Clear()
         For Each color In MapColors
@@ -72,6 +76,7 @@ Public NotInheritable Class MapColorsCollection
         End If
         If Not ColorCache.ContainsKey(color) Then ColorCache.Add(color, id)
     End Function
+
     Private Shared Function FindClosest(color As Color, ByRef id As Integer) As MapColor
         Dim Closest As MapColor = Nothing
         Dim min, diff As Double
@@ -87,6 +92,7 @@ Public NotInheritable Class MapColorsCollection
         Next
         FindClosest = Closest
     End Function
+
     Private Shared Function FindClosest(color As LabColor, ByRef id As Integer) As MapColor
         Dim Closest As MapColor = Nothing
         Dim min, diff As Double
@@ -102,4 +108,5 @@ Public NotInheritable Class MapColorsCollection
         Next
         FindClosest = Closest
     End Function
+
 End Class

@@ -15,14 +15,14 @@
   },
   {
     "ID": 3,
-    "ID_str": "CLOTH",
+    "ID_str": "WOOL",
     "Full": "Mushroom Stem with \"stem\" texture facing up, Cobweb",
     "Transparent": "Bed head",
     "Color": "199, 199, 199"
   },
   {
     "ID": 4,
-    "ID_str": "TNT",
+    "ID_str": "FIRE",
     "Full": "TNT, Block of Redstone, Lava",
     "Transparent": "Fire",
     "Color": "255, 0, 0"
@@ -36,14 +36,14 @@
   },
   {
     "ID": 6,
-    "ID_str": "IRON",
+    "ID_str": "METAL",
     "Full": "Block of Iron",
     "Transparent": "Iron Door, Iron Trapdoor, Iron Bars, Weighted Pressure Plate (Heavy), Anvil, Brewing Stand",
     "Color": "167, 167, 167"
   },
   {
     "ID": 7,
-    "ID_str": "FOLIAGE",
+    "ID_str": "PLANT",
     "Full": "Leaves",
     "Transparent": "Sapling, Tall Grass, Flower, Lily Pad, Wheat, Carrots, Potatoes, Beetroots, Sugar Canes, Pumpkin Stem, Melon Stem, Cactus, Vines, Cocoa, small red or brown Mushroom",
     "Color": "0, 124, 0"
@@ -99,105 +99,105 @@
   },
   {
     "ID": 15,
-    "ID_str": "ADOBE",
+    "ID_str": "COLOR_ORANGE",
     "Full": "Acacia Wood (vertical Log, Planks, Stairs, Slab), Orange Wool, Orange Carpet, Pumpkin, Jack o'Lantern, Red Sand, Red Sandstone (plain, Smooth, Chiseled, Stairs, Slab), Terracotta/Hardened Clay, Orange Glazed Terracotta, Orange Concrete, Orange Concrete Powder",
     "Transparent": "Acacia Wood (Door, Fence, Fence Gate), Orange Stained Glass, Orange Stained Glass Pane, Orange Bed foot",
     "Color": "216, 127, 51"
   },
   {
     "ID": 16,
-    "ID_str": "MAGENTA",
+    "ID_str": "COLOR_MAGENTA",
     "Full": "Purpur (Block, Pillar, Slab), Magenta Wool, Magenta Glazed Terracotta, Magenta Concrete, Magenta Concrete Powder",
     "Transparent": "Magenta Carpet, Magenta Stained Glass, Magenta Stained Glass Pane, Magenta Bed foot",
     "Color": "178, 76, 216"
   },
   {
     "ID": 17,
-    "ID_str": "LIGHT_BLUE",
+    "ID_str": "COLOR_LIGHT_BLUE",
     "Full": "Light Blue Wool, Light Blue Glazed Terracotta, Light Blue Concrete, Light Blue Concrete Powder",
     "Transparent": "Light Blue Carpet, Light Blue Stained Glass, Light Blue Stained Glass Pane, Light Blue Bed foot",
     "Color": "102, 153, 216"
   },
   {
     "ID": 18,
-    "ID_str": "YELLOW",
+    "ID_str": "COLOR_YELLOW",
     "Full": "Hay Bale, Sponge, Wet Sponge, Yellow Wool, Yellow Glazed Terracotta, Yellow Concrete, Yellow Concrete Powdera",
     "Transparent": "Yellow Carpet, Yellow Stained Glass, Yellow Stained Glass Pane, Yellow Bed foot",
     "Color": "229, 229, 51"
   },
   {
     "ID": 19,
-    "ID_str": "LIME",
+    "ID_str": "COLOR_LIGHT_GREEN",
     "Full": "Melon, Lime Wool, Lime Glazed Terracotta, Lime Concrete, Lime Concrete Powder",
     "Transparent": "Lime Carpet, Lime Stained Glass, Lime Stained Glass Pane, Lime Bed foot",
     "Color": "127, 204, 25"
   },
   {
     "ID": 20,
-    "ID_str": "PINK",
+    "ID_str": "COLOR_PINK",
     "Full": "Pink Wool, Pink Glazed Terracotta, Pink Concrete, Pink Concrete Powder",
     "Transparent": "Pink Carpet, Pink Stained Glass, Pink Stained Glass Pane, Pink Bed foot",
     "Color": "242, 127, 165"
   },
   {
     "ID": 21,
-    "ID_str": "GRAY",
+    "ID_str": "COLOR_GRAY",
     "Full": "Gray Wool, Gray Glazed Terracotta, Gray Concrete, Gray Concrete Powder",
     "Transparent": "Gray Carpet, Gray Stained Glass, Gray Stained Glass Pane, Gray Bed foot",
     "Color": "76, 76, 76"
   },
   {
     "ID": 22,
-    "ID_str": "SILVER",
+    "ID_str": "COLOR_LIGHT_GRAY",
     "Full": "Structure Block, Light Gray Wool, Light Gray Glazed Terracotta, Light Gray Concrete, Light Gray Concrete Powder",
     "Transparent": "Light Gray Carpet, Light Gray Stained Glass, Light Gray Stained Glass Pane, Light Gray Bed foot",
     "Color": "153, 153, 153"
   },
   {
     "ID": 23,
-    "ID_str": "CYAN",
+    "ID_str": "COLOR_CYAN",
     "Full": "Prismarine, Cyan Wool, Cyan Glazed Terracotta, Cyan Concrete, Cyan Concrete Powder",
     "Transparent": "Cyan Carpet, Cyan Stained Glass, Cyan Stained Glass Pane, Cyan Bed foot",
     "Color": "76, 127, 153"
   },
   {
     "ID": 24,
-    "ID_str": "PURPLE",
+    "ID_str": "COLOR_PURPLE",
     "Full": "Repeating Command Block, Mycelium, Purple Wool, Purple Glazed Terracotta, Purple Concrete, Purple Concrete Powder",
     "Transparent": "Chorus Flower, Chorus Plant, Purple Carpet, Purple Stained Glass, Purple Stained Glass Pane, Purple Bed foot",
     "Color": "127, 63, 178"
   },
   {
     "ID": 25,
-    "ID_str": "BLUE",
+    "ID_str": "COLOR_BLUE",
     "Full": "Blue Wool, Blue Glazed Terracotta, Blue Concrete, Blue Concrete Powder",
     "Transparent": "Blue Carpet, Blue Stained Glass, Blue Stained Glass Pane, Blue Bed foot",
     "Color": "51, 76, 178"
   },
   {
     "ID": 26,
-    "ID_str": "BROWN",
+    "ID_str": "COLOR_BROWN",
     "Full": "Dark Oak Wood (vertical or horizontal Log, Planks, Stairs, Slab), horizontal Spruce Log, Impulse Command Block, Soul Sand, Brown Wool, Brown Glazed Terracotta, Brown Concrete, Brown Concrete Powder",
     "Transparent": "Dark Oak Wood (Door, Fence, Fence Gate), Brown Carpet, Brown Stained Glass, Brown Stained Glass Pane, Brown Bed foot",
     "Color": "102, 76, 51"
   },
   {
     "ID": 27,
-    "ID_str": "GREEN",
+    "ID_str": "COLOR_GREEN",
     "Full": "Chain Command Block, Green Wool, Green Glazed Terracotta, Green Concrete, Green Concrete Powder",
     "Transparent": "End Portal Frame, Green Carpet, Green Stained Glass, Green Stained Glass Pane, Green Bed foot",
     "Color": "102, 127, 51"
   },
   {
     "ID": 28,
-    "ID_str": "RED",
+    "ID_str": "COLOR_RED",
     "Full": "Bricks (block, Slab, Stairs), Nether Wart Block, Red Wool, Red Glazed Terracotta, Red Concrete, Red Concrete Powder",
     "Transparent": "Nether Wart, Enchantment Table, Red Carpet, Red Stained Glass, Red Stained Glass Pane, Red Bed foot",
     "Color": "153, 51, 51"
   },
   {
     "ID": 29,
-    "ID_str": "BLACK",
+    "ID_str": "COLOR_BLACK",
     "Full": "Block of Coal, Obsidian, Black Wool, Black Glazed Terracotta, Black Concrete, Black Concrete Powder",
     "Transparent": "Dragon Egg, End Gateway, End Portal, Black Carpet, Black Stained Glass, Black Stained Glass Pane, Black Bed foot",
     "Color": "25, 25, 25"
@@ -232,126 +232,126 @@
   },
   {
     "ID": 34,
-    "ID_str": "OBSIDIAN",
+    "ID_str": "PODZOL",
     "Full": "Spruce Wood (vertical Log, Planks, Stairs, Slab), horizontal Oak Log, horizontal Jungle Log, Podzol",
     "Transparent": "Spruce Wood (Door, Fence, Fence Gate)",
     "Color": "129, 86, 49"
   },
   {
     "ID": 35,
-    "ID_str": "NETHERRACK",
+    "ID_str": "NETHER",
     "Full": "Netherrack, Nether Bricks, Nether Brick Stairs, Red Nether Bricks, Nether Quartz Ore, Magma Block",
     "Transparent": "Nether Brick Fence",
     "Color": "112, 2, 0"
   },
   {
     "ID": 36,
-    "ID_str": "WHITE_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_WHITE",
     "Full": "White Terracotta",
     "Transparent": "",
     "Color": "209, 177, 161"
   },
   {
     "ID": 37,
-    "ID_str": "ORANGE_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_ORANGE",
     "Full": "Orange Terracotta",
     "Transparent": "",
     "Color": "159, 82, 36"
   },
   {
     "ID": 38,
-    "ID_str": "MAGENTA_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_MAGENTA",
     "Full": "Magenta Terracotta",
     "Transparent": "",
     "Color": "149, 87, 108"
   },
   {
     "ID": 39,
-    "ID_str": "LIGHT_BLUE_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_LIGHT_BLUE",
     "Full": "Light Blue Terracotta",
     "Transparent": "",
     "Color": "112, 108, 138"
   },
   {
     "ID": 40,
-    "ID_str": "YELLOW_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_YELLOW",
     "Full": "Yellow Terracotta",
     "Transparent": "",
     "Color": "186, 133, 36"
   },
   {
     "ID": 41,
-    "ID_str": "LIME_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_LIGHT_GREEN",
     "Full": "Lime Terracotta",
     "Transparent": "",
     "Color": "103, 117, 53"
   },
   {
     "ID": 42,
-    "ID_str": "PINK_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_PINK",
     "Full": "Pink Terracotta",
     "Transparent": "",
     "Color": "160, 77, 78"
   },
   {
     "ID": 43,
-    "ID_str": "GRAY_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_GRAY",
     "Full": "Gray Terracotta",
     "Transparent": "",
     "Color": "57, 41, 35"
   },
   {
     "ID": 44,
-    "ID_str": "SILVER_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_LIGHT_GRAY",
     "Full": "Light Gray Terracotta",
     "Transparent": "",
     "Color": "135, 107, 98"
   },
   {
     "ID": 45,
-    "ID_str": "CYAN_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_CYAN",
     "Full": "Cyan Terracotta",
     "Transparent": "",
     "Color": "87, 92, 92"
   },
   {
     "ID": 46,
-    "ID_str": "PURPLE_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_PURPLE",
     "Full": "Purple Terracotta",
     "Transparent": "",
     "Color": "122, 73, 88"
   },
   {
     "ID": 47,
-    "ID_str": "BLUE_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_BLUE",
     "Full": "Blue Terracotta",
     "Transparent": "",
     "Color": "76, 62, 92"
   },
   {
     "ID": 48,
-    "ID_str": "BROWN_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_BROWN",
     "Full": "Brown Terracotta",
     "Transparent": "",
     "Color": "76, 50, 35"
   },
   {
     "ID": 49,
-    "ID_str": "GREEN_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_GREEN",
     "Full": "Green Terracotta",
     "Transparent": "",
     "Color": "76, 82, 42"
   },
   {
     "ID": 50,
-    "ID_str": "RED_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_RED",
     "Full": "Red Terracotta",
     "Transparent": "",
     "Color": "142, 60, 46"
   },
   {
     "ID": 51,
-    "ID_str": "BLACK_STAINED_HARDENED_CLAY",
+    "ID_str": "TERRACOTTA_BLACK",
     "Full": "Black Terracotta",
     "Transparent": "",
     "Color": "37, 22, 16"

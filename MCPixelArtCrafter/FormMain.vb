@@ -1,12 +1,10 @@
 ﻿Imports System.IO
-Imports System.Globalization
-Imports MCPixelArtCrafter.DataIO
 Imports System.Reflection
-Imports System.Runtime
+Imports MCPixelArtCrafter.Helpers
 
 Public Class FormMain
     Private ImagePath As String, InputImage As Bitmap
-    Private Task As Task, CTS As Threading.CancellationTokenSource
+    Private Task As Task(Of MapResult), CTS As Threading.CancellationTokenSource
     Private Progress As IProgress(Of Integer) = New Progress(Of Integer)(Sub(val) SH.Count = val)
     Private WithEvents SH As New StatusHelper(50)
 
@@ -18,6 +16,7 @@ Public Class FormMain
         SetImage(Path.GetFullPath("DefaultImage.png"))
         Settings.Load()
         MapColorsCollection.Load()
+        TexturesCollection.Load()
     End Sub
 
     Private Sub Bt_Settings_Click(sender As Object, e As EventArgs) Handles Bt_Settings.Click
@@ -28,11 +27,11 @@ Public Class FormMain
         If OFD.ShowDialog() = DialogResult.OK Then
             Select Case Path.GetExtension(OFD.FileName)
                 Case ".mcpac"
-                    Dim Result = New MapResult
-                    Result.LoadMCPAC(OFD.FileName)
-                    MapPreview.Close()
-                    MapPreview.MapResult = Result
-                    MapPreview.Show()
+                    'Dim Result = New MapResult
+                    'Result.LoadMCPAC(OFD.FileName)
+                    'MapPreview.Close()
+                    'MapPreview.MapResult = Result
+                    'MapPreview.Show()
                 Case ".json"  'LoadFromMCPAC()
                 Case Else : SetImage(OFD.FileName)
             End Select
@@ -67,6 +66,7 @@ Public Class FormMain
         End If
         If CType(sender, Control).Focused Then MapColorsCollection.CheckConfig()
     End Sub
+
     Private Sub PB_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles PB.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
@@ -90,11 +90,12 @@ Public Class FormMain
 
     Private Async Sub RunGenerator()
         SH.Start()
-        Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
+        'Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
+        Dim result As MapResult
         CTS = New Threading.CancellationTokenSource
-        Task = result.Generate(InputImage, Progress, CTS.Token)
+        Task = MapResultCreator.Generate(InputImage, Progress, CTS.Token)
         Try
-            Await Task
+            result = Await Task
             lbl_Elapsed.Text = SH.Elapsed
             'MapPreview.MapResult = result
             'MapPreview.Show()
@@ -114,4 +115,5 @@ Public Class FormMain
         MapPreview.MapResult = result
         MapPreview.Show()
     End Sub
+
 End Class

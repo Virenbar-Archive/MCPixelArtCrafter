@@ -38,16 +38,16 @@ Partial Class FormMain
         Me.SelectImage = New System.Windows.Forms.Button()
         Me.ImagePathText = New System.Windows.Forms.TextBox()
         Me.ProgressTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.RB_All = New System.Windows.Forms.RadioButton()
         Me.RB_Staircase = New System.Windows.Forms.RadioButton()
         Me.RB_Flat = New System.Windows.Forms.RadioButton()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Create
@@ -132,17 +132,6 @@ Partial Class FormMain
         '
         Me.ProgressTimer.Interval = 50
         '
-        'PB
-        '
-        resources.ApplyResources(Me.PB, "PB")
-        Me.PB.BackColor = System.Drawing.SystemColors.Control
-        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PB.GridSpacing = 0
-        Me.PB.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor
-        Me.PB.Name = "PB"
-        Me.PB.ShowGrid = False
-        Me.PB.TabStop = False
-        '
         'GroupBox2
         '
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
@@ -178,6 +167,17 @@ Partial Class FormMain
         '
         Me.ToolTip1.IsBalloon = True
         '
+        'PB
+        '
+        resources.ApplyResources(Me.PB, "PB")
+        Me.PB.BackColor = System.Drawing.SystemColors.Control
+        Me.PB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PB.GridSpacing = 0
+        Me.PB.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor
+        Me.PB.Name = "PB"
+        Me.PB.ShowGrid = False
+        Me.PB.TabStop = False
+        '
         'FormMain
         '
         Me.AllowDrop = True
@@ -197,9 +197,9 @@ Partial Class FormMain
         Me.GroupBox1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

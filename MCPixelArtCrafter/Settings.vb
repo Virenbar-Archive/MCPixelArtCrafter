@@ -2,21 +2,27 @@
 Imports Newtonsoft.Json
 
 Module SettingsHelper
-    Private ReadOnly ConfigFile As String = "Settings.json"
     Public Config As New Settings
+    Const ConfigFile As String = "Settings.json"
     Public Class Settings
         Public BlacklistMC As New List(Of String)
-        Public BlacklistB As New List(Of String)
-        Public LabMode As Boolean = False
+        Public ColorToBlock As New Dictionary(Of Integer, String)
         Public Dither As Boolean = True
+        Public LabMode As Boolean = False
+
         Public Shared Sub Load()
             If Not File.Exists(ConfigFile) Then Exit Sub
             Config = JsonConvert.DeserializeObject(Of Settings)(File.ReadAllText(ConfigFile))
         End Sub
+
         Public Shared Sub Save()
-            Dim json = JsonConvert.SerializeObject(Config)
-            File.WriteAllText(ConfigFile, json)
+            Try
+                Dim json = JsonConvert.SerializeObject(Config)
+                File.WriteAllText(ConfigFile, json)
+            Catch ex As Exception
+                ShowError(ex)
+            End Try
         End Sub
+
     End Class
 End Module
-

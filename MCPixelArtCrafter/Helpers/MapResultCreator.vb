@@ -4,47 +4,14 @@ Imports SimplePaletteQuantizer.Ditherers.Ordered
 Imports SimplePaletteQuantizer.Ditherers.ErrorDiffusion
 Imports SimplePaletteQuantizer.Helpers
 Imports SimplePaletteQuantizer.Quantizers
+Imports MCPixelArtCrafter.Data
 
 Namespace Helpers
     Public Class MapResultCreator
-        Dim targetImage As Image
+        Private Shared activeDitherer As IColorDitherer = New FilterLiteSierra
         Private Shared activeQuantizer As IColorQuantizer = New MapColorQuantizer
-        Private Shared activeDitherer As IColorDitherer = New FilterLiteSierra 'New FloydSteinbergDitherer
-
-        'Public Shared Async Function CreateMap(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task(Of MapResult)
-        '    Dim result As MapResult
-
-        '    ' Dim t = MapResultCreator.CreateMap(Image)
-        '    Dim InImage = New Bitmap(Image)
-        '    Dim w = InImage.Width
-        '    Dim h = InImage.Height
-        '    ReDim Map(w - 1, h - 1)
-        '    _OutImage = New Bitmap(w, h)
-        '    Dim closest As MapColor
-        '    Await Task.Run(
-        '        Sub()
-        '            For x = 0 To w - 1
-        '                For y = 0 To h - 1
-        '                'progress.Report(x * h + (y + 1))
-        '                If token.IsCancellationRequested Then
-        '                        token.ThrowIfCancellationRequested()
-        '                    End If
-        '                    Dim sPixel = InImage.GetPixel(x, y)
-        '                    If sPixel.A < 256 / 2 Then Continue For
-        '                    closest = MapColorsCollection.GetClosest(sPixel)
-        '                    If Config.Dither Then
-        '                        FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
-        '                    End If
-        '                    OutImage.SetPixel(x, y, closest.Color)
-        '                    If Not UsedMapColors.ContainsKey(closest) Then UsedMapColors.Add(closest, 0)
-        '                    UsedMapColors(closest) += 1
-        '                    Map(x, y) = closest
-        '                Next
-        '                progress.Report((x + 1) * h)
-        '            Next
-        '        End Sub)
-        '    Await Task.Delay(1 * 500)
-        'End Function
+        Dim targetImage As Image
+        'New FloydSteinbergDitherer
 
         Public Shared Async Function CreateMap(image As Image) As Task(Of Object)
             MapColorQuantizer.SetPalette(MapColorsCollection.Palette)
@@ -52,6 +19,42 @@ Namespace Helpers
             targetImage.Save("D:\test.png", Imaging.ImageFormat.Png)
             Return targetImage
         End Function
+
+        Public Shared Async Function Generate(Image As Bitmap, progress As IProgress(Of Integer), token As Threading.CancellationToken) As Task(Of MapResult)
+            Dim w = Image.Width
+            Dim h = Image.Height
+            Dim Result = New MapResult(w, h)
+
+            Using InImage = New DirectBitmap(Image)
+                Dim closest As MapColor
+                Await Task.Run(
+                Sub()
+                    For x = 0 To w - 1
+                        For y = 0 To h - 1
+                            'progress.Report(x * h + (y + 1))
+                            If token.IsCancellationRequested Then
+                                token.ThrowIfCancellationRequested()
+                            End If
+                            Dim sPixel = InImage.GetPixel(x, y)
+                            If sPixel.A < 256 / 2 Then Continue For
+                            closest = MapColorsCollection.GetClosest(sPixel)
+                            If Config.Dither Then FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
+
+                            Result(x, y) = closest
+
+                            'If Not Result.UsedMapColors.ContainsKey(closest) Then Result.UsedMapColors.Add(closest, 0)
+                            'Result.UsedMapColors(closest) += 1
+                        Next
+                        progress.Report((x + 1) * h)
+                    Next
+                    Result.CountUsedMapColors()
+                    Result.RedoImage()
+                End Sub)
+            End Using
+            Await Task.Delay(1 * 500)
+            Return Result
+        End Function
+
         Private Shared Async Function Quantize(img As Image) As Task(Of Image)
             Dim targetImage As Image = Nothing
             Dim sourceImage = img
@@ -93,5 +96,6 @@ Namespace Helpers
                 uiScheduler)
             Return targetImage
         End Function
+
     End Class
 End Namespace
