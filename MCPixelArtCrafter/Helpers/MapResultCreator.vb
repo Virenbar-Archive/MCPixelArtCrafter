@@ -15,7 +15,7 @@ Namespace Helpers
 
         Public Shared Async Function CreateMap(image As Image) As Task(Of Object)
             MapColorQuantizer.SetPalette(MapColorsCollection.Palette)
-            Dim targetImage = Await Quantize(image.Clone)
+            Dim targetImage = Await Quantize(New Bitmap(image))
             targetImage.Save("D:\test.png", Imaging.ImageFormat.Png)
             Return targetImage
         End Function
@@ -77,7 +77,7 @@ Namespace Helpers
                 Sub()
                     ' detects operation duration
                     Dim duration = Now - before
-                    Dim perPixel = New TimeSpan(duration.Ticks / (sourceImage.Width * sourceImage.Height))
+                    Dim perPixel = New TimeSpan(CLng(duration.Ticks / (sourceImage.Width * sourceImage.Height)))
 
                     ' detects error And color count
                     Dim originalColorCount = activeQuantizer.GetColorCount()

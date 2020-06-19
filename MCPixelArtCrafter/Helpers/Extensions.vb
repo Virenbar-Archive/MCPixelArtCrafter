@@ -5,7 +5,7 @@ Module Extensions
 
     <Extension>
     Public Function Divide(p As Point, n As Double) As PointF
-        Return New PointF(p.X / n, p.Y / n)
+        Return New PointF(CSng(p.X / n), CSng(p.Y / n))
     End Function
 
     ''' <summary>
@@ -20,7 +20,7 @@ Module Extensions
 
     <Extension>
     Public Function Multiply(p As Point, n As Double) As PointF
-        Return New PointF(p.X * n, p.Y * n)
+        Return New PointF(CSng(p.X * n), CSng(p.Y * n))
     End Function
 
     <Extension>

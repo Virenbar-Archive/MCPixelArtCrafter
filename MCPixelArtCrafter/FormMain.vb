@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Reflection
+Imports MCPixelArtCrafter.Data.IO
 Imports MCPixelArtCrafter.Helpers
 
 Public Class FormMain
@@ -27,12 +28,11 @@ Public Class FormMain
         If OFD.ShowDialog() = DialogResult.OK Then
             Select Case Path.GetExtension(OFD.FileName)
                 Case ".mcpac"
-                    'Dim Result = New MapResult
-                    'Result.LoadMCPAC(OFD.FileName)
-                    'MapPreview.Close()
-                    'MapPreview.MapResult = Result
-                    'MapPreview.Show()
-                Case ".json"  'LoadFromMCPAC()
+                    Dim Result = MCPACConverter.LoadFromMCPAC(OFD.FileName)
+                    MapPreview.Close()
+                    MapPreview.MapResult = Result
+                    MapPreview.Show()
+                Case ".json"                    'JSONConverter.l
                 Case Else : SetImage(OFD.FileName)
             End Select
         End If

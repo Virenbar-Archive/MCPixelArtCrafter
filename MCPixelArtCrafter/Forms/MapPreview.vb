@@ -53,7 +53,7 @@ Public Class MapPreview
             Dim clr = MapResult(PB.MousePos)
             If IsNothing(clr) Then Exit Sub
             If FLP_UsedColors.Controls.ContainsKey(clr.ID_map.ToString) Then
-                ClickedColor = FLP_UsedColors.Controls(clr.ID_map.ToString)
+                ClickedColor = DirectCast(FLP_UsedColors.Controls(clr.ID_map.ToString), MapColorCount)
                 ClickedColor.Highlight = True
             End If
         Catch ex As Exception
@@ -62,6 +62,10 @@ Public Class MapPreview
 
     Private Sub PB_MouseMove(sender As Object, e As MouseEventArgs) Handles PB.MouseMove
         TS_MousePos.Text = String.Format("X:{0}|Y:{1}", PB.MousePos.X, PB.MousePos.Y)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FormTextureView.Show(MapResult)
     End Sub
 
 End Class

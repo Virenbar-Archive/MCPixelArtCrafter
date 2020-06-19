@@ -3,8 +3,9 @@ Imports Newtonsoft.Json
 
 Public Class MapColor
     Private Shared Converter As New Conversion.ColourfulConverter
+
     Public Sub New(base As MapBaseColor, type As Type)
-        ID_map = base.ID * 4 + type
+        ID_map = base.ID * CByte(4) + type
         TypeT = type
         BaseColor = base
         Select Case TypeT
@@ -13,7 +14,7 @@ Public Class MapColor
             Case Type.Up : Color = BaseColor.Color 'Convert(BaseColor.Color, 255)
             Case Type.Dark : Color = Convert(BaseColor.Color, 135)
         End Select
-        LabColor = Converter.ToLab(Color)
+        LabColor = Converter.ToLab(New RGBColor(Color))
     End Sub
 
     ''' <summary>
@@ -25,6 +26,7 @@ Public Class MapColor
             Return BaseColor.ID
         End Get
     End Property
+
     ''' <summary>
     ''' Name of color
     ''' </summary>
@@ -34,6 +36,7 @@ Public Class MapColor
             Return BaseColor.ID_str
         End Get
     End Property
+
     ''' <summary>
     ''' Full blocks with this color
     ''' </summary>
@@ -43,6 +46,7 @@ Public Class MapColor
             Return BaseColor.Full
         End Get
     End Property
+
     ''' <summary>
     ''' Transparent blocks with this color
     ''' </summary>
@@ -58,21 +62,25 @@ Public Class MapColor
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property ID_map As Byte
+
     ''' <summary>
     ''' Type of placement
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property TypeT As Type
+
     ''' <summary>
     ''' Base color of block
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property BaseColor As MapBaseColor
+
     ''' <summary>
     ''' RGB color
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property Color As Color
+
     ''' <summary>
     ''' CIELab Color
     ''' </summary>
@@ -81,12 +89,14 @@ Public Class MapColor
     Public ReadOnly Property LabColor As LabColor
 
     Private Shared Function Convert(color As Color, mult As Integer) As Color
-        Return Color.FromArgb(Math.Floor(color.R * mult / 255), Math.Floor(color.G * mult / 255), Math.Floor(color.B * mult / 255))
+        Return Color.FromArgb(CInt(Math.Floor(color.R * mult / 255)), CInt(Math.Floor(color.G * mult / 255)), CInt(Math.Floor(color.B * mult / 255)))
     End Function
+
     Public Enum Type As Byte
         Down = 0
         Normal = 1
         Up = 2
         Dark = 3
     End Enum
+
 End Class

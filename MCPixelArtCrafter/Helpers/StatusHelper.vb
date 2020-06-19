@@ -6,14 +6,14 @@ Public Class StatusHelper
 
     Private WithEvents Timer As New Timer
     Private SW As New Stopwatch
-    Private frame = 0 : Private ReadOnly Frames As Char() = {"|", "/", "-", "\"}
+    Private frame As Integer = 0 : Private ReadOnly Frames As Char() = {"|"c, "/"c, "-"c, "\"c}
     Public Property Amount As Integer = 0
     Public Property Count As Integer = 0
     ReadOnly Property IsActive As Boolean = False
 
     ReadOnly Property Progress As String
         Get
-            Return $"Progress: {Format(Count, "N0") }\{Format(Amount, "N0")} ({Format(Count / Amount, "P")})"
+            Return $"Progress: {Count:N0}\{Amount:N0} ({Count / Amount:P})"
         End Get
     End Property
 
@@ -26,7 +26,7 @@ Public Class StatusHelper
 
     ReadOnly Property Elapsed As String
         Get
-            Return $"Elapsed: {Format(SW.Elapsed.TotalSeconds, "N1")} s"
+            Return $"Elapsed: {SW.Elapsed.TotalSeconds:N1} s"
         End Get
     End Property
 

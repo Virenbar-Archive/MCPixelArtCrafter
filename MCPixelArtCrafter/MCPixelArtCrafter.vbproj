@@ -15,6 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>false</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,7 +40,10 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,7 +54,10 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -60,7 +66,7 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
+    <OptionStrict>On</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
@@ -130,20 +136,18 @@
     <Compile Include="Controls\TextureSelector.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataClasses\BlockResult.vb" />
-    <Compile Include="DataClasses\MapBaseColor.vb" />
-    <Compile Include="DataClasses\MapStaircase.vb" />
+    <Compile Include="Types\MapBaseColor.vb" />
+    <Compile Include="Types\MapStaircase.vb" />
     <Compile Include="Data\IO\JSONConverter.vb" />
-    <Compile Include="Data\List2D.vb" />
-    <Compile Include="Data\DirectBitmap.vb" />
+    <Compile Include="Types\List2D.vb" />
+    <Compile Include="Types\DirectBitmap.vb" />
     <Compile Include="Forms\AboutBox1.Designer.vb">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataClasses\Block.vb" />
-    <Compile Include="DataClasses\BlocksCollection.vb" />
+    <Compile Include="Types\Block.vb" />
     <Compile Include="Controls\CheckBlock.Designer.vb">
       <DependentUpon>CheckBlock.vb</DependentUpon>
     </Compile>
@@ -178,6 +182,12 @@
     <Compile Include="Forms\BlockPreview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FormTextureView.Designer.vb">
+      <DependentUpon>FormTextureView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTextureView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\MapPreview.Designer.vb">
       <DependentUpon>MapPreview.vb</DependentUpon>
     </Compile>
@@ -186,9 +196,9 @@
     </Compile>
     <Compile Include="Helpers\Const.vb" />
     <Compile Include="Helpers\MapResultCreator.vb" />
-    <Compile Include="DataClasses\MapColor.vb" />
-    <Compile Include="DataClasses\MapColorsCollection.vb" />
-    <Compile Include="DataClasses\MapResult.vb" />
+    <Compile Include="Types\MapColor.vb" />
+    <Compile Include="Helpers\MapColorsCollection.vb" />
+    <Compile Include="Types\MapResult.vb" />
     <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Helpers\TexturesCollection.vb" />
     <Compile Include="Locales\MyStrings.ru.Designer.vb">
@@ -252,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTextureView.resx">
+      <DependentUpon>FormTextureView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MapPreview.resx">
       <DependentUpon>MapPreview.vb</DependentUpon>
@@ -746,7 +759,6 @@
     <Content Include="Logo\Logo.svg" />
     <Content Include="Logo\Logo.svg.png" />
     <None Include="My Project\DataSources\MCPixelArtCrafter.Helpers.TexturesCollection+Texture.datasource" />
-    <None Include="My Project\DataSources\MCPixelArtCrafter.Helpers.TexturesCollection+TextureSelection.datasource" />
     <None Include="Resources\Logo.ico" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

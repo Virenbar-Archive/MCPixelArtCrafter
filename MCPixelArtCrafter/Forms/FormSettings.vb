@@ -33,18 +33,34 @@ Public Class FormSettings
             DGV_MapColors.Rows(i).Cells(_Color.Index).Value = img
             DGV_MapColors.Rows(i).Cells(_Full.Index).Value = MC.Full
         Next
+        FLP_Selectors.Controls.Clear()
+
         For Each TX In TexturesCollection.Selections
-            FLP_Selectors.Controls.Add(New TextureSelector(TX))
+            Dim S = New TextureSelector(TX)
+            AddHandler S.TextureChanged, AddressOf TextureSelector_TextureChanged
+            If Config.ColorToBlock.ContainsKey(TX.ID) Then
+                S.Filename = Config.ColorToBlock(TX.ID)
+            End If
+            FLP_Selectors.Controls.Add(S)
         Next
     End Sub
 
-    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_MapColors.CellValueChanged
+    Private Sub TextureSelector_TextureChanged(sender As Object, e As EventArgs)
+        Dim ts = DirectCast(sender, TextureSelector)
+        If Config.ColorToBlock.ContainsKey(ts.ID) Then
+            Config.ColorToBlock(ts.ID) = ts.Filename
+        Else
+            Config.ColorToBlock.Add(ts.ID, ts.Filename)
+        End If
+    End Sub
+
+    Private Sub DGV_MapColors_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_MapColors.CellValueChanged
         If Not DirectCast(sender, Control).Focused Then Exit Sub
         If e.ColumnIndex = _Use.Index Then
-            If DGV_MapColors.Rows(e.RowIndex).Cells(_Use.Index).Value Then
-                Config.BlacklistMC.Remove(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value)
+            If CBool(DGV_MapColors.Rows(e.RowIndex).Cells(_Use.Index).Value) Then
+                Config.BlacklistMC.Remove(CStr(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value))
             Else
-                Config.BlacklistMC.Add(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value)
+                Config.BlacklistMC.Add(CStr(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value))
             End If
         End If
     End Sub
@@ -52,6 +68,7 @@ Public Class FormSettings
     Private Sub FormSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Settings.Load()
         MapColorsCollection.CheckConfig()
+        TexturesCollection.CheckConfig()
     End Sub
 
     Private Sub CB_LabMode_CheckedChanged(sender As Object, e As EventArgs) Handles CB_LabMode.CheckedChanged

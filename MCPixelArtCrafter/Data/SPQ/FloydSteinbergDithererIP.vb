@@ -7,6 +7,7 @@ Namespace Data.SPQ
     ''' </summary>
     Public Class FloydSteinbergDithererIP
         Inherits FloydSteinbergDitherer
+
         Public Overrides ReadOnly Property IsInplace As Boolean
             Get
                 Return True
@@ -21,7 +22,7 @@ Namespace Data.SPQ
 
             For y = 0 To height - 1
                 For x = 0 To width - 1
-                    CachedSummedMatrix(y, x) = CachedMatrix(y, x) / 16
+                    CachedSummedMatrix(y, x) = CSng(CachedMatrix(y, x) / 16)
                 Next
             Next
         End Sub
@@ -30,6 +31,7 @@ Namespace Data.SPQ
             MyBase.OnProcessPixel(sourcePixel, targetPixel)
             Return True
         End Function
+
     End Class
 
 End Namespace

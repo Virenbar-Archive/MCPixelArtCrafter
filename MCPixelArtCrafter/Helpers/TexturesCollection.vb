@@ -3,37 +3,44 @@ Imports System.Text.RegularExpressions
 
 Namespace Helpers
     Public Class TexturesCollection
-        Public Shared d As Dictionary(Of Integer, Image)
-        Public Shared EmptyImage = New Bitmap(16, 16)
         Public Shared Selections As New List(Of TextureSelection)
-        Private Shared FolderRegex = New Regex("(?'ID'\d+)-\w+", RegexOptions.ExplicitCapture)
+        Private Shared EmptyImage As New Bitmap(16, 16)
         Private Shared Textures As Dictionary(Of Integer, Image)
+
+        Shared Sub New()
+
+        End Sub
 
         Public Shared ReadOnly Property Item(id As Integer) As Image
             Get
-                Return If(d.ContainsKey(id), d(id), EmptyImage)
+                Return If(Textures.ContainsKey(id), Textures(id), EmptyImage)
             End Get
         End Property
 
         Public Shared Sub CheckConfig()
-            If Config.ColorToBlock.Count = 0 Then
-                Dim d As Dictionary(Of Integer, Image) = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First.Img)
-            Else
-
+            Textures = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First.Img)
+            If Config.ColorToBlock.Count > 0 Then
+                Dim ImageDict = Selections.SelectMany(Function(x) x.List).ToDictionary(Function(x) x.Filename, Function(x) x.Img)
+                For Each CBT In Config.ColorToBlock
+                    If Textures.ContainsKey(CBT.Key) AndAlso ImageDict.ContainsKey(CBT.Value) Then
+                        Textures(CBT.Key) = ImageDict(CBT.Value)
+                    End If
+                Next
             End If
         End Sub
 
         Public Shared Sub Load(Optional folder As String = "Default")
+            Dim FolderRegex = New Regex("(?'ID'\d+)-\w+", RegexOptions.ExplicitCapture)
             Dim TI = Globalization.CultureInfo.CurrentCulture.TextInfo
             Dim files = Directory.GetFiles(folder, "*.png", SearchOption.AllDirectories)
-            Dim lists As Lookup(Of String, String) = files.ToLookup(Function(x) Path.GetFileName(Path.GetDirectoryName(x)), Function(x) x)
+            Dim lists As ILookup(Of String, String) = files.ToLookup(Function(x) Path.GetFileName(Path.GetDirectoryName(x)), Function(x) x)
             For Each group In lists
                 Dim m = FolderRegex.Match(group.Key)
                 If m.Success Then
                     Dim ID = Integer.Parse(m.Groups("ID").Value)
                     Dim h As List(Of Texture) = group.ToList.ConvertAll(
                         Function(x)
-                            Return New Texture With {.Img = New Bitmap(x), .Filename = Path.GetFileNameWithoutExtension(x), .Name = TI.ToTitleCase(String.Join(" ", .Filename.Split("_")))}
+                            Return New Texture With {.Img = New Bitmap(x), .Filename = Path.GetFileNameWithoutExtension(x), .Name = TI.ToTitleCase(String.Join(" ", .Filename.Split("_"c)))}
                         End Function)
                     Selections.Add(New TextureSelection() With {.ID = ID, .Name = group.Key, .List = h})
                 End If

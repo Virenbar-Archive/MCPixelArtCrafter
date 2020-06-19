@@ -1,7 +1,7 @@
 ﻿Imports MCPixelArtCrafter.Data
 
 Public Class MapResult
-    Private _Image
+    Private _Image As Bitmap
 
     Public Sub New(w As Integer, h As Integer)
         Width = w
