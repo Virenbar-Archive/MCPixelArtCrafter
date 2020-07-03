@@ -44,14 +44,14 @@ Partial Class TextureSelector
         Me.CB_Texture.Size = New System.Drawing.Size(154, 21)
         Me.CB_Texture.TabIndex = 0
         Me.CB_Texture.ValueMember = "Filename"
-        '
-        'TextureBindingSource
-        '
-        Me.TextureBindingSource.DataSource = GetType(MCPixelArtCrafter.Helpers.TexturesCollection.Texture)
-        '
-        'Lbl_ID_str
-        '
-        Me.Lbl_ID_str.AutoSize = True
+		'
+		'TextureBindingSource
+		'
+		Me.TextureBindingSource.DataSource = GetType(MCPACLib.Texture)
+		'
+		'Lbl_ID_str
+		'
+		Me.Lbl_ID_str.AutoSize = True
         Me.Lbl_ID_str.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Lbl_ID_str.Location = New System.Drawing.Point(190, 0)
         Me.Lbl_ID_str.Name = "Lbl_ID_str"

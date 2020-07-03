@@ -17,7 +17,7 @@ Imports System.Windows
 <Assembly: AssemblyProduct("MCPixelArtCrafterWPF")>
 <Assembly: AssemblyCopyright("Copyright © IT Organization 2020")>
 <Assembly: AssemblyTrademark("")>
-<Assembly: ComVisible(false)>
+<Assembly: ComVisible(False)>
 
 'Чтобы начать создание локализуемых приложений, задайте
 '<UICulture>ТребуемоеЗначение</UICulture> в файле .vbproj
@@ -28,7 +28,6 @@ Imports System.Windows
 
 '<Assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)>
 
-
 'Атрибут ThemeInfo указывает расположение словарей ресурсов для конкретной темы и словарей общих ресурсов.
 '1-й параметр: расположение словарей ресурсов для конкретной темы
 '(используется, если ресурс не найден на странице,
@@ -38,8 +37,6 @@ Imports System.Windows
 '(используется, если ресурс не найден на странице,
 'в приложении и в словарях ресурсов для конкретной темы)
 <Assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)>
-
-
 
 'Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
 <Assembly: Guid("dc72d8dc-dfe2-4a58-be2b-37f6a5d13924")>
@@ -55,5 +52,4 @@ Imports System.Windows
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.0.*")>

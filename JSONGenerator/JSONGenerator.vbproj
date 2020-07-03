@@ -145,7 +145,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MCPACLib\MCPACLib.vbproj">
+      <Project>{c700355d-1774-46b0-826f-0574305cc7a5}</Project>
+      <Name>MCPACLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>

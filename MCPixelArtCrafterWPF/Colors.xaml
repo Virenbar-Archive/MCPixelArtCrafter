@@ -1,0 +1,5 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MCPixelArtCrafterWPF">
+    <SolidColorBrush x:Key="Good" Color="#FF12C100" ></SolidColorBrush>
+</ResourceDictionary>

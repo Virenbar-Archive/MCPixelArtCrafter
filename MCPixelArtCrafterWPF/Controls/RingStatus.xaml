@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="RingStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
+             mc:Ignorable="d" Width="40" Height="40">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="ArcBrush" Color="Red" />
+    </UserControl.Resources>
+    <Grid Background="Transparent">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform ScaleY="0.5" ScaleX="0.5" />
+                <SkewTransform />
+                <RotateTransform />
+                <TranslateTransform X="10" Y="10" />
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Canvas>
+
+            <Path Name="Arc1" Data="M 0,0 A 40,40 0 0 0 0,80" Stroke="{DynamicResource ArcBrush}" StrokeThickness="10">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="0" />
+                        <TranslateTransform X="20" Y="-20" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="Path.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames>
+                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"></LinearDoubleKeyFrame>
+                                <LinearDoubleKeyFrame KeyTime="0:0:4" Value="360"></LinearDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+        </Canvas>
+
+        <Canvas Name="Arc2" Opacity="1">
+            <Path  Data="M 0,0 A 30,30 0 1 0 0,60" Stroke="{DynamicResource ArcBrush}" StrokeThickness="10" Opacity="0.3">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="0" />
+                        <TranslateTransform X="20" Y="-10" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="Path.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="Arc2" Storyboard.TargetProperty="">
+                                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"></LinearDoubleKeyFrame>
+                                <LinearDoubleKeyFrame KeyTime="0:0:2" Value="360"></LinearDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+        </Canvas>
+    </Grid>
+</UserControl>

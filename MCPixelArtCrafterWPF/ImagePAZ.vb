@@ -36,6 +36,17 @@ Public Class ImagePAZ
 		End Get
 	End Property
 
+	Public Shared ReadOnly IsShowGridProperty As DependencyProperty = DependencyProperty.Register("IsShowGrid", GetType(Boolean), GetType(ImagePAZ))
+
+	Public Property IsShowGrid() As Boolean
+		Get
+			Return CBool(GetValue(IsShowGridProperty))
+		End Get
+		Set(ByVal value As Boolean)
+			SetValue(IsShowGridProperty, value)
+		End Set
+	End Property
+
 	Public Property pp As Pen
 	Public Property ShowGrid As Boolean
 	Public Property SubGridBrush As Brush

@@ -11,7 +11,6 @@
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,8 +49,21 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -70,13 +82,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="RingRot.xaml.vb">
-      <DependentUpon>RingRot.xaml</DependentUpon>
+    <Compile Include="Controls\MapColorCount.xaml.vb">
+      <DependentUpon>MapColorCount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RingPulse.xaml.vb">
+    <Compile Include="Controls\RingPulse.xaml.vb">
       <DependentUpon>RingPulse.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Controls\RingRot.xaml.vb">
+      <DependentUpon>RingRot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RingRiple.xaml.vb">
+      <DependentUpon>RingRiple.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RingStatus.xaml.vb">
+      <DependentUpon>RingStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextureSelector.xaml.vb">
+      <DependentUpon>TextureSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WMapPreview.xaml.vb">
+      <DependentUpon>WMapPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WSettings.xaml.vb">
+      <DependentUpon>WSettings.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MapColorCount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RingPulse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextureSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WMapPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -85,17 +135,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ImagePAZ.vb" />
-    <Compile Include="MainWindow.xaml.vb">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="WMain.xaml.vb">
+      <DependentUpon>WMain.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RingRot.xaml">
+    <Page Include="Controls\RingRot.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RingPulse.xaml">
+    <Page Include="Controls\RingRiple.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RingStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -140,16 +198,32 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\DataSources\MCPACLib.Helpers.TexturesCollection+Texture.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Test4k.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MCPACLib\MCPACLib.vbproj">
+      <Project>{c700355d-1774-46b0-826f-0574305cc7a5}</Project>
+      <Name>MCPACLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MCPixelArtCrafter\MCPixelArtCrafter.vbproj">
+      <Project>{5ce282fc-ec17-4a6d-a9cf-a231d8663e9f}</Project>
+      <Name>MCPixelArtCrafter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
