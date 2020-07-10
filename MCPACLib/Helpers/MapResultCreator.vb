@@ -26,7 +26,7 @@ Namespace Helpers
 			Dim h = Image.Height
 			Dim MR As MapResult
 			Using InImage = New DirectBitmap(Image)
-				Dim WAT = New Func(Of MapResult)(
+				MR = Await Task.Run(
 					Function() As MapResult
 						Dim closest As MapColor
 						Dim Result = New MapResult(w, h)
@@ -45,9 +45,6 @@ Namespace Helpers
 								End If
 
 								Result(x, y) = closest
-
-								'If Not Result.UsedMapColors.ContainsKey(closest) Then Result.UsedMapColors.Add(closest, 0)
-								'Result.UsedMapColors(closest) += 1
 							Next
 							progress.Report((x + 1) * h)
 						Next
@@ -55,38 +52,6 @@ Namespace Helpers
 						Result.RedoImage()
 						Return Result
 					End Function)
-
-				MR = Await Task.Run(WAT)
-
-				'Dim p = Await Task.Run(Of MapResult)(
-				'Function() As MapResult
-				'	Dim closest As MapColor
-				'	Dim Result = New MapResult(w, h)
-				'	For x = 0 To w - 1
-				'		For y = 0 To h - 1
-				'			'progress.Report(x * h + (y + 1))
-				'			If token.IsCancellationRequested Then
-				'				token.ThrowIfCancellationRequested()
-				'			End If
-				'			Dim sPixel = InImage.GetPixel(x, y)
-				'			If sPixel.A < 256 / 2 Then Continue For
-				'			closest = MapColorsCollection.GetClosest(sPixel)
-
-				'			If Config.Dither Then
-				'				FSDither.ApplyDither(InImage, closest.Color, sPixel, x, y)
-				'			End If
-
-				'			Result(x, y) = closest
-
-				'			'If Not Result.UsedMapColors.ContainsKey(closest) Then Result.UsedMapColors.Add(closest, 0)
-				'			'Result.UsedMapColors(closest) += 1
-				'		Next
-				'		progress.Report((x + 1) * h)
-				'	Next
-				'	Result.CountUsedMapColors()
-				'	Result.RedoImage()
-				'	Return Result
-				'End Function)
 			End Using
 			Await Task.Delay(1 * 500)
 			Return MR

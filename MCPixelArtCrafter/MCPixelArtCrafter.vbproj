@@ -81,21 +81,12 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Colourful, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Colourful.2.0.5\lib\net45\Colourful.dll</HintPath>
-    </Reference>
-    <Reference Include="fNbt, Version=0.6.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\fNbt.0.6.4\lib\net35-client\fNbt.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -214,7 +205,6 @@
     <Compile Include="Controls\CheckGroupBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings.vb" />
     <Compile Include="Locales\MyStrings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -309,10 +299,6 @@
     <ProjectReference Include="..\MCPACLib\MCPACLib.vbproj">
       <Project>{c700355d-1774-46b0-826f-0574305cc7a5}</Project>
       <Name>MCPACLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimplePaletteQuantizer\SimplePaletteQuantizer.csproj">
-      <Project>{37812a22-91f3-4220-891e-5c26da64a975}</Project>
-      <Name>SimplePaletteQuantizer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

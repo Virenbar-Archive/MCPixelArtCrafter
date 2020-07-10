@@ -131,7 +131,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Settings.vb" />
     <Compile Include="Types\Block.vb" />
     <Compile Include="Types\Config.vb" />
     <Compile Include="Types\DirectBitmap.vb" />

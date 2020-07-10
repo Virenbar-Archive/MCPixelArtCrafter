@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
-Imports MCPACLib.Helpers
 Imports MCPACLib
+Imports MCPACLib.Helpers
+Imports MCPACLib.Helpers.Configuration
 
 Public Class FormSettings
 
@@ -67,7 +68,7 @@ Public Class FormSettings
 	End Sub
 
 	Private Sub FormSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-		Settings.Load()
+		Configuration.Load()
 		MapColorsCollection.CheckConfig()
 		TexturesCollection.CheckConfig()
 	End Sub
@@ -87,7 +88,7 @@ Public Class FormSettings
 	End Sub
 
 	Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
-		Settings.Save()
+		Configuration.Save()
 		Close()
 	End Sub
 

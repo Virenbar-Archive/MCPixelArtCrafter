@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+
 Imports Microsoft.WindowsAPICodePack.Taskbar
 
 Public Class StatusHelper
@@ -59,6 +60,12 @@ Public Class StatusHelper
 	Private Sub OnTick() Handles Timer.Tick
 		TaskbarManager.Instance.SetProgressValue(Count, Amount)
 		RaiseEvent Tick()
+	End Sub
+
+	Private Shared Sub Dummy()
+		Dim noop = Sub(x As Object) Exit Sub
+		Dim dummy = GetType(Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState)
+		noop(dummy)
 	End Sub
 
 End Class
