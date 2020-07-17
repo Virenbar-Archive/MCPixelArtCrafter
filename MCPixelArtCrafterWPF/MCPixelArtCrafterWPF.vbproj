@@ -60,6 +60,7 @@
   <ItemGroup>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -78,8 +79,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MapColorCheckBox.xaml.vb">
+      <DependentUpon>MapColorCheckBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MapColorCount.xaml.vb">
       <DependentUpon>MapColorCount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageSelector.xaml.vb">
+      <DependentUpon>PageSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RingPulse.xaml.vb">
       <DependentUpon>RingPulse.xaml</DependentUpon>
@@ -96,6 +103,9 @@
     <Compile Include="Controls\TextureSelector.xaml.vb">
       <DependentUpon>TextureSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WStaircase.xaml.vb">
+      <DependentUpon>WStaircase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WMapPreview.xaml.vb">
       <DependentUpon>WMapPreview.xaml</DependentUpon>
     </Compile>
@@ -106,7 +116,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\MapColorCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MapColorCount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PageSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +133,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\TextureSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WStaircase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +242,8 @@
     <Content Include="DefaultImage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\icons8-chevron-right-48.png" />
+    <Resource Include="Resources\icons8-chevron-left-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

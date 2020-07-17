@@ -34,6 +34,15 @@ Public Class WSettings
 		'	DGV_MapColors.Rows(i).Cells(_Color.Index).Value = img
 		'	DGV_MapColors.Rows(i).Cells(_Full.Index).Value = MC.Full
 		'Next
+		WP_MapColors.Children.Clear()
+		For Each MC In MapColorsCollection.MapBaseColors
+			Dim M As New MapColorCheckBox(MC)
+			AddHandler M.CheckedChanged, AddressOf MapColorCheckBox_CheckedChanged
+			If Config.BlacklistMC.Contains(MC.ID_str) Then
+				M.IsChecked = False
+			End If
+			WP_MapColors.Children.Add(M)
+		Next
 
 		WP_Selectors.Children.Clear()
 		For Each TX In TexturesCollection.Selections
@@ -46,6 +55,15 @@ Public Class WSettings
 		Next
 	End Sub
 
+	Private Sub MapColorCheckBox_CheckedChanged(sender As Object, e As EventArgs)
+		Dim M = DirectCast(sender, MapColorCheckBox)
+		If M.IsChecked And Config.BlacklistMC.Contains(M.ID_str) Then
+			Config.BlacklistMC.Remove(M.ID_str)
+		Else
+			Config.BlacklistMC.Add(M.ID_str)
+		End If
+	End Sub
+
 	Private Sub TextureSelector_TextureChanged(sender As Object, e As EventArgs)
 		Dim ts = DirectCast(sender, TextureSelector)
 		If Config.ColorToBlock.ContainsKey(ts.ID) Then
@@ -54,27 +72,6 @@ Public Class WSettings
 			Config.ColorToBlock.Add(ts.ID, ts.Filename)
 		End If
 	End Sub
-
-	'Private Sub DGV_MapColors_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGV_MapColors.CellValueChanged
-	'	If Not DirectCast(sender, Control).Focused Then Exit Sub
-	'	If e.ColumnIndex = _Use.Index Then
-	'		If CBool(DGV_MapColors.Rows(e.RowIndex).Cells(_Use.Index).Value) Then
-	'			Config.BlacklistMC.Remove(CStr(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value))
-	'		Else
-	'			Config.BlacklistMC.Add(CStr(DGV_MapColors.Rows(e.RowIndex).Cells(_ID.Index).Value))
-	'		End If
-	'	End If
-	'End Sub
-
-	'Private Sub CB_LabMode_CheckedChanged(sender As Object, e As EventArgs) Handles CB_Lab.Checked
-	'	If Not CType(sender, Control).Focused Then Exit Sub
-	'	Config.LabMode = CB_LabMode.Checked
-	'End Sub
-
-	'Private Sub CB_Dither_CheckedChanged(sender As Object, e As EventArgs) Handles CB_Dither.CheckedChanged
-	'	If Not CType(sender, Control).Focused Then Exit Sub
-	'	Config.Dither = CB_Dither.Checked
-	'End Sub
 
 	Private Sub Window_Closing(sender As Object, e As ComponentModel.CancelEventArgs)
 		Configuration.Load()

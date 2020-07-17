@@ -2,23 +2,7 @@
 Imports MCPACLib
 
 Public Class TextureSelector
-	Public ReadOnly Property ID As Integer
-	Public ReadOnly Property Selection2 As TextureSelection
-
-	Public Property Selection As TextureSelection
-		Get
-			Return DirectCast(GetValue(SelectionProperty), TextureSelection)
-		End Get
-
-		Set(ByVal value As TextureSelection)
-			SetValue(SelectionProperty, value)
-		End Set
-	End Property
-
-	Public Shared ReadOnly SelectionProperty As DependencyProperty =
-						   DependencyProperty.Register("Selection",
-						   GetType(TextureSelection), GetType(TextureSelector),
-						   New PropertyMetadata(Nothing))
+	Public Shared ReadOnly SelectionProperty As DependencyProperty = DependencyProperty.Register("Selection", GetType(TextureSelection), GetType(TextureSelector), New PropertyMetadata(Nothing))
 
 	Public Sub New(s As TextureSelection)
 		' Этот вызов является обязательным для конструктора.
@@ -32,8 +16,6 @@ Public Class TextureSelector
 		If s.List.Count = 1 Then IsEnabled = False
 	End Sub
 
-	Public Event TextureChanged As EventHandler
-
 	Public Property Filename As String
 		Get
 			Return CStr(CB_Texture.SelectedValue)
@@ -43,6 +25,20 @@ Public Class TextureSelector
 		End Set
 	End Property
 
+	Public ReadOnly Property ID As Integer
+
+	Public Property Selection As TextureSelection
+		Get
+			Return DirectCast(GetValue(SelectionProperty), TextureSelection)
+		End Get
+
+		Set(ByVal value As TextureSelection)
+			SetValue(SelectionProperty, value)
+		End Set
+	End Property
+
+	Public ReadOnly Property Selection2 As TextureSelection
+
 	Protected Sub OnTextureChanged()
 		RaiseEvent TextureChanged(Me, New EventArgs)
 	End Sub
@@ -50,5 +46,7 @@ Public Class TextureSelector
 	Private Sub CB_Texture_SelectedValueChanged(sender As Object, e As EventArgs) Handles CB_Texture.SelectionChanged
 		OnTextureChanged()
 	End Sub
+
+	Public Event TextureChanged As EventHandler
 
 End Class

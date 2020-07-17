@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MapColorCheckBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
+             xmlns:mcpac="clr-namespace:MCPACLib;assembly=MCPACLib"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <mcpac:MapBaseColor ID_str="Test" Color="Black" Full="Air, Void Air, Cave Air, Barrier, Redstone Lamp, Cake, Powered Rail, Detector Rail, Torch, Redstone Wire, Ladder, Rail, Lever, Redstone Torch, Buttons, Repeater, Tripwire Hook, Tripwire, Flower Pot, Head, Comparator, Activator Rail, End Rod, Glass, Glass Pane, Nether Portal, Stained Glass Pane (all colors), Structure Void, Iron Bars, Soul Fire Torch, Chain"></mcpac:MapBaseColor>
+    </UserControl.DataContext>
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="3">
+            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Name="Rect" MinHeight="16" MinWidth="16" Stroke="Black" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" />
+            <TextBlock Text="{Binding ID_str, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold" />
+            <Expander Header="Blocks" MaxWidth="350">
+
+                <TextBlock Text="{Binding Full, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic" TextWrapping="Wrap" />
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

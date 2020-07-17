@@ -5,6 +5,10 @@ Imports Newtonsoft.Json
 Public Class MapColor
 	Private Shared Converter As New Conversion.ColourfulConverter
 
+	Public Sub New()
+		ID_map = 0
+	End Sub
+
 	Public Sub New(base As MapBaseColor, type As Type)
 		ID_map = base.ID * CByte(4) + type
 		TypeT = type
