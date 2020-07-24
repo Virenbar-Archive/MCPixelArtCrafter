@@ -7,17 +7,18 @@
              xmlns:mcpac="clr-namespace:MCPACLib;assembly=MCPACLib"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <mcpac:MapBaseColor ID_str="Test" Color="Black" Full="Air, Void Air, Cave Air, Barrier, Redstone Lamp, Cake, Powered Rail, Detector Rail, Torch, Redstone Wire, Ladder, Rail, Lever, Redstone Torch, Buttons, Repeater, Tripwire Hook, Tripwire, Flower Pot, Head, Comparator, Activator Rail, End Rod, Glass, Glass Pane, Nether Portal, Stained Glass Pane (all colors), Structure Void, Iron Bars, Soul Fire Torch, Chain"></mcpac:MapBaseColor>
+        <mcpac:MapBaseColor ID_str="None" Color="Transparent" Full="Air, Void Air, Cave Air, Barrier, Redstone Lamp, Cake, Powered Rail, Detector Rail, Torch, Redstone Wire, Ladder, Rail, Lever, Redstone Torch, Buttons, Repeater, Tripwire Hook, Tripwire, Flower Pot, Head, Comparator, Activator Rail, End Rod, Glass, Glass Pane, Nether Portal, Stained Glass Pane (all colors), Structure Void, Iron Bars, Soul Fire Torch, Chain"></mcpac:MapBaseColor>
     </UserControl.DataContext>
     <Grid>
-        <StackPanel Orientation="Horizontal" Margin="3">
-            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Rectangle Name="Rect" MinHeight="16" MinWidth="16" Stroke="Black" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" />
-            <TextBlock Text="{Binding ID_str, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold" />
-            <Expander Header="Blocks" MaxWidth="350">
-
-                <TextBlock Text="{Binding Full, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic" TextWrapping="Wrap" />
-            </Expander>
-        </StackPanel>
+        <Expander>
+            <Expander.Header>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="3">
+                    <CheckBox x:Name="CB" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Rectangle Name="Rect" MinHeight="16" MinWidth="16" Stroke="Black" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0" />
+                    <TextBlock Text="{Binding ID_str, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold" />
+                </StackPanel>
+            </Expander.Header>
+            <TextBlock Text="{Binding Full, Mode=OneWay}" VerticalAlignment="Top" HorizontalAlignment="Left" FontStyle="Italic" TextWrapping="Wrap" Padding="5,0" />
+        </Expander>
     </Grid>
 </UserControl>

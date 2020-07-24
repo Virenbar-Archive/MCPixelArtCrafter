@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
         mc:Ignorable="d"
-        Title="MainWindow" MinWidth="250" MinHeight="250">
+        Title="MCPixelArtCrafter" MinWidth="250" MinHeight="250">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,13 +29,13 @@
 
         <GroupBox Header="Color mode" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="2">
             <StackPanel>
-                <RadioButton Name="RB_Flat" Content="Flat" />
+                <RadioButton Name="RB_Flat" Content="Flat" IsChecked="True" />
                 <RadioButton Name="RB_Staircase"  Content="Staircase" />
                 <RadioButton Name="RB_All" Content="All 4 colors" />
             </StackPanel>
         </GroupBox>
 
-        <Button Name="Create" Content="Generate" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" Width="100" Click="Button_Click" />
+        <Button Name="Create" Content="Generate" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" Width="100" />
         <DockPanel Grid.Row="3">
             <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom"  VerticalAlignment="Bottom">
                 <StatusBarItem>

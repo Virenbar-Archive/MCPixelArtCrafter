@@ -2,7 +2,7 @@
 
 Public Class MapColorCount
 	Private _highlight As Boolean
-	Private MapColor As MapColor
+	Private ReadOnly MapColor As MapColor
 	'Private ToolTip As ToolTip
 
 	Public Sub New(ByRef _color As MapColor, ByRef count As Integer)

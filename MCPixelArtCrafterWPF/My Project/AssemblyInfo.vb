@@ -13,11 +13,11 @@ Imports System.Windows
 
 <Assembly: AssemblyTitle("MCPixelArtCrafterWPF")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("IT Organization")>
-<Assembly: AssemblyProduct("MCPixelArtCrafterWPF")>
-<Assembly: AssemblyCopyright("Copyright © IT Organization 2020")>
-<Assembly: AssemblyTrademark("")>
-<Assembly: ComVisible(False)>
+'<Assembly: AssemblyCompany("")>
+'<Assembly: AssemblyProduct("MCPixelArtCrafterWPF")>
+'<Assembly: AssemblyCopyright("")>
+'<Assembly: AssemblyTrademark("")>
+'<Assembly: ComVisible(False)>
 
 'Чтобы начать создание локализуемых приложений, задайте
 '<UICulture>ТребуемоеЗначение</UICulture> в файле .vbproj
@@ -52,4 +52,4 @@ Imports System.Windows
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.*")>
+'<Assembly: AssemblyVersion("1.0.*")>

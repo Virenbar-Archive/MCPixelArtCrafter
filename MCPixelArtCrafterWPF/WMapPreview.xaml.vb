@@ -56,15 +56,13 @@ Public Class WMapPreview
 		FLP_UsedColors.Children.Clear()
 		For Each ColorCount In MapResult.UsedMapColors
 			Dim cc = New MapColorCount(ColorCount)
-			'cc.SetToolTip(TT_Color)
 			FLP_UsedColors.Children.Add(cc)
-			'TT_Color.SetToolTip(cc, cc.Blocks)
 		Next
 	End Sub
 
 	Private Sub Window_Closed(sender As Object, e As EventArgs)
 		MapResult = Nothing
-		Windows.Application.Current.MainWindow.Focus()
+		'Windows.Application.Current.MainWindow.Focus()
 	End Sub
 
 	'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

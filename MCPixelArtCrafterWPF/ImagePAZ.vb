@@ -83,6 +83,8 @@ Public Class ImagePAZ
 				'RenderOptions.SetEdgeMode(Source, EdgeMode.Unspecified)
 				'RenderOptions.SetBitmapScalingMode(Source, BitmapScalingMode.NearestNeighbor)
 				Reset()
+			Case IsShowGridProperty.Name
+				InvalidateVisual()
 		End Select
 		MyBase.OnPropertyChanged(e)
 	End Sub
@@ -98,7 +100,7 @@ Public Class ImagePAZ
 				.DrawImage(Source, New Rect(OriginPos, ImageSize))
 				.DrawRectangle(Nothing, BorderPen, New Rect(OriginPos, ImageSize))
 			End With
-			If ShowGrid Then
+			If IsShowGrid Then
 				If _zoomScale > 7.5 Then DrawGrid(dc, SubGridBrush, GridSpacing \ 16)
 				DrawGrid(dc, GridBrush, GridSpacing)
 			End If

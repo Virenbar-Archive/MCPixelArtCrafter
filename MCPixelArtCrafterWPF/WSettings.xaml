@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
         xmlns:MCPACLib="clr-namespace:MCPACLib;assembly=MCPACLib"
         mc:Ignorable="d"
-        Title="Settings" Height="483.48" Width="599.124" Closing="Window_Closing">
+        Title="Settings" Height="480" Width="600" Closing="Window_Closing">
     <Window.DataContext>
         <MCPACLib:ConfigType />
     </Window.DataContext>
@@ -26,7 +26,6 @@
             <TabItem Header="Textures">
                 <Grid Background="#FFE5E5E5">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-
                         <WrapPanel Name="WP_Selectors" Orientation="Vertical" />
                     </ScrollViewer>
                 </Grid>

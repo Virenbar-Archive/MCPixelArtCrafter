@@ -2,7 +2,7 @@
 
 Public Class MapColorCheckBox
 
-	Public Shared ReadOnly IsCheckedProperty As DependencyProperty = DependencyProperty.Register("IsChecked", GetType(Boolean), GetType(MapColorCheckBox), New PropertyMetadata(True))
+	'Public Shared ReadOnly IsCheckedProperty As DependencyProperty = DependencyProperty.Register("IsChecked", GetType(Boolean), GetType(MapColorCheckBox), New PropertyMetadata(True))
 
 	Public Sub New(Color As MapBaseColor)
 		InitializeComponent()
@@ -13,18 +13,19 @@ Public Class MapColorCheckBox
 
 	Public ReadOnly Property ID_str As String
 
-	Public Property IsChecked As Boolean
+	Public Property IsChecked As Boolean?
 		Get
-			Return CBool(GetValue(IsCheckedProperty))
+			'Return CBool(GetValue(IsCheckedProperty))
+			Return CB.IsChecked
 		End Get
 
-		Set(ByVal value As Boolean)
-			SetValue(IsCheckedProperty, value)
-			OnCheckedChanged()
+		Set(ByVal value As Boolean?)
+			'SetValue(IsCheckedProperty, value)
+			CB.IsChecked = value
 		End Set
 	End Property
 
-	Protected Sub OnCheckedChanged()
+	Private Sub CB_Click(sender As Object, e As RoutedEventArgs) Handles CB.Click
 		RaiseEvent CheckedChanged(Me, New EventArgs)
 	End Sub
 

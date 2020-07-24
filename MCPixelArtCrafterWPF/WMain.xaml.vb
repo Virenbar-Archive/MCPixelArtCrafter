@@ -24,13 +24,9 @@ Class WMain
 		Riple.Start()
 	End Sub
 
-	Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
-		Console.WriteLine("Test 1")
-		Console.WriteLine("Test 2")
-	End Sub
-
 	Private Sub WMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-		Title += " (v" + Assembly.GetEntryAssembly().GetName().Version.ToString + ")"
+		Dim V = Assembly.GetEntryAssembly().GetName().Version
+		Title += $" (v{V.Major}.{V.Minor}.{V.Build})"
 		OFD.Filter = "Image Files|*.PNG;*.BMP;*.JPG;*.GIF|Import mcpac|*.mcpac|Import JSON|*.json|All files (*.*)|*.*"
 		PB.AllowDrop = True
 

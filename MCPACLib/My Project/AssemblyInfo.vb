@@ -10,12 +10,11 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("MCPACLib")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("IT Organization")>
-<Assembly: AssemblyProduct("MCPACLib")>
-<Assembly: AssemblyCopyright("Copyright © IT Organization 2020")>
-<Assembly: AssemblyTrademark("")>
-
-<Assembly: ComVisible(False)>
+'<Assembly: AssemblyCompany("")>
+'<Assembly: AssemblyProduct("MCPACLib")>
+'<Assembly: AssemblyCopyright("")>
+'<Assembly: AssemblyTrademark("")>
+'<Assembly: ComVisible(False)>
 
 'Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
 <Assembly: Guid("54c6b7a8-9227-4689-8b42-01bb924d7c1c")>
@@ -24,12 +23,11 @@ Imports System.Runtime.InteropServices
 '
 '      Основной номер версии
 '      Дополнительный номер версии
-'   Номер сборки
+'      Номер сборки
 '      Редакция
 '
 ' Можно задать все значения или принять номер сборки и номер редакции по умолчанию.
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+'<Assembly: AssemblyVersion("1.0.0.0")>
