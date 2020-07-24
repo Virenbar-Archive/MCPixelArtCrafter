@@ -1,0 +1,23 @@
+﻿<UserControl
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:MCPACLib="clr-namespace:MCPACLib;assembly=MCPACLib"
+        x:Class="TextureSelector"
+        mc:Ignorable="d">
+    <UserControl.DataContext>
+        <MCPACLib:TextureSelection />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbl_ID_str" Grid.Column="2" Content="{Binding Name}" HorizontalAlignment="Center" Margin="0,2" VerticalAlignment="Center" />
+        <ComboBox x:Name="CB_Texture" Grid.Column="0" Margin="1" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" IsSynchronizedWithCurrentItem="True" DisplayMemberPath="Name" SelectedValuePath="Filename" ItemsSource="{Binding List}" />
+        <Image x:Name="PB_Texture" Grid.Column="1" Height="20" Width="Auto" Margin="3,2" Source="{Binding SelectedItem.Image, ElementName=CB_Texture, Mode=OneWay}" Stretch="UniformToFill" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="WMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
+        mc:Ignorable="d"
+        Title="MCPixelArtCrafter" MinWidth="250" MinHeight="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" MinHeight="81" />
+            <RowDefinition Height="Auto" MinHeight="10" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Name="B_Settings"  Content="Settings" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Click="B_Settings_Click" />
+            <TextBox Name="ImagePathText" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="1" IsEnabled="False" AllowDrop="True" UseLayoutRounding="False" Height="22" />
+            <Button Name="B_Select" Content="Select image" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" />
+        </Grid>
+        <Border Grid.Row="1" BorderThickness="1" Margin="10,0" BorderBrush="Black">
+            <local:ImagePAZ x:Name="PB" GridBrush="Black" SubGridBrush="#FF818181" Source="Test4k.png" Margin="1" Stretch="Fill" ClipToBounds="True" />
+        </Border>
+
+        <GroupBox Header="Color mode" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="2">
+            <StackPanel>
+                <RadioButton Name="RB_Flat" Content="Flat" IsChecked="True" />
+                <RadioButton Name="RB_Staircase"  Content="Staircase" />
+                <RadioButton Name="RB_All" Content="All 4 colors" />
+            </StackPanel>
+        </GroupBox>
+
+        <Button Name="Create" Content="Generate" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" Width="100" />
+        <DockPanel Grid.Row="3">
+            <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom"  VerticalAlignment="Bottom">
+                <StatusBarItem>
+                    <local:RingPulse x:Name="Ring" Height="15" Width="15" />
+                </StatusBarItem>
+                <StatusBarItem>
+                    <local:RingRot x:Name="Rot" HorizontalAlignment="Left" Height="15" Width="15" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" />
+                </StatusBarItem>
+                <StatusBarItem>
+                    <local:RingRiple x:Name="Riple" Height="15" Width="15" />
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Name="lbl_Progress" Text="Progress" HorizontalAlignment="Left" />
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Name="lbl_Elapsed" Text="Elapsed" HorizontalAlignment="Left" />
+                </StatusBarItem>
+                <Separator />
+                <StatusBarItem HorizontalAlignment="Right">
+                    <ProgressBar Name="TSProgressBar" Width="100" Height="15" />
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+    </Grid>
+</Window>

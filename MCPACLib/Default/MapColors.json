@@ -1,0 +1,350 @@
+[
+  {
+    "ID": 1,
+    "ID_str": "GRASS",
+    "Color": "127, 178, 56",
+    "Full": "Grass Block, Slime Block"
+  },
+  {
+    "ID": 2,
+    "ID_str": "SAND",
+    "Color": "247, 233, 163",
+    "Full": "Sand, Birch (Planks, Log (vertical), Stripped Log, Wood, Stripped Wood, Sign, Pressure Plate, Trapdoor, Stairs, Slab, Fence Gate, Fence, Door), Sandstone (All variants, all slabs, all stairs, all walls), Glowstone, End Stone, End Stone Bricks (slab, stairs, wall), Bone Block, Turtle Egg, Scaffolding"
+  },
+  {
+    "ID": 3,
+    "ID_str": "WOOL",
+    "Color": "199, 199, 199",
+    "Full": "Cobweb, Mushroom Stem, Bed (head)"
+  },
+  {
+    "ID": 4,
+    "ID_str": "FIRE",
+    "Color": "255, 0, 0",
+    "Full": "Lava, TNT, Fire, Redstone Block"
+  },
+  {
+    "ID": 5,
+    "ID_str": "ICE",
+    "Color": "160, 160, 255",
+    "Full": "Ice, Frosted Ice, Packed Ice, Blue Ice"
+  },
+  {
+    "ID": 6,
+    "ID_str": "METAL",
+    "Color": "167, 167, 167",
+    "Full": "Block of Iron, Iron Door, Brewing Stand, Heavy Weighted Pressure Plate, Iron Trapdoor, Lantern, Anvil, Grindstone, Soul Fire Lantern, Lodestone"
+  },
+  {
+    "ID": 7,
+    "ID_str": "PLANT",
+    "Color": "0, 124, 0",
+    "Full": "Sapling, Flowers, Wheat, Sugar Cane, Pumpkin Stem, Melon Stem, Lily Pad, Cocoa, Carrots, Potatoes, Beetroots, Sweet Berry Bush, Grass, Fern, Vines, Leaves, Cactus, Bamboo, Fungi, Weeping Vines"
+  },
+  {
+    "ID": 8,
+    "ID_str": "SNOW",
+    "Color": "255, 255, 255",
+    "Full": "Snow, Snow Block, White (Bed (foot), Wool, Stained Glass, Carpet, Banner, Shulker Box, Glazed Terracotta, Concrete, Concrete Powder)"
+  },
+  {
+    "ID": 9,
+    "ID_str": "CLAY",
+    "Color": "164, 168, 184",
+    "Full": "Clay, Infested Block (Stone, Cobblestone, Stone Brick, Mossy Stone Brick, Cracked Stone Brick, Chiseled Stone Brick)"
+  },
+  {
+    "ID": 10,
+    "ID_str": "DIRT",
+    "Color": "151, 109, 77",
+    "Full": "Dirt, Coarse Dirt, Farmland, Grass Path, Granite (slab, stairs, wall), Polished Granite (slab, stairs), Jungle (Planks, Log (vertical), Stripped Log, Wood, Stripped Wood, Sign, Pressure Plate, Trapdoor, Stairs, Slab, Fence Gate, Fence, Door), Jukebox, Brown Mushroom Block"
+  },
+  {
+    "ID": 11,
+    "ID_str": "STONE",
+    "Color": "112, 112, 112",
+    "Full": "Stone (slab, stairs), Andesite (slab, stairs, wall), Polished Andesite (slab, stairs), Cobblestone (slab, stairs), Bedrock, Gold Ore, Iron Ore, Coal Ore, Lapis Lazuli Ore, Dispenser, Mossy Cobblestone (slab, stairs, wall), Spawner, Diamond Ore, Furnace, Stone Pressure Plate, Redstone Ore, Stone Bricks (all variants, all slabs, all stairs, all walls), Emerald Ore, Ender Chest, Dropper, Smooth Stone (slab, stairs), Observer, Smoker, Blast Furnace, Stonecutter, Sticky Piston, Piston, Piston Head, Gravel, Acacia Log (side), Cauldron, Hopper, Nether Gold Ore"
+  },
+  {
+    "ID": 12,
+    "ID_str": "WATER",
+    "Color": "64, 64, 255",
+    "Full": "Kelp, Seagrass, Water, Bubble Column"
+  },
+  {
+    "ID": 13,
+    "ID_str": "WOOD",
+    "Color": "143, 119, 72",
+    "Full": "Oak (Planks, Log (vertical), Stripped Log, Wood, Stripped Wood, Sign, Door, Pressure Plate, Fence, Trapdoor, Fence Gate, Slab, Stairs), Note Block, Bookshelf, Chest, Crafting Table, Trapped Chest, Daylight Detector, Loom, Barrel, Cartography Table, Fletching Table, Lectern, Smithing Table, Composter, Bamboo Sapling, Dead Bush, Petrified Oak Slab, Beehive"
+  },
+  {
+    "ID": 14,
+    "ID_str": "QUARTZ",
+    "Color": "255, 252, 245",
+    "Full": "Diorite, Polished Diorite, Birch Log (side), Quartz Block (all variants, all slabs, all stairs), Sea Lantern, Target"
+  },
+  {
+    "ID": 15,
+    "ID_str": "COLOR_ORANGE",
+    "Color": "216, 127, 51",
+    "Full": "Acacia (Planks, Log (vertical), Stripped Log, Stripped Wood, Sign, Trapdoor, Slab), Red Sand, Orange (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Pumpkin, Carved Pumpkin, Jack o'Lantern, Terracotta, Red Sandstone (all variants, all stairs, all slabs, all walls), Honey Block, Honeycomb Block"
+  },
+  {
+    "ID": 16,
+    "ID_str": "COLOR_MAGENTA",
+    "Color": "178, 76, 216",
+    "Full": "Magenta (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Purpur (all variants, slab, stairs)"
+  },
+  {
+    "ID": 17,
+    "ID_str": "COLOR_LIGHT_BLUE",
+    "Color": "102, 153, 216",
+    "Full": "Light Blue (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Soul Fire"
+  },
+  {
+    "ID": 18,
+    "ID_str": "COLOR_YELLOW",
+    "Color": "229, 229, 51",
+    "Full": "Sponge, Wet Sponge, Yellow (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Hay Bale, Horn Coral (Coral Block, Coral, Coral Fan), Bee Nest"
+  },
+  {
+    "ID": 19,
+    "ID_str": "COLOR_LIGHT_GREEN",
+    "Color": "127, 204, 25",
+    "Full": "Lime (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Melon"
+  },
+  {
+    "ID": 20,
+    "ID_str": "COLOR_PINK",
+    "Color": "242, 127, 165",
+    "Full": "Pink (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Brain Coral (Coral Block, Coral, Coral Fan)"
+  },
+  {
+    "ID": 21,
+    "ID_str": "COLOR_GRAY",
+    "Color": "76, 76, 76",
+    "Full": "Acacia Wood, Gray (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Dead Coral (Coral Block, Coral, Coral Fan)"
+  },
+  {
+    "ID": 22,
+    "ID_str": "COLOR_LIGHT_GRAY",
+    "Color": "153, 153, 153",
+    "Full": "Light Gray (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Structure Block, Jigsaw Block"
+  },
+  {
+    "ID": 23,
+    "ID_str": "COLOR_CYAN",
+    "Color": "76, 127, 153",
+    "Full": "Cyan (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Prismarine (slab, stairs, wall), Warped (Roots, Slab, Pressure Plate, Fence, Trapdoor, Fence Gate, Door, Sign), Nether Sprouts"
+  },
+  {
+    "ID": 24,
+    "ID_str": "COLOR_PURPLE",
+    "Color": "127, 63, 178",
+    "Full": "Shulker Box, Purple (Wool, Carpet, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Mycelium, Chorus Plant, Chorus Flower, Repeating Command Block, Bubble Coral (Coral Block, Coral, Coral Fan)"
+  },
+  {
+    "ID": 25,
+    "ID_str": "COLOR_BLUE",
+    "Color": "51, 76, 178",
+    "Full": "Blue (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Tube Coral (Coral Block, Coral, Coral Fan)"
+  },
+  {
+    "ID": 26,
+    "ID_str": "COLOR_BROWN",
+    "Color": "102, 76, 51",
+    "Full": "Dark Oak (Planks, Log, Stripped Log, Wood, Stripped Wood, Sign, Pressure Plate, Trapdoor, Stairs, Slab, Fence Gate, Fence, Door), Spruce Log (side), Brown (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Soul Sand, Command Block, Brown Mushroom, Soul Soil"
+  },
+  {
+    "ID": 27,
+    "ID_str": "COLOR_GREEN",
+    "Color": "102, 127, 51",
+    "Full": "Green (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), End Portal Frame, Chain Command Block, Dried Kelp Block, Sea Pickle"
+  },
+  {
+    "ID": 28,
+    "ID_str": "COLOR_RED",
+    "Color": "153, 51, 51",
+    "Full": "Red (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Bricks (slab, stairs, wall), Red Mushroom Block, Nether Wart, Enchanting Table, Nether Wart Block, Fire Coral (Coral Block, Coral, Coral Fan), Red Mushroom, Shroomlight"
+  },
+  {
+    "ID": 29,
+    "ID_str": "COLOR_BLACK",
+    "Color": "25, 25, 25",
+    "Full": "Black (Wool, Carpet, Shulker Box, Bed (foot), Stained Glass, Banner, Glazed Terracotta, Concrete, Concrete Powder), Obsidian, End Portal, Dragon Egg, Coal Block, End Gateway, Basalt, Polished Basalt, Block of Netherite, Ancient Debris, Crying Obsidian, Respawn Anchor, Blackstone, Polished Blackstone, Polished Blackstone Bricks, Gilded Blackstone"
+  },
+  {
+    "ID": 30,
+    "ID_str": "GOLD",
+    "Color": "250, 238, 77",
+    "Full": "Block of Gold, Light Weighted Pressure Plate, Bell"
+  },
+  {
+    "ID": 31,
+    "ID_str": "DIAMOND",
+    "Color": "92, 219, 213",
+    "Full": "Block of Diamond, Beacon, Prismarine Bricks (slab, stairs), Dark Prismarine (slab, stairs), Conduit"
+  },
+  {
+    "ID": 32,
+    "ID_str": "LAPIS",
+    "Color": "74, 128, 255",
+    "Full": "Lapis Lazuli Block"
+  },
+  {
+    "ID": 33,
+    "ID_str": "EMERALD",
+    "Color": "0, 217, 58",
+    "Full": "Block of Emerald"
+  },
+  {
+    "ID": 34,
+    "ID_str": "PODZOL",
+    "Color": "129, 86, 49",
+    "Full": "Podzol, Spruce (Planks, Log (vertical), Stripped Log, Wood, Stripped Wood, Sign, Pressure Plate, Trapdoor, Stairs, Slab, Fence Gate, Fence, Door), Oak Log (side), Jungle Log (side), Campfire, Soul Campfire"
+  },
+  {
+    "ID": 35,
+    "ID_str": "NETHER",
+    "Color": "112, 2, 0",
+    "Full": "Netherrack, Nether Bricks (fence, slab, stairs, wall, chiseled, cracked), Nether Quartz Ore, Magma Block, Red Nether Bricks (slab, stairs, wall), Crimson (Roots, Slab, Pressure Plate, Fence, Trapdoor, Fence Gate, Door, Sign)"
+  },
+  {
+    "ID": 36,
+    "ID_str": "TERRACOTTA_WHITE",
+    "Color": "209, 177, 161",
+    "Full": "White Terracotta"
+  },
+  {
+    "ID": 37,
+    "ID_str": "TERRACOTTA_ORANGE",
+    "Color": "159, 82, 36",
+    "Full": "Orange Terracotta"
+  },
+  {
+    "ID": 38,
+    "ID_str": "TERRACOTTA_MAGENTA",
+    "Color": "149, 87, 108",
+    "Full": "Magenta Terracotta"
+  },
+  {
+    "ID": 39,
+    "ID_str": "TERRACOTTA_LIGHT_BLUE",
+    "Color": "112, 108, 138",
+    "Full": "Light Blue Terracotta"
+  },
+  {
+    "ID": 40,
+    "ID_str": "TERRACOTTA_YELLOW",
+    "Color": "186, 133, 36",
+    "Full": "Yellow Terracotta"
+  },
+  {
+    "ID": 41,
+    "ID_str": "TERRACOTTA_LIGHT_GREEN",
+    "Color": "103, 117, 53",
+    "Full": "Lime Terracotta"
+  },
+  {
+    "ID": 42,
+    "ID_str": "TERRACOTTA_PINK",
+    "Color": "160, 77, 78",
+    "Full": "Pink Terracotta"
+  },
+  {
+    "ID": 43,
+    "ID_str": "TERRACOTTA_GRAY",
+    "Color": "57, 41, 35",
+    "Full": "Gray Terracotta"
+  },
+  {
+    "ID": 44,
+    "ID_str": "TERRACOTTA_LIGHT_GRAY",
+    "Color": "135, 107, 98",
+    "Full": "Light Gray Terracotta"
+  },
+  {
+    "ID": 45,
+    "ID_str": "TERRACOTTA_CYAN",
+    "Color": "87, 92, 92",
+    "Full": "Cyan Terracotta"
+  },
+  {
+    "ID": 46,
+    "ID_str": "TERRACOTTA_PURPLE",
+    "Color": "122, 73, 88",
+    "Full": "Purple (Terracotta, Shulker Box)"
+  },
+  {
+    "ID": 47,
+    "ID_str": "TERRACOTTA_BLUE",
+    "Color": "76, 62, 92",
+    "Full": "Blue Terracotta"
+  },
+  {
+    "ID": 48,
+    "ID_str": "TERRACOTTA_BROWN",
+    "Color": "76, 50, 35",
+    "Full": "Brown Terracotta"
+  },
+  {
+    "ID": 49,
+    "ID_str": "TERRACOTTA_GREEN",
+    "Color": "76, 82, 42",
+    "Full": "Green Terracotta"
+  },
+  {
+    "ID": 50,
+    "ID_str": "TERRACOTTA_RED",
+    "Color": "142, 60, 46",
+    "Full": "Red Terracotta"
+  },
+  {
+    "ID": 51,
+    "ID_str": "TERRACOTTA_BLACK",
+    "Color": "37, 22, 16",
+    "Full": "Black Terracotta"
+  },
+  {
+    "ID": 52,
+    "ID_str": "CRIMSON_NYLIUM",
+    "Color": "189, 48, 49",
+    "Full": "Crimson Nylium"
+  },
+  {
+    "ID": 53,
+    "ID_str": "CRIMSON_STEM",
+    "Color": "148, 63, 97",
+    "Full": "Crimson (Stem, Stripped Stem, Planks, Stairs)"
+  },
+  {
+    "ID": 54,
+    "ID_str": "CRIMSON_HYPHAE",
+    "Color": "92, 25, 29",
+    "Full": "Crimson (Hyphae, Stripped Hyphae)"
+  },
+  {
+    "ID": 55,
+    "ID_str": "WARPED_NYLIUM",
+    "Color": "22, 126, 134",
+    "Full": "Warped Nylium"
+  },
+  {
+    "ID": 56,
+    "ID_str": "WARPED_STEM",
+    "Color": "58, 142, 140",
+    "Full": "Warped (Stem, Stripped Stem, Planks, Stairs)"
+  },
+  {
+    "ID": 57,
+    "ID_str": "WARPED_HYPHAE",
+    "Color": "86, 44, 62",
+    "Full": "Warped (Hyphae, Stripped Hyphae)"
+  },
+  {
+    "ID": 58,
+    "ID_str": "WARPED_WART_BLOCK",
+    "Color": "20, 180, 133",
+    "Full": "Warped Wart Block"
+  }
+]

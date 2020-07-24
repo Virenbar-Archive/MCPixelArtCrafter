@@ -25,28 +25,30 @@ Partial Class FormSettings
         Me.components = New System.ComponentModel.Container()
         Me.TC_Settings = New System.Windows.Forms.TabControl()
         Me.MapColorsSettings = New System.Windows.Forms.TabPage()
-        Me.DGV_MapColors = New System.Windows.Forms.DataGridView()
-        Me.BlocksSettings = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.CheckGroupBox1 = New MCPixelArtCrafter.CheckGroupBox()
+        Me.DGV_MapColors = New System.Windows.Forms.DataGridView()
         Me._ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me._Color = New System.Windows.Forms.DataGridViewImageColumn()
         Me._Use = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me._Full = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TextureSettings = New System.Windows.Forms.TabPage()
+        Me.FLP_Selectors = New System.Windows.Forms.FlowLayoutPanel()
         Me.CB_LabMode = New System.Windows.Forms.CheckBox()
         Me.SettingsTT = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CB_Dither = New System.Windows.Forms.CheckBox()
         Me.B_Cancel = New System.Windows.Forms.Button()
         Me.B_OK = New System.Windows.Forms.Button()
+        Me.CB_Test = New System.Windows.Forms.CheckBox()
         Me.TC_Settings.SuspendLayout()
         Me.MapColorsSettings.SuspendLayout()
         CType(Me.DGV_MapColors, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.BlocksSettings.SuspendLayout()
+        Me.TextureSettings.SuspendLayout()
         Me.SuspendLayout()
         '
         'TC_Settings
         '
         Me.TC_Settings.Controls.Add(Me.MapColorsSettings)
-        Me.TC_Settings.Controls.Add(Me.BlocksSettings)
+        Me.TC_Settings.Controls.Add(Me.TextureSettings)
         Me.TC_Settings.Dock = System.Windows.Forms.DockStyle.Top
         Me.TC_Settings.Location = New System.Drawing.Point(0, 0)
         Me.TC_Settings.Name = "TC_Settings"
@@ -66,6 +68,15 @@ Partial Class FormSettings
         Me.MapColorsSettings.Text = "Map Colors"
         Me.MapColorsSettings.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(6, 321)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'DGV_MapColors
         '
         Me.DGV_MapColors.AllowUserToAddRows = False
@@ -78,34 +89,6 @@ Partial Class FormSettings
         Me.DGV_MapColors.Name = "DGV_MapColors"
         Me.DGV_MapColors.Size = New System.Drawing.Size(786, 312)
         Me.DGV_MapColors.TabIndex = 0
-        '
-        'BlocksSettings
-        '
-        Me.BlocksSettings.Controls.Add(Me.CheckGroupBox1)
-        Me.BlocksSettings.Location = New System.Drawing.Point(4, 22)
-        Me.BlocksSettings.Name = "BlocksSettings"
-        Me.BlocksSettings.Padding = New System.Windows.Forms.Padding(3)
-        Me.BlocksSettings.Size = New System.Drawing.Size(792, 350)
-        Me.BlocksSettings.TabIndex = 1
-        Me.BlocksSettings.Text = "Blocks"
-        Me.BlocksSettings.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(6, 321)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'CheckGroupBox1
-        '
-        Me.CheckGroupBox1.Checked = False
-        Me.CheckGroupBox1.Location = New System.Drawing.Point(228, 103)
-        Me.CheckGroupBox1.Name = "CheckGroupBox1"
-        Me.CheckGroupBox1.Size = New System.Drawing.Size(145, 64)
-        Me.CheckGroupBox1.TabIndex = 0
         '
         '_ID
         '
@@ -138,6 +121,27 @@ Partial Class FormSettings
         Me._Full.ReadOnly = True
         Me._Full.Width = 83
         '
+        'TextureSettings
+        '
+        Me.TextureSettings.Controls.Add(Me.FLP_Selectors)
+        Me.TextureSettings.Location = New System.Drawing.Point(4, 22)
+        Me.TextureSettings.Name = "TextureSettings"
+        Me.TextureSettings.Padding = New System.Windows.Forms.Padding(3)
+        Me.TextureSettings.Size = New System.Drawing.Size(792, 350)
+        Me.TextureSettings.TabIndex = 1
+        Me.TextureSettings.Text = "Textures"
+        Me.TextureSettings.UseVisualStyleBackColor = True
+        '
+        'FLP_Selectors
+        '
+        Me.FLP_Selectors.AutoScroll = True
+        Me.FLP_Selectors.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FLP_Selectors.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FLP_Selectors.Location = New System.Drawing.Point(3, 3)
+        Me.FLP_Selectors.Name = "FLP_Selectors"
+        Me.FLP_Selectors.Size = New System.Drawing.Size(786, 344)
+        Me.FLP_Selectors.TabIndex = 0
+        '
         'CB_LabMode
         '
         Me.CB_LabMode.AutoSize = True
@@ -149,6 +153,17 @@ Partial Class FormSettings
         Me.SettingsTT.SetToolTip(Me.CB_LabMode, "Use CIE Lab color space for closest color" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Sligtly slower, but better color match" &
         ".")
         Me.CB_LabMode.UseVisualStyleBackColor = True
+        '
+        'CB_Dither
+        '
+        Me.CB_Dither.AutoSize = True
+        Me.CB_Dither.Location = New System.Drawing.Point(82, 421)
+        Me.CB_Dither.Name = "CB_Dither"
+        Me.CB_Dither.Size = New System.Drawing.Size(74, 17)
+        Me.CB_Dither.TabIndex = 5
+        Me.CB_Dither.Text = "Use dither"
+        Me.SettingsTT.SetToolTip(Me.CB_Dither, "Use dither")
+        Me.CB_Dither.UseVisualStyleBackColor = True
         '
         'B_Cancel
         '
@@ -170,12 +185,26 @@ Partial Class FormSettings
         Me.B_OK.Text = "OK"
         Me.B_OK.UseVisualStyleBackColor = True
         '
+        'CB_Test
+        '
+        Me.CB_Test.AutoSize = True
+        Me.CB_Test.Checked = Global.MCPixelArtCrafter.My.MySettings.Default.TestBool
+        Me.CB_Test.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.MCPixelArtCrafter.My.MySettings.Default, "TestBool", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CB_Test.Location = New System.Drawing.Point(162, 421)
+        Me.CB_Test.Name = "CB_Test"
+        Me.CB_Test.Size = New System.Drawing.Size(47, 17)
+        Me.CB_Test.TabIndex = 6
+        Me.CB_Test.Text = "Test"
+        Me.CB_Test.UseVisualStyleBackColor = True
+        '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.ControlBox = False
+        Me.Controls.Add(Me.CB_Test)
+        Me.Controls.Add(Me.CB_Dither)
         Me.Controls.Add(Me.B_OK)
         Me.Controls.Add(Me.B_Cancel)
         Me.Controls.Add(Me.CB_LabMode)
@@ -187,16 +216,14 @@ Partial Class FormSettings
         Me.TC_Settings.ResumeLayout(False)
         Me.MapColorsSettings.ResumeLayout(False)
         CType(Me.DGV_MapColors, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.BlocksSettings.ResumeLayout(False)
+        Me.TextureSettings.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents CheckGroupBox1 As CheckGroupBox
     Friend WithEvents TC_Settings As TabControl
     Friend WithEvents MapColorsSettings As TabPage
-    Friend WithEvents BlocksSettings As TabPage
+    Friend WithEvents TextureSettings As TabPage
     Friend WithEvents DGV_MapColors As DataGridView
     Friend WithEvents Button1 As Button
     Friend WithEvents _ID As DataGridViewTextBoxColumn
@@ -207,4 +234,7 @@ Partial Class FormSettings
     Friend WithEvents SettingsTT As ToolTip
     Friend WithEvents B_Cancel As Button
     Friend WithEvents B_OK As Button
+    Friend WithEvents CB_Dither As CheckBox
+    Friend WithEvents FLP_Selectors As FlowLayoutPanel
+    Friend WithEvents CB_Test As CheckBox
 End Class

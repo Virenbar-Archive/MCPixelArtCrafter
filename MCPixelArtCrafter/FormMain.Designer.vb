@@ -38,9 +38,15 @@ Partial Class FormMain
         Me.SelectImage = New System.Windows.Forms.Button()
         Me.ImagePathText = New System.Windows.Forms.TextBox()
         Me.ProgressTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RB_All = New System.Windows.Forms.RadioButton()
+        Me.RB_Staircase = New System.Windows.Forms.RadioButton()
+        Me.RB_Flat = New System.Windows.Forms.RadioButton()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.PB = New MCPixelArtCrafter.PictureBoxPAZ()
         Me.GroupBox1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.PB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -126,6 +132,41 @@ Partial Class FormMain
         '
         Me.ProgressTimer.Interval = 50
         '
+        'GroupBox2
+        '
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
+        Me.GroupBox2.Controls.Add(Me.RB_All)
+        Me.GroupBox2.Controls.Add(Me.RB_Staircase)
+        Me.GroupBox2.Controls.Add(Me.RB_Flat)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.TabStop = False
+        '
+        'RB_All
+        '
+        resources.ApplyResources(Me.RB_All, "RB_All")
+        Me.RB_All.Name = "RB_All"
+        Me.ToolTip1.SetToolTip(Me.RB_All, resources.GetString("RB_All.ToolTip"))
+        Me.RB_All.UseVisualStyleBackColor = True
+        '
+        'RB_Staircase
+        '
+        resources.ApplyResources(Me.RB_Staircase, "RB_Staircase")
+        Me.RB_Staircase.Name = "RB_Staircase"
+        Me.ToolTip1.SetToolTip(Me.RB_Staircase, resources.GetString("RB_Staircase.ToolTip"))
+        Me.RB_Staircase.UseVisualStyleBackColor = True
+        '
+        'RB_Flat
+        '
+        resources.ApplyResources(Me.RB_Flat, "RB_Flat")
+        Me.RB_Flat.Checked = True
+        Me.RB_Flat.Name = "RB_Flat"
+        Me.RB_Flat.TabStop = True
+        Me.RB_Flat.UseVisualStyleBackColor = True
+        '
+        'ToolTip1
+        '
+        Me.ToolTip1.IsBalloon = True
+        '
         'PB
         '
         resources.ApplyResources(Me.PB, "PB")
@@ -139,9 +180,11 @@ Partial Class FormMain
         '
         'FormMain
         '
+        Me.AllowDrop = True
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PB)
         Me.Controls.Add(Me.ImagePathText)
         Me.Controls.Add(Me.SelectImage)
@@ -154,6 +197,8 @@ Partial Class FormMain
         Me.GroupBox1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         CType(Me.PB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -174,4 +219,9 @@ Partial Class FormMain
     Friend WithEvents lbl_Progress As ToolStripStatusLabel
     Friend WithEvents ProgressTimer As Timer
     Friend WithEvents lbl_Elapsed As ToolStripStatusLabel
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents RB_All As RadioButton
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents RB_Staircase As RadioButton
+    Friend WithEvents RB_Flat As RadioButton
 End Class

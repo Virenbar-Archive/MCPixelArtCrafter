@@ -32,6 +32,7 @@ Partial Class MapPreview
         Me.CB_Grid = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.TS_MousePos = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -132,12 +133,22 @@ Partial Class MapPreview
         Me.TS_MousePos.Size = New System.Drawing.Size(33, 17)
         Me.TS_MousePos.Text = "X: |Y:"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(397, 475)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'MapPreview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(872, 523)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.CB_Grid)
         Me.Controls.Add(Me.B_Save)
@@ -166,4 +177,5 @@ Partial Class MapPreview
     Friend WithEvents CB_Grid As CheckBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents TS_MousePos As ToolStripStatusLabel
+    Friend WithEvents Button1 As Button
 End Class
