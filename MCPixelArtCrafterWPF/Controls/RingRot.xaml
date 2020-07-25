@@ -5,7 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Storyboard x:Key="Animation">
+        <Color x:Key="RR">#FF6CED00</Color>
+        <Color x:Key="ROuter">#0064A338</Color>
+        <Color x:Key="RInner">#FF54CD00</Color>
+        <Storyboard x:Key="AWait">
+            <DoubleAnimation Storyboard.TargetName="RotA" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever"></DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="AWork">
             <DoubleAnimation Storyboard.TargetName="RotA" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:1" RepeatBehavior="Forever"></DoubleAnimation>
         </Storyboard>
     </UserControl.Resources>
@@ -14,22 +20,24 @@
         <Ellipse Stretch="Uniform">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Offset="1" Color="#0000FF00" />
-                    <GradientStop  Color="#FF009C00" Offset="0.904" />
-                    <GradientStop Color="#0000FF00" Offset="0.542" />
-                    <GradientStop Color="#FF009C00" Offset="0.738" />
+                    <GradientStop Color="{DynamicResource ROuter}" Offset="1" />
+                    <GradientStop Color="{DynamicResource RInner}" Offset="0.9" />
+                    <GradientStop Color="{DynamicResource RInner}" Offset="0.6" />
+                    <GradientStop Color="{DynamicResource ROuter}" Offset="0.45" />
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
         <Ellipse Panel.ZIndex="1">
             <Ellipse.OpacityMask>
                 <RadialGradientBrush>
+                    <GradientStop Offset="0.45" />
+                    <GradientStop Color="Black" Offset="0.6" />
                     <GradientStop Color="Black" Offset="0.9" />
-                    <GradientStop  Offset="1" />
+                    <GradientStop Offset="1" />
                 </RadialGradientBrush>
             </Ellipse.OpacityMask>
             <Ellipse.Fill>
-                <RadialGradientBrush GradientOrigin="0.5,-0.5" RadiusX="0.9" RadiusY="1">
+                <RadialGradientBrush GradientOrigin="0.5,-0.5" RadiusX="1.1" RadiusY="1">
                     <RadialGradientBrush.RelativeTransform>
                         <TransformGroup>
                             <ScaleTransform CenterY="0.5" CenterX="0.5" />
@@ -38,9 +46,10 @@
                             <TranslateTransform />
                         </TransformGroup>
                     </RadialGradientBrush.RelativeTransform>
-                    <GradientStop Offset="0.641" />
-                    <GradientStop Color="Lime" Offset="0.751" />
-                    <GradientStop  Offset="0.787" />
+                    <GradientStop Offset="0.8" />
+                    <GradientStop Color="{DynamicResource RR}" Offset="0.75" />
+                    <GradientStop Color="{DynamicResource RR}" Offset="0.68" />
+                    <GradientStop Offset="0.6" />
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>

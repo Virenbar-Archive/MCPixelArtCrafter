@@ -21,7 +21,9 @@
         <Border Grid.Row="0" BorderThickness="1" Margin="10,0" BorderBrush="Black">
             <local:ImagePAZ x:Name="PB" IsShowGrid="{Binding IsChecked, ElementName=CB_Grid}" GridBrush="Black" SubGridBrush="#FF818181" Margin="1" Stretch="Fill" ClipToBounds="True" />
         </Border>
-        <WrapPanel Name="FLP_UsedColors" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Row="2" Margin="10,0" />
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="2" Margin="10,0">
+            <WrapPanel Name="FLP_UsedColors" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.IsSharedSizeScope="True" />
+        </ScrollViewer>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10,5" VerticalAlignment="Center">
             <CheckBox Name="CB_Grid" Content="Show grid" />
             <CheckBox Name="CB_Blocks" Content="Blocks" />

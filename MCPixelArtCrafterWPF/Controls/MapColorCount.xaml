@@ -7,8 +7,8 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition SharedSizeGroup="SharedGroup" Width="Auto" />
         </Grid.ColumnDefinitions>
         <Rectangle Name="R_Color" Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="16" Margin="5" VerticalAlignment="Center" Width="16" RenderTransformOrigin="0.5,0.5" Grid.Column="0">
             <Rectangle.RenderTransform>

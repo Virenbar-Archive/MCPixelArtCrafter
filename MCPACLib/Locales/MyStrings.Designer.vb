@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Public Class MyStrings
@@ -43,7 +43,7 @@ Namespace My.Resources
         Public Shared ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("MCPACLib.MyStrings", GetType(MyStrings).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("MCPixelArtCrafterWPF.MyStrings", GetType(MyStrings).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -74,11 +74,65 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Ищет локализованную строку, похожую на Create Image.
+        '''  Ищет локализованную строку, похожую на Create image.
         '''</summary>
         Public Shared ReadOnly Property B_CreateImage() As String
             Get
                 Return ResourceManager.GetString("B_CreateImage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Create image.
+        '''</summary>
+        Public Shared ReadOnly Property B_GenerateImage() As String
+            Get
+                Return ResourceManager.GetString("B_GenerateImage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Save.
+        '''</summary>
+        Public Shared ReadOnly Property B_Save() As String
+            Get
+                Return ResourceManager.GetString("B_Save", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Select image.
+        '''</summary>
+        Public Shared ReadOnly Property B_SelectImage() As String
+            Get
+                Return ResourceManager.GetString("B_SelectImage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Settings.
+        '''</summary>
+        Public Shared ReadOnly Property B_Settings() As String
+            Get
+                Return ResourceManager.GetString("B_Settings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Map Colors.
+        '''</summary>
+        Public Shared ReadOnly Property T_Colors() As String
+            Get
+                Return ResourceManager.GetString("T_Colors", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Textures.
+        '''</summary>
+        Public Shared ReadOnly Property T_Textures() As String
+            Get
+                Return ResourceManager.GetString("T_Textures", resourceCulture)
             End Get
         End Property
     End Class

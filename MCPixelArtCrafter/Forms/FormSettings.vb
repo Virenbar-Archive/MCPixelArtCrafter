@@ -68,7 +68,7 @@ Public Class FormSettings
 	End Sub
 
 	Private Sub FormSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-		Configuration.Load()
+		Configuration.LoadConfig()
 		MapColorsCollection.CheckConfig()
 		TexturesCollection.CheckConfig()
 	End Sub
@@ -88,7 +88,7 @@ Public Class FormSettings
 	End Sub
 
 	Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
-		Configuration.Save()
+		Configuration.SaveConfig()
 		Close()
 	End Sub
 

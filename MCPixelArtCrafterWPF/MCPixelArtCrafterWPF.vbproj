@@ -60,6 +60,12 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -81,6 +87,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\MCPACLib\Locales\MyStrings.Designer.vb">
+      <Link>My Project\MyStrings.Designer.vb</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="..\SharedAssemblyInfo.vb">
       <Link>My Project\SharedAssemblyInfo.vb</Link>
     </Compile>
@@ -108,13 +120,14 @@
     <Compile Include="Controls\TextureSelector.xaml.vb">
       <DependentUpon>TextureSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.vb" />
     <Compile Include="Windows\WStaircase.xaml.vb">
       <DependentUpon>WStaircase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WMapPreview.xaml.vb">
+    <Compile Include="Windows\WMapPreview.xaml.vb">
       <DependentUpon>WMapPreview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WSettings.xaml.vb">
+    <Compile Include="Windows\WSettings.xaml.vb">
       <DependentUpon>WSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="Colors.xaml">
@@ -141,11 +154,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Content Include="Resources\Lang.ru-RU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Lang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="Windows\WStaircase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WMapPreview.xaml">
+    <Page Include="Windows\WMapPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WTextureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +185,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ImagePAZ.vb" />
+    <Compile Include="Windows\WTextureView.xaml.vb">
+      <DependentUpon>WTextureView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WMain.xaml.vb">
       <DependentUpon>WMain.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -174,7 +204,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WSettings.xaml">
+    <Page Include="Windows\WSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +246,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="..\MCPACLib\Locales\MyStrings.resx">
+      <Link>My Project\MyStrings.resx</Link>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyStrings.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\MCPACLib\Locales\MyStrings.ru.resx">
+      <Link>My Project\MyStrings.ru.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -227,6 +266,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

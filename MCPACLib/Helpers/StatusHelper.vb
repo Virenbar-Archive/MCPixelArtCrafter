@@ -1,5 +1,4 @@
 ﻿Imports System.Windows.Forms
-
 Imports Microsoft.WindowsAPICodePack.Taskbar
 
 Public Class StatusHelper
