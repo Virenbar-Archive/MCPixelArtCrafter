@@ -2,11 +2,13 @@
 Imports System.IO
 Imports Microsoft.Win32
 Imports MCPACLib.Data.IO
+Imports MCPACLib.Helpers
 
 Public Class WMapPreview
 	Private SFD As New SaveFileDialog
 	Private ClickedColor As MapColorCount
 	Public Property MapResult As MapResult
+	Private TextureImage As BitmapImage
 
 	Public Overloads Sub Show(result As MapResult)
 		MapResult = result
@@ -63,6 +65,29 @@ Public Class WMapPreview
 	Private Sub Window_Closed(sender As Object, e As EventArgs)
 		MapResult = Nothing
 		'Windows.Application.Current.MainWindow.Focus()
+	End Sub
+
+	Private Sub TC_MV_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles TC_MV.SelectionChanged
+		If TextureImage Is Nothing And TI_Texture.IsSelected And TI_Texture.IsEnabled Then
+			CreateTexture()
+		End If
+	End Sub
+
+	Private Async Sub CreateTexture()
+		TI_Texture.IsEnabled = False
+		TB_Status.Text = "Creating Image"
+		TextureImage = (Await MapResultCreator.CreateTextureImage(MapResult)).ToBitmapImage
+		PB2.Source = TextureImage
+		TB_Status.Text = ""
+		TI_Texture.IsEnabled = True
+	End Sub
+
+	Private Sub PB2_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles PB2.MouseLeftButtonDown
+
+	End Sub
+
+	Private Sub PB2_MouseMove(sender As Object, e As MouseEventArgs) Handles PB2.MouseMove
+		TS_MousePos.Text = String.Format("X:{0}|Y:{1}", PB2.MousePos.X, PB2.MousePos.Y)
 	End Sub
 
 	'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

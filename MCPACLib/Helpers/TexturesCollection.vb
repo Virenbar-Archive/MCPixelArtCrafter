@@ -16,7 +16,7 @@ Namespace Helpers
 
 		Public Shared ReadOnly Property Item(id As Integer) As Image
 			Get
-				Return If(Textures.ContainsKey(id), Textures(id), EmptyImage)
+				Return If(Textures.ContainsKey(id), Textures(id), Nothing) 'EmptyImage)
 			End Get
 		End Property
 

@@ -6,36 +6,66 @@
         xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MapPreview" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="Map Result View" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
     <Window.Resources>
-        <System:Boolean x:Key="Boolean1">False</System:Boolean>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="2*" />
+            <RowDefinition />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" BorderThickness="1" Margin="10,0" BorderBrush="Black">
-            <local:ImagePAZ x:Name="PB" IsShowGrid="{Binding IsChecked, ElementName=CB_Grid}" GridBrush="Black" SubGridBrush="#FF818181" Margin="1" Stretch="Fill" ClipToBounds="True" />
-        </Border>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="2" Margin="10,0">
-            <WrapPanel Name="FLP_UsedColors" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.IsSharedSizeScope="True" />
-        </ScrollViewer>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10,5" VerticalAlignment="Center">
+        <TabControl x:Name="TC_MV" Grid.Row="0">
+            <TabItem Name="TI_Map" Header="Map View">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1" Margin="5,0" BorderBrush="Black">
+                        <local:ImagePAZ x:Name="PB" IsShowGrid="{Binding IsChecked, ElementName=CB_Grid}" GridBrush="Black" SubGridBrush="#FF818181" Margin="1" Stretch="Fill" ClipToBounds="True" />
+                    </Border>
+                    <GridSplitter HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Row="1" Height="3" />
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="2" Margin="10,0">
+                        <WrapPanel Name="FLP_UsedColors" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.IsSharedSizeScope="True" />
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Name="TI_Texture" Header="Texture View">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1" Margin="5,0" BorderBrush="Black">
+                        <local:ImagePAZ x:Name="PB2" IsShowGrid="{Binding IsChecked, ElementName=CB_Grid}" GridBrush="Black" SubGridBrush="#FF818181" Margin="1" Stretch="Fill" ClipToBounds="True" GridSpacing="1" />
+                    </Border>
+                    <GridSplitter HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Row="1" Height="3" />
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="2" Margin="5,0">
+                        <WrapPanel Name="FLP_UsedTextures" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.IsSharedSizeScope="True" />
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center">
             <CheckBox Name="CB_Grid" Content="Show grid" />
-            <CheckBox Name="CB_Blocks" Content="Blocks" />
         </StackPanel>
-        <Button Name="B_Save" Content="Button" HorizontalAlignment="Right" Margin="10,5" VerticalAlignment="Bottom" Width="75" Grid.Row="3" />
-        <DockPanel Grid.Row="4">
+        <Button Name="B_Save" Content="Save" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom" Grid.Row="1" />
+        <DockPanel Grid.Row="2">
             <StatusBar>
                 <StatusBarItem>
                     <TextBlock x:Name="TS_MousePos" Text="X:|Y:" />
                 </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock x:Name="TB_Status" />
+                </StatusBarItem>
             </StatusBar>
         </DockPanel>
-        <GridSplitter HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Row="1" Height="3" />
     </Grid>
 </Window>

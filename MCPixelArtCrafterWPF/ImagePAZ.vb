@@ -3,6 +3,7 @@
 ''' </summary>
 Public Class ImagePAZ
 	Inherits Image
+	Public Shared ReadOnly IsShowGridProperty As DependencyProperty = DependencyProperty.Register("IsShowGrid", GetType(Boolean), GetType(ImagePAZ))
 	Const _zoomMax As Double = 10
 	Private Shared ReadOnly BorderPen As New Pen(New SolidColorBrush(Colors.Black), 1)
 	Private Shared ReadOnly DefCursor As Cursor = Cursors.Cross
@@ -22,6 +23,15 @@ Public Class ImagePAZ
 	''' </summary>
 	Public Property GridSpacing As Integer = 0
 
+	Public Property IsShowGrid() As Boolean
+		Get
+			Return CBool(GetValue(IsShowGridProperty))
+		End Get
+		Set(ByVal value As Boolean)
+			SetValue(IsShowGridProperty, value)
+		End Set
+	End Property
+
 	Public ReadOnly Property MousePos As Point
 		Get
 			Dim CP = Mouse.GetPosition(Me) + New Vector(1, 1)
@@ -34,17 +44,6 @@ Public Class ImagePAZ
 		Get
 			Return New Point(tX, tY)
 		End Get
-	End Property
-
-	Public Shared ReadOnly IsShowGridProperty As DependencyProperty = DependencyProperty.Register("IsShowGrid", GetType(Boolean), GetType(ImagePAZ))
-
-	Public Property IsShowGrid() As Boolean
-		Get
-			Return CBool(GetValue(IsShowGridProperty))
-		End Get
-		Set(ByVal value As Boolean)
-			SetValue(IsShowGridProperty, value)
-		End Set
 	End Property
 
 	Public Property pp As Pen
@@ -112,6 +111,7 @@ Public Class ImagePAZ
 
 	Protected Overrides Sub OnRenderSizeChanged(sizeInfo As SizeChangedInfo)
 		g()
+		MyBase.OnRenderSizeChanged(sizeInfo)
 	End Sub
 
 	Private Sub CheckT()
@@ -209,5 +209,9 @@ Public Class ImagePAZ
 	End Sub
 
 #End Region
+
+	Private Sub ImagePAZ_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+		InvalidateVisual()
+	End Sub
 
 End Class

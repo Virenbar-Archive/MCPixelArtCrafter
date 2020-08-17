@@ -57,6 +57,31 @@ Namespace Helpers
 			Return MR
 		End Function
 
+		Public Shared Async Function CreateTextureImage(map As MapResult) As Task(Of Bitmap)
+			Dim w = map.Width
+			Dim h = map.Height
+			Return Await Task.Run(
+			Function()
+				Dim Image = New Bitmap(w * 16, h * 16)
+				Using G = Graphics.FromImage(Image)
+					G.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+					For y = 0 To h - 1
+						For x = 0 To w - 1
+							Dim Texture = TexturesCollection.Item(map(x, y).ID)
+							If Texture Is Nothing Then
+								Using brush = New SolidBrush(map(x, y).Color)
+									G.FillRectangle(brush, x * 16, y * 16, 16, 16)
+								End Using
+							Else
+								G.DrawImage(Texture, x * 16, y * 16, 16, 16)
+							End If
+						Next
+					Next
+				End Using
+				Return Image
+			End Function)
+		End Function
+
 		Private Shared Async Function Quantize(img As Image) As Task(Of Image)
 			Dim targetImage As Image = Nothing
 			Dim sourceImage = img
