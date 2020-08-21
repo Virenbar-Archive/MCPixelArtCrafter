@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MapColorCount"
+﻿<UserControl x:Class="TextureCount"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,7 +10,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition SharedSizeGroup="SharedGroup" Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Rectangle Name="R_Color" Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="16" Margin="5" VerticalAlignment="Center" Width="16" Grid.Column="0" />
+        <Image Name="I_Texture" HorizontalAlignment="Center" Height="16" Margin="5" VerticalAlignment="Center" Width="16" Grid.Column="0" />
         <Label Name="lbl_Count" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" Grid.Column="1" HorizontalContentAlignment="Left" />
     </Grid>
 </UserControl>

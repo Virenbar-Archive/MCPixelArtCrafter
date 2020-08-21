@@ -16,7 +16,7 @@ Public Class FormMain
 		CType(PB, Control).AllowDrop = True
 
 		SetImage(Path.GetFullPath("DefaultImage.png"))
-		Configuration.Load()
+		Configuration.LoadConfig()
 		MapColorsCollection.Load()
 		TexturesCollection.Load()
 	End Sub

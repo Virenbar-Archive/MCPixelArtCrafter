@@ -123,4 +123,31 @@
   <data name="B_CreateImage" xml:space="preserve">
     <value>Создать</value>
   </data>
+  <data name="B_GenerateImage" xml:space="preserve">
+    <value>Создать изображение</value>
+  </data>
+  <data name="B_SelectImage" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="B_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="B_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="T_Colors" xml:space="preserve">
+    <value>Цвета карты</value>
+  </data>
+  <data name="T_Textures" xml:space="preserve">
+    <value>Текстуры</value>
+  </data>
+  <data name="CB_ShowGrid" xml:space="preserve">
+    <value>Сетка</value>
+  </data>
+  <data name="T_TexCr" xml:space="preserve">
+    <value>Создание изображения</value>
+  </data>
+  <data name="T_TexCrErr" xml:space="preserve">
+    <value>Ошибка создания изображения (Изображение слишком большое)</value>
+  </data>
 </root>

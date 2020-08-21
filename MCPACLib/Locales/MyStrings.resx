@@ -121,6 +121,33 @@
     <value>Cancel</value>
   </data>
   <data name="B_CreateImage" xml:space="preserve">
-    <value>Create Image</value>
+    <value>Create image</value>
+  </data>
+  <data name="B_GenerateImage" xml:space="preserve">
+    <value>Create image</value>
+  </data>
+  <data name="B_SelectImage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
+  <data name="B_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="B_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="T_Colors" xml:space="preserve">
+    <value>Map Colors</value>
+  </data>
+  <data name="T_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="CB_ShowGrid" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="T_TexCr" xml:space="preserve">
+    <value>Creating image</value>
+  </data>
+  <data name="T_TexCrErr" xml:space="preserve">
+    <value>Error creating image (Image too large)</value>
   </data>
 </root>

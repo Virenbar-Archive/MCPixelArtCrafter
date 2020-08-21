@@ -3,11 +3,13 @@
 ''' </summary>
 Public Class ImagePAZ
 	Inherits Image
+	Public Shared ReadOnly IsShowGridProperty As DependencyProperty = DependencyProperty.Register("IsShowGrid", GetType(Boolean), GetType(ImagePAZ))
 	Const _zoomMax As Double = 10
 	Private Shared ReadOnly BorderPen As New Pen(New SolidColorBrush(Colors.Black), 1)
 	Private Shared ReadOnly DefCursor As Cursor = Cursors.Cross
 	Private _mouseDownPosition As Point
 	Private _zoomScale, _zoomMin As Double
+	Private Grids As New List(Of ImageGrid)
 	Private tX, tY As Double
 
 	Public Sub New()
@@ -16,11 +18,18 @@ Public Class ImagePAZ
 	End Sub
 
 	Public Property GridBrush As Brush
+	Public Property GridMultiplier As Integer = 16
+	Public Property GridSpacingMax As Integer = 16
+	Public Property GridSpacingMin As Integer = 1
 
-	''' <summary>
-	''' Grid spacing (0-No grid)
-	''' </summary>
-	Public Property GridSpacing As Integer = 0
+	Public Property IsShowGrid() As Boolean
+		Get
+			Return CBool(GetValue(IsShowGridProperty))
+		End Get
+		Set(ByVal value As Boolean)
+			SetValue(IsShowGridProperty, value)
+		End Set
+	End Property
 
 	Public ReadOnly Property MousePos As Point
 		Get
@@ -36,19 +45,6 @@ Public Class ImagePAZ
 		End Get
 	End Property
 
-	Public Shared ReadOnly IsShowGridProperty As DependencyProperty = DependencyProperty.Register("IsShowGrid", GetType(Boolean), GetType(ImagePAZ))
-
-	Public Property IsShowGrid() As Boolean
-		Get
-			Return CBool(GetValue(IsShowGridProperty))
-		End Get
-		Set(ByVal value As Boolean)
-			SetValue(IsShowGridProperty, value)
-		End Set
-	End Property
-
-	Public Property pp As Pen
-	Public Property ShowGrid As Boolean
 	Public Property SubGridBrush As Brush
 
 	Protected ReadOnly Property ImageSize As Size
@@ -91,7 +87,6 @@ Public Class ImagePAZ
 
 	Protected Overrides Sub OnRender(dc As DrawingContext)
 		If Source IsNot Nothing Then
-
 			With dc
 				'Dim mode As InterpolationMode = If(_zoomScale < 0, InterpolationMode.Default, InterpolationMode)
 				'If .InterpolationMode <> mode Then .InterpolationMode = mode
@@ -101,17 +96,16 @@ Public Class ImagePAZ
 				.DrawRectangle(Nothing, BorderPen, New Rect(OriginPos, ImageSize))
 			End With
 			If IsShowGrid Then
-				If _zoomScale > 7.5 Then DrawGrid(dc, SubGridBrush, GridSpacing \ 16)
-				DrawGrid(dc, GridBrush, GridSpacing)
+				DrawGrids(dc)
 			End If
 		Else
 			MyBase.OnRender(dc)
 		End If
-
 	End Sub
 
 	Protected Overrides Sub OnRenderSizeChanged(sizeInfo As SizeChangedInfo)
 		g()
+		MyBase.OnRenderSizeChanged(sizeInfo)
 	End Sub
 
 	Private Sub CheckT()
@@ -122,34 +116,13 @@ Public Class ImagePAZ
 		tY = If(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
 	End Sub
 
-	Private Sub DrawGrid(dc As DrawingContext, Optional gridsize As Integer = 1)
-		DrawGrid(dc, GridBrush, gridsize)
-	End Sub
-
-	Private Sub DrawGrid(dc As DrawingContext, brs As Brush, Optional gridsize As Integer = 1)
-		Dim pen = New Pen(brs, 1)
-		Dim ZP = New Point(tX, tY),
-			X1 = New Point(ZP.X, ZP.Y), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
-			Y1 = New Point(ZP.X, ZP.Y), Y2 = New Point(ZP.X + ImageSize.Width, ZP.Y)
-		Dim delta = gridsize * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
-		'delta = ImageSize.Width
-		For i = 1 To Math.Floor(Source.Width / gridsize)
-			'Xd += delta
-			X1.Offset(delta, 0) : X2.Offset(delta, 0)
-			'X1.X = Xd : X2.X = Xd
-			dc.DrawLine(pen, X1, X2)
-		Next
-		For i = 1 To Math.Floor(Source.Height / gridsize)
-			'Yd += delta
-			Y1.Offset(0, delta) : Y2.Offset(0, delta)
-			'Y1.Y = Yd : Y2.Y = Yd
-			dc.DrawLine(pen, Y1, Y2)
-		Next
-	End Sub
-
 	Private Sub g() 'Handles Me.SizeChanged
 		SetZoomMin()
 		CheckT()
+	End Sub
+
+	Private Sub ImagePAZ_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+		InvalidateVisual()
 	End Sub
 
 	Private Sub Reset()
@@ -157,6 +130,8 @@ Public Class ImagePAZ
 		SetZoomMin()
 		tX = CInt(RenderSize.Width / 2 - Source.Width / 2)
 		tY = CInt(RenderSize.Height / 2 - Source.Height / 2)
+		UpdateGrids()
+		InvalidateVisual()
 	End Sub
 
 	Private Sub SetZoomMin(Optional min As Double = 0)
@@ -207,6 +182,67 @@ Public Class ImagePAZ
 		End If
 		MyBase.OnMouseWheel(e)
 	End Sub
+
+#End Region
+
+#Region "Grid"
+
+	Public Sub DrawGrids(dc As DrawingContext)
+		Dim GR = Grids.Where(Function(x) x.MinZoom < _zoomScale And x.Spacing * 2 < Math.Max(Source.Width, Source.Height)).Take(2)
+		Select Case GR.Count
+			Case 1
+				DrawGrid(dc, GridBrush, GR(0).Spacing)
+			Case 2
+				DrawGrid(dc, SubGridBrush, GR(0).Spacing)
+				DrawGrid(dc, GridBrush, GR(1).Spacing)
+		End Select
+	End Sub
+
+	Public Sub UpdateGrids()
+		Grids.Clear()
+		For i = Math.Log(GridSpacingMin, GridMultiplier) To Math.Log(GridSpacingMax, GridMultiplier)
+			Grids.Add(New ImageGrid(CInt(GridMultiplier ^ i)))
+		Next
+	End Sub
+
+	Private Sub DrawGrid(dc As DrawingContext, Optional gridsize As Integer = 1)
+		DrawGrid(dc, GridBrush, gridsize)
+	End Sub
+
+	Private Sub DrawGrid(dc As DrawingContext, brs As Brush, Optional gridsize As Integer = 1)
+		Dim pen = New Pen(brs, 1)
+		Dim ZP = New Point(tX, tY),
+			X1 = New Point(ZP.X, ZP.Y), X2 = New Point(ZP.X, ZP.Y + ImageSize.Height),
+			Y1 = New Point(ZP.X, ZP.Y), Y2 = New Point(ZP.X + ImageSize.Width, ZP.Y)
+		Dim delta = gridsize * _zoomScale, Xd As Double = ZP.X, Yd As Double = ZP.Y
+		'delta = ImageSize.Width
+		For i = 1 To Math.Floor(Source.Width / gridsize)
+			'Xd += delta
+			X1.Offset(delta, 0) : X2.Offset(delta, 0)
+			'X1.X = Xd : X2.X = Xd
+			dc.DrawLine(pen, X1, X2)
+		Next
+		For i = 1 To Math.Floor(Source.Height / gridsize)
+			'Yd += delta
+			Y1.Offset(0, delta) : Y2.Offset(0, delta)
+			'Y1.Y = Yd : Y2.Y = Yd
+			dc.DrawLine(pen, Y1, Y2)
+		Next
+	End Sub
+
+	Private Structure ImageGrid
+
+		Public Sub New(spacing As Integer)
+			Me.Spacing = spacing
+			MinZoom = 8 / spacing
+			'8 1
+			'0.8 10
+		End Sub
+
+		Public Property Brush As Integer
+		Public Property MinZoom As Double
+		Public Property Spacing As Integer
+	End Structure
 
 #End Region
 

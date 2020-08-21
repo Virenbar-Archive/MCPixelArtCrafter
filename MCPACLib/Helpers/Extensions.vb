@@ -29,8 +29,31 @@ Public Module Extensions
 	End Function
 
 	<Extension>
+	Public Sub Save(bitmap As BitmapImage, path As String)
+		Dim Encoder = New PngBitmapEncoder()
+		Encoder.Frames.Add(BitmapFrame.Create(bitmap))
+		Using fileStream = New FileStream(path, FileMode.Create)
+			Encoder.Save(fileStream)
+		End Using
+	End Sub
+
+	<Extension>
 	Public Function Substract(p1 As Point, p2 As Point) As Point
 		Return New Point(p1.X - p2.X, p1.Y - p2.X)
+	End Function
+
+	<Extension>
+	Public Function ToBitmapImage(bitmap As Bitmap) As BitmapImage
+		Using memory = New MemoryStream()
+			bitmap.Save(memory, ImageFormat.Png)
+			memory.Position = 0
+			Dim BitmapImage = New BitmapImage()
+			BitmapImage.BeginInit()
+			BitmapImage.StreamSource = memory
+			BitmapImage.CacheOption = BitmapCacheOption.OnLoad
+			BitmapImage.EndInit()
+			Return BitmapImage
+		End Using
 	End Function
 
 	<Extension>
@@ -47,20 +70,6 @@ Public Module Extensions
 	<Extension>
 	Public Function ToByte(val As Single) As Byte
 		Return CInt(val).ToByte
-	End Function
-
-	<Extension>
-	Public Function ToBitmapImage(bitmap As Bitmap) As BitmapImage
-		Using memory = New MemoryStream()
-			bitmap.Save(memory, ImageFormat.Bmp)
-			memory.Position = 0
-			Dim BitmapImage = New BitmapImage()
-			BitmapImage.BeginInit()
-			BitmapImage.StreamSource = memory
-			BitmapImage.CacheOption = BitmapCacheOption.OnLoad
-			BitmapImage.EndInit()
-			Return BitmapImage
-		End Using
 	End Function
 
 	'Public Function BitmapImage2Bitmap(bitmapImage As BitmapImage) As Bitmap

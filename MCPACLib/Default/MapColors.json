@@ -1,5 +1,11 @@
 [
   {
+    "ID": 0,
+    "ID_str": "NONE",
+    "Color": "Transparent",
+    "Full": "Air, Void Air, Cave Air, Barrier, Redstone Lamp, Cake, Powered Rail, Detector Rail, Torch, Redstone Wire, Ladder, Rail, Lever, Redstone Torch, Buttons, Repeater, Tripwire Hook, Tripwire, Flower Pot, Head, Comparator, Activator Rail, End Rod, Glass, Glass Pane, Nether Portal, Stained Glass Pane (all colors), Structure Void, Iron Bars, Soul Fire Torch, Chain"
+  },
+  {
     "ID": 1,
     "ID_str": "GRASS",
     "Color": "127, 178, 56",

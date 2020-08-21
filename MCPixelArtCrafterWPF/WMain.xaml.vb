@@ -5,6 +5,7 @@ Imports MCPACLib
 Imports MCPACLib.Data.IO
 Imports MCPACLib.Helpers
 Imports Microsoft.Win32
+Imports Microsoft.WindowsAPICodePack.Taskbar
 
 Class WMain
 	Private ImagePath As String, InputImage As Bitmap
@@ -19,9 +20,7 @@ Class WMain
 		InitializeComponent()
 
 		' Добавить код инициализации после вызова InitializeComponent().
-		Ring.Start()
-		Rot.Start()
-		Riple.Start()
+		Rot.Wait()
 	End Sub
 
 	Private Sub WMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
@@ -31,7 +30,7 @@ Class WMain
 		PB.AllowDrop = True
 
 		SetImage(Path.GetFullPath("DefaultImage.png"))
-		Configuration.Load()
+		Configuration.LoadConfig()
 		MapColorsCollection.Load()
 		TexturesCollection.Load()
 	End Sub
@@ -59,15 +58,14 @@ Class WMain
 			ImagePathText.Text = ImagePath
 			InputImage = New Bitmap(ImagePath)
 			PB.Source = New BitmapImage(New Uri(ImagePath))
-			SH.Amount = InputImage.Width * InputImage.Height : TSProgressBar.Maximum = SH.Amount
+			SH.Amount = InputImage.Width * InputImage.Height : PB_Progress.Maximum = SH.Amount
 		Catch ex As Exception
 			MessageBox.Show("Can't load image: " + ImagePath, "", MessageBoxButton.OK, MessageBoxImage.Error)
 		End Try
 	End Sub
 
 	Private Sub UpdateProgress() Handles SH.Tick
-		'TSProgressBar.Value = SH.Count
-		'AnimationLabel.Text = SH.NextFrame
+		PB_Progress.Value = SH.Count
 		lbl_Progress.Text = SH.Progress
 		lbl_Elapsed.Text = SH.Elapsed
 	End Sub
@@ -97,14 +95,15 @@ Class WMain
 
 	Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
 		If Not SH.IsActive Then
-			Create.Content = MCPACLib.My.Resources.MyStrings.B_Cancel
-			RunGenerator()
+			Start()
 		Else
-			CTS.Cancel()
+			Cancel()
 		End If
 	End Sub
 
-	Private Async Sub RunGenerator()
+	Public Async Sub Start()
+		Create.Content = My.Resources.MyStrings.B_Cancel
+		Rot.Work()
 		SH.Start()
 		'Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
 		Dim result As MapResult
@@ -122,13 +121,18 @@ Class WMain
 			lbl_Elapsed.Text = "Error"
 			Exit Sub
 		Finally
+			Rot.Wait()
 			SH.Stop()
 			Task.Dispose()
 			CTS.Dispose()
-			Create.Content = MCPACLib.My.Resources.MyStrings.B_CreateImage
+			Create.Content = My.Resources.MyStrings.B_CreateImage
 		End Try
 		Dim MP = New WMapPreview
 		MP.Show(result)
+	End Sub
+
+	Public Sub Cancel()
+		CTS.Cancel()
 	End Sub
 
 End Class

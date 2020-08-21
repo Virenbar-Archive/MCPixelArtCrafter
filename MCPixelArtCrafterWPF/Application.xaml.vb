@@ -1,5 +1,9 @@
 ﻿Class Application
 
+	Public Sub New()
+
+	End Sub
+
 	' События приложения, например, Startup, Exit и DispatcherUnhandledException,
 	' можно обрабатывать в данном файле.
 	Protected Overrides Sub OnStartup(e As StartupEventArgs)

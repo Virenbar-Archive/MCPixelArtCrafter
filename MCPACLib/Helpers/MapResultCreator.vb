@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing
+Imports System.Windows.Media
+Imports System.Windows.Media.Imaging
 Imports MCPACLib.Data
 Imports MCPACLib.Data.SPQ
 Imports MCPACLib.Helpers.Configuration
@@ -37,7 +39,6 @@ Namespace Helpers
 									token.ThrowIfCancellationRequested()
 								End If
 								Dim sPixel = InImage.GetPixel(x, y)
-								If sPixel.A < 256 / 2 Then Continue For
 								closest = MapColorsCollection.GetClosest(sPixel)
 
 								If Config.Dither Then
@@ -57,6 +58,60 @@ Namespace Helpers
 			Return MR
 		End Function
 
+		Public Shared Async Function CreateTextureImage(map As MapResult) As Task(Of Bitmap)
+			Dim w = map.Width
+			Dim h = map.Height
+			Return Await Task.Run(
+			Function()
+				Dim Image = New Bitmap(w * 16, h * 16)
+				Using G = Graphics.FromImage(Image)
+					G.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+					For y = 0 To h - 1
+						For x = 0 To w - 1
+							Dim Texture = TexturesCollection.Item(map(x, y).ID)
+							If Texture Is Nothing Then
+								Using brush = New SolidBrush(map(x, y).Color)
+									G.FillRectangle(brush, x * 16, y * 16, 16, 16)
+								End Using
+							Else
+								G.DrawImage(Texture, x * 16, y * 16, 16, 16)
+							End If
+						Next
+					Next
+				End Using
+				Return Image
+			End Function)
+		End Function
+
+		<Obsolete>
+		Public Shared Function CreateTextureImageWPF(map As MapResult) As BitmapSource
+			Dim w = map.Width
+			Dim h = map.Height
+			'Return Await Task.Run(
+			'Function()
+			Dim WB = New WriteableBitmap(w * 16, h * 16, 96, 96, PixelFormats.Pbgra32, Nothing)
+			Dim DV = New DrawingVisual()
+			Dim DrawingContext = DV.RenderOpen()
+			For y = 0 To h - 1
+				For x = 0 To w - 1
+					Dim Texture = TexturesCollection.ItemTex(map(x, y).ID)
+					If IsNothing(Texture) Then
+						Dim c = map(x, y).Color
+						Dim b = New SolidColorBrush(Windows.Media.Color.FromRgb(c.R, c.G, c.B))
+						DrawingContext.DrawRectangle(b, New Windows.Media.Pen(b, 4), New Windows.Rect(x * 16, y * 16, 16, 16))
+					Else
+						DrawingContext.DrawImage(Texture.Image, New Windows.Rect(x * 16, y * 16, 16, 16))
+					End If
+				Next
+			Next
+			DrawingContext.Close()
+			Dim bmp = New RenderTargetBitmap(w * 16, h * 16, 96, 96, PixelFormats.Pbgra32)
+			bmp.Render(DV)
+			Return bmp
+			'End Function)
+		End Function
+
+		<Obsolete>
 		Private Shared Async Function Quantize(img As Image) As Task(Of Image)
 			Dim targetImage As Image = Nothing
 			Dim sourceImage = img

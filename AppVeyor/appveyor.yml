@@ -22,6 +22,8 @@ deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
   release: MCPAC $(AppVersion)
   description: "No changelog"
+  auth_token:
+    secure: VPJ8f2cGI95B4SnCa79ghR26EociVlfXmSzL/H8tnJoc1QugKl3mWGlEMf7lA6OO
   artifact: MCPAC_WPF,MCPAC
   draft: false
   prerelease: true
