@@ -21,7 +21,6 @@ Class WMain
 
 		' Добавить код инициализации после вызова InitializeComponent().
 		Rot.Wait()
-		Rot.Work()
 	End Sub
 
 	Private Sub WMain_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
@@ -96,26 +95,15 @@ Class WMain
 
 	Private Sub Create_Click(sender As Object, e As EventArgs) Handles Create.Click
 		If Not SH.IsActive Then
-			Create.Content = My.Resources.MyStrings.B_Cancel
-			RunGenerator()
+			Start()
 		Else
-			CTS.Cancel()
+			Cancel()
 		End If
 	End Sub
 
-	Public Sub Start()
-
-	End Sub
-
-	Public Sub Cancel()
-
-	End Sub
-
-	Public Sub [Stop]()
-
-	End Sub
-
-	Private Async Sub RunGenerator()
+	Public Async Sub Start()
+		Create.Content = My.Resources.MyStrings.B_Cancel
+		Rot.Work()
 		SH.Start()
 		'Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
 		Dim result As MapResult
@@ -133,6 +121,7 @@ Class WMain
 			lbl_Elapsed.Text = "Error"
 			Exit Sub
 		Finally
+			Rot.Wait()
 			SH.Stop()
 			Task.Dispose()
 			CTS.Dispose()
@@ -140,6 +129,10 @@ Class WMain
 		End Try
 		Dim MP = New WMapPreview
 		MP.Show(result)
+	End Sub
+
+	Public Sub Cancel()
+		CTS.Cancel()
 	End Sub
 
 End Class

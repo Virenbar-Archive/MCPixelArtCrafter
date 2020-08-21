@@ -11,14 +11,12 @@ Namespace Helpers
 	Public NotInheritable Class MapColorsCollection
 		Public Shared MapBaseColors As List(Of MapBaseColor)
 		Public Shared MapColorsFull As New List(Of MapColor)
-		Private Shared MapColors As New List(Of MapColor)
-		Private Shared DefaultCache As New Dictionary(Of Color, Integer)
-
-		Private Shared Converter As New Conversion.ColourfulConverter
-		Private Shared Comparer As New Difference.CIEDE2000ColorDifference
+		Private Shared ColorNone As MapColor
 		Private Shared ColorCache As New Dictionary(Of Color, Integer)
-		Public Shared Property LabMode As Boolean = False
-		Public Shared Property ColorTypes As MapColor.Type() = {MapColor.Type.Normal}
+		Private Shared Comparer As New Difference.CIEDE2000ColorDifference
+		Private Shared Converter As New Conversion.ColourfulConverter
+		Private Shared DefaultCache As New Dictionary(Of Color, Integer)
+		Private Shared MapColors As New List(Of MapColor)
 
 		Public Shared ReadOnly Property Palette As List(Of Color)
 			Get
@@ -26,25 +24,8 @@ Namespace Helpers
 			End Get
 		End Property
 
-		''' <summary>
-		''' Loads config from folder and converts colors to Lab
-		''' </summary>
-		''' <param name="folder">Folder with config</param>
-		Public Shared Sub Load(Optional folder As String = "Default")
-			Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
-			If Not File.Exists(config) Then
-				ShowError(String.Format("Can't find {0}", config))
-				Exit Sub
-			End If
-			MapBaseColors = JsonConvert.DeserializeObject(Of List(Of MapBaseColor))(File.ReadAllText(config))
-			For Each MC In MapBaseColors
-				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Down))
-				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Normal))
-				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Up)) 'Same as base color
-				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Dark))
-			Next
-			CheckConfig()
-		End Sub
+		Public Shared Property ColorTypes As MapColor.Type() = {MapColor.Type.Up}
+		Public Shared Property LabMode As Boolean = False
 
 		Public Shared Sub CheckConfig()
 			LabMode = Config.LabMode
@@ -53,15 +34,7 @@ Namespace Helpers
 				If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For
 				MapColors.Add(MC)
 			Next
-			ColorCache.Clear()
 			CreateCache()
-		End Sub
-
-		Private Shared Sub CreateCache()
-			DefaultCache.Clear()
-			For Each color In MapColors
-				DefaultCache.Add(color.Color, color.ID_map)
-			Next
 		End Sub
 
 		''' <summary>
@@ -70,6 +43,7 @@ Namespace Helpers
 		''' <param name="color">Color to search</param>
 		''' <returns>Closest color</returns>
 		Public Shared Function GetClosest(color As Color) As MapColor
+			If color.A < 256 / 2 Then Return ColorNone
 			Dim id As Integer
 			If ColorCache.TryGetValue(color, id) Then Return MapColors(id)
 			If LabMode Then
@@ -79,6 +53,37 @@ Namespace Helpers
 			End If
 			If Not ColorCache.ContainsKey(color) Then ColorCache.Add(color, id)
 		End Function
+
+		''' <summary>
+		''' Loads config from folder and converts colors to Lab
+		''' </summary>
+		''' <param name="folder">Folder with config</param>
+		Public Shared Sub Load(Optional folder As String = "Default")
+			Dim config = Path.GetFullPath(folder + Path.DirectorySeparatorChar + "MapColors.json")
+			If Not File.Exists(config) Then
+				ShowError($"Can't find {config}")
+				Exit Sub
+			End If
+			MapBaseColors = JsonConvert.DeserializeObject(Of List(Of MapBaseColor))(File.ReadAllText(config))
+			ColorNone = New MapColor(MapBaseColors(0), MapColor.Type.Up)
+			MapBaseColors.RemoveAt(0)
+			For Each MC In MapBaseColors
+				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Down))
+				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Normal))
+				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Up)) 'Same as base color
+				MapColorsFull.Add(New MapColor(MC, MapColor.Type.Dark))
+			Next
+			CheckConfig()
+		End Sub
+
+		Private Shared Sub CreateCache()
+			DefaultCache.Clear()
+			ColorCache.Clear()
+			For Each color In MapColors
+				DefaultCache.Add(color.Color, color.ID_map)
+				'ColorCache.Add(color.Color, color.ID_map)
+			Next
+		End Sub
 
 		Private Shared Function FindClosest(color As Color, ByRef id As Integer) As MapColor
 			Dim Closest As MapColor = Nothing

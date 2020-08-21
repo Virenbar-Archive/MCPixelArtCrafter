@@ -141,4 +141,13 @@
   <data name="T_Textures" xml:space="preserve">
     <value>Textures</value>
   </data>
+  <data name="CB_ShowGrid" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="T_TexCr" xml:space="preserve">
+    <value>Creating image</value>
+  </data>
+  <data name="T_TexCrErr" xml:space="preserve">
+    <value>Error creating image (Image too large)</value>
+  </data>
 </root>

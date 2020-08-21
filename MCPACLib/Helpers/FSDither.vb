@@ -22,9 +22,11 @@ Namespace Helpers
 			For Each P In Proportions
 				If 0 <= x + P.x AndAlso x + P.x <= image.Width - 1 AndAlso y + P.y <= image.Height - 1 Then
 					nPixel = image.GetPixel(x + P.x, y + P.y)
-					Dim newPixel = Color.FromArgb((nPixel.R + diffR * P.p).ToByte,
-												  (nPixel.G + diffG * P.p).ToByte,
-												  (nPixel.B + diffB * P.p).ToByte)
+					Dim newPixel = Color.FromArgb(
+						(nPixel.A),
+						(nPixel.R + diffR * P.p).ToByte,
+						(nPixel.G + diffG * P.p).ToByte,
+						(nPixel.B + diffB * P.p).ToByte)
 					image.SetPixel(x + P.x, y + P.y, newPixel)
 				End If
 			Next
@@ -38,9 +40,11 @@ Namespace Helpers
 			For Each P In Proportions
 				If 0 <= x + P.x AndAlso x + P.x <= image.Width - 1 AndAlso y + P.y <= image.Height - 1 Then
 					nPixel = image.GetPixel(x + P.x, y + P.y)
-					Dim newPixel = Color.FromArgb((nPixel.R + diffR * P.p).ToByte,
-												  (nPixel.G + diffG * P.p).ToByte,
-												  (nPixel.B + diffB * P.p).ToByte)
+					Dim newPixel = Color.FromArgb(
+						(nPixel.A),
+						(nPixel.R + diffR * P.p).ToByte,
+						(nPixel.G + diffG * P.p).ToByte,
+						(nPixel.B + diffB * P.p).ToByte)
 					image.SetPixel(x + P.x, y + P.y, newPixel)
 				End If
 			Next

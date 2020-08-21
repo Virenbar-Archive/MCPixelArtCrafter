@@ -141,4 +141,13 @@
   <data name="T_Textures" xml:space="preserve">
     <value>Текстуры</value>
   </data>
+  <data name="CB_ShowGrid" xml:space="preserve">
+    <value>Сетка</value>
+  </data>
+  <data name="T_TexCr" xml:space="preserve">
+    <value>Создание изображения</value>
+  </data>
+  <data name="T_TexCrErr" xml:space="preserve">
+    <value>Ошибка создания изображения (Изображение слишком большое)</value>
+  </data>
 </root>

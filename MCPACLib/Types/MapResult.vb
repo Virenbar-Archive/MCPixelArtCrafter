@@ -34,10 +34,15 @@ Public Class MapResult
 		End Set
 	End Property
 
+	Default Public ReadOnly Property Item(P As Windows.Point) As MapColor
+		Get
+			Return Item(CInt(P.X) - 1, CInt(P.Y) - 1)
+		End Get
+	End Property
+
 	Default Public ReadOnly Property Item(P As Point) As MapColor
 		Get
-			If 1 > P.X Or P.X > Width - 1 Or 0 > P.Y Or P.Y > Height - 1 Then Return Nothing
-			Return Item(P.X, P.Y)
+			Return Item(P.X - 1, P.Y - 1)
 		End Get
 	End Property
 

@@ -7,8 +7,12 @@ Imports MCPACLib.Helpers.Configuration
 Namespace Helpers
 	Public Class TexturesCollection
 		Public Shared Selections As New List(Of TextureSelection)
-		Private Shared EmptyImage As New Bitmap(16, 16)
-		Private Shared Textures As Dictionary(Of Integer, Image)
+
+		'Private Shared EmptyImage As New Bitmap(16, 16)
+		'Private Shared Images As Dictionary(Of Integer, Image)
+
+		'Private Shared ImagesWPF As Dictionary(Of Integer, BitmapImage)
+		Private Shared Textures As Dictionary(Of Integer, Texture)
 
 		Shared Sub New()
 
@@ -16,17 +20,35 @@ Namespace Helpers
 
 		Public Shared ReadOnly Property Item(id As Integer) As Image
 			Get
-				Return If(Textures.ContainsKey(id), Textures(id), Nothing) 'EmptyImage)
+				Return If(Textures.ContainsKey(id), Textures(id).Img, Nothing) 'EmptyImage)
+			End Get
+		End Property
+
+		Public Shared ReadOnly Property ItemWPF(id As Integer) As BitmapImage
+			Get
+				Return If(Textures.ContainsKey(id), Textures(id).Image, Nothing)
+			End Get
+		End Property
+
+		Public Shared ReadOnly Property ItemTex(id As Integer) As Texture
+			Get
+				Return If(Textures.ContainsKey(id), Textures(id), Nothing)
 			End Get
 		End Property
 
 		Public Shared Sub CheckConfig()
-			Textures = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First.Img)
+			'Images = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First.Img)
+			'ImagesWPF = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First.Image)
+			Textures = Selections.ToDictionary(Function(x) x.ID, Function(x) x.List.First)
 			If Config.ColorToBlock.Count > 0 Then
-				Dim ImageDict = Selections.SelectMany(Function(x) x.List).ToDictionary(Function(x) x.Filename, Function(x) x.Img)
+				'Dim ImageDict = Selections.SelectMany(Function(x) x.List).ToDictionary(Function(x) x.Filename, Function(x) x.Img)
+				'Dim ImageDictWPF = Selections.SelectMany(Function(x) x.List).ToDictionary(Function(x) x.Filename, Function(x) x.Image)
+				Dim TextureDict = Selections.SelectMany(Function(x) x.List).ToDictionary(Function(x) x.Filename, Function(x) x)
 				For Each CBT In Config.ColorToBlock
-					If Textures.ContainsKey(CBT.Key) AndAlso ImageDict.ContainsKey(CBT.Value) Then
-						Textures(CBT.Key) = ImageDict(CBT.Value)
+					If Textures.ContainsKey(CBT.Key) AndAlso TextureDict.ContainsKey(CBT.Value) Then
+						'Images(CBT.Key) = ImageDict(CBT.Value)
+						'ImagesWPF(CBT.Key) = ImageDictWPF(CBT.Value)
+						Textures(CBT.Key) = TextureDict(CBT.Value)
 					End If
 				Next
 			End If

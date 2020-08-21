@@ -9,7 +9,7 @@
         <Color x:Key="ROuter">#0064A338</Color>
         <Color x:Key="RInner">#FF54CD00</Color>
         <Storyboard x:Key="AWait">
-            <DoubleAnimation Storyboard.TargetName="RotA" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:2" RepeatBehavior="Forever"></DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="RotA" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:4" RepeatBehavior="Forever"></DoubleAnimation>
         </Storyboard>
         <Storyboard x:Key="AWork">
             <DoubleAnimation Storyboard.TargetName="RotA" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:1" RepeatBehavior="Forever"></DoubleAnimation>

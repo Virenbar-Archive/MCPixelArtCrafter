@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Public Class MyStrings
@@ -119,11 +119,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Ищет локализованную строку, похожую на Grid.
+        '''</summary>
+        Public Shared ReadOnly Property CB_ShowGrid() As String
+            Get
+                Return ResourceManager.GetString("CB_ShowGrid", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Ищет локализованную строку, похожую на Map Colors.
         '''</summary>
         Public Shared ReadOnly Property T_Colors() As String
             Get
                 Return ResourceManager.GetString("T_Colors", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Creating image.
+        '''</summary>
+        Public Shared ReadOnly Property T_TexCr() As String
+            Get
+                Return ResourceManager.GetString("T_TexCr", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Error creating image (Image too large).
+        '''</summary>
+        Public Shared ReadOnly Property T_TexCrErr() As String
+            Get
+                Return ResourceManager.GetString("T_TexCrErr", resourceCulture)
             End Get
         End Property
         

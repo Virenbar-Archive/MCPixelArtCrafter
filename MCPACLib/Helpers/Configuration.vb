@@ -6,6 +6,8 @@ Namespace Helpers
 		Public Shared Config As New ConfigType With {.BlacklistMC = New HashSet(Of String), .ColorToBlock = New Dictionary(Of Integer, String)}
 		Const ConfigFile As String = "Settings.json"
 
+		Public Shared Property TempFolder As String = Path.Combine(FileIO.SpecialDirectories.Temp, "MCPAC")
+
 		Public Shared Sub LoadConfig()
 			If Not File.Exists(ConfigFile) Then Exit Sub
 			Config = JsonConvert.DeserializeObject(Of ConfigType)(File.ReadAllText(ConfigFile))
