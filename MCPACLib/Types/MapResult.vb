@@ -1,17 +1,22 @@
 ﻿Imports System.Drawing
 Imports MCPACLib.Data
+Imports MCPACLib.Helpers
 
 Public Class MapResult
 	Private _Image As Bitmap
+	Private _TextureImage As Bitmap
 
-	Public Sub New(w As Integer, h As Integer)
+	Public Sub New(w As Integer, h As Integer, Optional type As MapType = MapType.Flat)
 		Width = w
 		Height = h
 		Map = New MapColor(w * h - 1) {}
 		_Image = New Bitmap(w, h)
+		MapType = type
 	End Sub
 
 	Public ReadOnly Property Height As Integer
+	Public ReadOnly Property Width As Integer
+	Public ReadOnly Property MapType As MapType
 
 	Public ReadOnly Property Image As Bitmap
 		Get
@@ -19,9 +24,14 @@ Public Class MapResult
 		End Get
 	End Property
 
+	Public ReadOnly Property ImageTex As Bitmap
+		Get
+			Return _TextureImage
+		End Get
+	End Property
+
 	Public ReadOnly Property Map As MapColor()
 	Public ReadOnly Property UsedMapColors As New Dictionary(Of MapColor, Integer)
-	Public ReadOnly Property Width As Integer
 
 	Default Public Property Item(X As Integer, Y As Integer) As MapColor
 		Get
@@ -30,7 +40,6 @@ Public Class MapResult
 		End Get
 		Set(value As MapColor)
 			Map(X + Y * Width) = value
-			'Image.SetPixel(X, Y, value.Color)
 		End Set
 	End Property
 
@@ -45,11 +54,6 @@ Public Class MapResult
 			Return Item(P.X - 1, P.Y - 1)
 		End Get
 	End Property
-
-	Public Function ColorAtPixel(p As Point) As MapColor
-		If 1 > p.X Or p.X > Width - 1 Or 0 > p.Y Or p.Y > Height - 1 Then Return Nothing
-		Return Item(p.X - 1, p.Y - 1)
-	End Function
 
 	Friend Sub CountUsedMapColors()
 		UsedMapColors.Clear()
@@ -71,15 +75,27 @@ Public Class MapResult
 		End Using
 	End Sub
 
-	''' <summary>
-	''' Sets color on map and image
-	''' </summary>
-	''' <param name="x"></param>
-	''' <param name="y"></param>
-	''' <param name="MC"></param>
-	Friend Sub SetColor(x As Integer, y As Integer, MC As MapColor)
-		Item(x, y) = MC
-		Image.SetPixel(x, y, MC.Color)
-	End Sub
+	Public Async Function RedoImageTex() As Task
+		_TextureImage = Await Task.Run(
+		Function()
+			Dim Image = New Bitmap(Width * 16, Height * 16)
+			Using G = Graphics.FromImage(Image)
+				G.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+				For y = 0 To Height - 1
+					For x = 0 To Width - 1
+						Dim Texture = TexturesCollection.Item(Item(x, y).ID)
+						If Texture Is Nothing Then
+							Using brush = New SolidBrush(Item(x, y).Color)
+								G.FillRectangle(brush, x * 16, y * 16, 16, 16)
+							End Using
+						Else
+							G.DrawImage(Texture, x * 16, y * 16, 16, 16)
+						End If
+					Next
+				Next
+			End Using
+			Return Image
+		End Function)
+	End Function
 
 End Class

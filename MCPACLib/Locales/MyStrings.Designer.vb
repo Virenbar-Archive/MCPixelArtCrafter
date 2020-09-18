@@ -119,6 +119,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Ищет локализованную строку, похожую на Use dither.
+        '''</summary>
+        Public Shared ReadOnly Property CB_Dither() As String
+            Get
+                Return ResourceManager.GetString("CB_Dither", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Ищет локализованную строку, похожую на Grid.
         '''</summary>
         Public Shared ReadOnly Property CB_ShowGrid() As String

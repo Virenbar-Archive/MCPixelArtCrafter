@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
         xmlns:r="clr-namespace:MCPixelArtCrafterWPF.My.Resources"
         mc:Ignorable="d"
+        xmlns:MCPACLib="clr-namespace:MCPACLib;assembly=MCPACLib"
         Title="MCPixelArtCrafter" MinWidth="250" MinHeight="250">
+    <Window.Resources>
+        <local:EnumRadioConverter x:Key="ERC" />
+    </Window.Resources>
+    <Window.DataContext>
+        <MCPACLib:ConfigType />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -30,12 +37,13 @@
 
         <GroupBox Header="Color mode" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="2">
             <StackPanel>
-                <RadioButton Name="RB_Flat" Content="Flat" IsChecked="True" />
-                <RadioButton Name="RB_Staircase"  Content="Staircase" />
-                <RadioButton Name="RB_All" Content="All 4 colors" />
+                <RadioButton Content="Flat" IsChecked="{Binding MapType, ConverterParameter={x:Static MCPACLib:MapType.Flat}, Converter={StaticResource ERC}}" />
+                <RadioButton Content="Staircase" IsChecked="{Binding MapType, ConverterParameter={x:Static MCPACLib:MapType.Staircase}, Converter={StaticResource ERC}}" />
+                <RadioButton Content="All 4 colors" IsChecked="{Binding MapType, ConverterParameter={x:Static MCPACLib:MapType.Creative}, Converter={StaticResource ERC}}" />
             </StackPanel>
         </GroupBox>
 
+        <Button Visibility="Hidden" Name="Test" Content="Test" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,200,10" />
         <Button Name="Create" Content="{x:Static r:MyStrings.B_GenerateImage}" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" />
         <DockPanel Grid.Row="3">
             <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom"  VerticalAlignment="Bottom">

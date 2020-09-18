@@ -150,4 +150,7 @@
   <data name="T_TexCrErr" xml:space="preserve">
     <value>Ошибка создания изображения (Изображение слишком большое)</value>
   </data>
+  <data name="CB_Dither" xml:space="preserve">
+    <value>Использовать дизеринг</value>
+  </data>
 </root>

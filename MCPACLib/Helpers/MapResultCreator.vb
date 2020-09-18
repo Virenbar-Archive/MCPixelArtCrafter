@@ -11,12 +11,12 @@ Imports SimplePaletteQuantizer.Quantizers
 
 Namespace Helpers
 	Public Class MapResultCreator
-		Private Shared activeDitherer As IColorDitherer = New FilterLiteSierra
+		Private Shared activeDitherer As IColorDitherer = New FloydSteinbergDitherer
 		Private Shared activeQuantizer As IColorQuantizer = New MapColorQuantizer
 		Dim targetImage As Image
 		'New FloydSteinbergDitherer
 
-		Public Shared Async Function CreateMap(image As Image) As Task(Of Object)
+		Public Shared Async Function CreateMapTest(image As Bitmap) As Task(Of Object)
 			MapColorQuantizer.SetPalette(MapColorsCollection.Palette)
 			Dim targetImage = Await Quantize(New Bitmap(image))
 			targetImage.Save("D:\test.png", Imaging.ImageFormat.Png)
@@ -31,7 +31,7 @@ Namespace Helpers
 				MR = Await Task.Run(
 					Function() As MapResult
 						Dim closest As MapColor
-						Dim Result = New MapResult(w, h)
+						Dim Result = New MapResult(w, h, Config.MapType)
 						For x = 0 To w - 1
 							For y = 0 To h - 1
 								'progress.Report(x * h + (y + 1))
@@ -58,6 +58,7 @@ Namespace Helpers
 			Return MR
 		End Function
 
+		<Obsolete>
 		Public Shared Async Function CreateTextureImage(map As MapResult) As Task(Of Bitmap)
 			Dim w = map.Width
 			Dim h = map.Height

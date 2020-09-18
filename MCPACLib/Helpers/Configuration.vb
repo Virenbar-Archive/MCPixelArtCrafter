@@ -3,9 +3,8 @@ Imports Newtonsoft.Json
 
 Namespace Helpers
 	Public Class Configuration
-		Public Shared Config As New ConfigType With {.BlacklistMC = New HashSet(Of String), .ColorToBlock = New Dictionary(Of Integer, String)}
 		Const ConfigFile As String = "Settings.json"
-
+		Public Shared Property Config As New ConfigType
 		Public Shared Property TempFolder As String = Path.Combine(FileIO.SpecialDirectories.Temp, "MCPAC")
 
 		Public Shared Sub LoadConfig()

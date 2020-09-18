@@ -13,4 +13,16 @@ Module Extensions
 		Return Color.FromArgb(A, C.R, C.G, C.B)
 	End Function
 
+	''' <summary>
+	''' Clamp number by min, max
+	''' </summary>
+	''' <param name="n">Number to clamp</param>
+	''' <param name="min">Min value</param>
+	''' <param name="max">Max value</param>
+	''' <returns></returns>
+	<Extension>
+	Public Function Clamp(n As Double, min As Double, max As Double) As Double
+		Return Math.Max(Math.Min(max, n), min)
+	End Function
+
 End Module

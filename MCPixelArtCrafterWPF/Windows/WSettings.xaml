@@ -42,7 +42,7 @@
                     </TextBlock>
                 </CheckBox.ToolTip>
             </CheckBox>
-            <CheckBox Name="CB_Dither" Content="Use dither" ToolTip="Use dither" IsChecked="{Binding Dither, Mode=TwoWay, UpdateSourceTrigger=Default}" />
+            <CheckBox Name="CB_Dither" Content="{x:Static r:MyStrings.CB_Dither}" ToolTip="Use dither" IsChecked="{Binding Dither, Mode=TwoWay, UpdateSourceTrigger=Default}" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10">
             <Button Content="OK" Margin="5,0" Width="50" Click="B_OK_Click" />

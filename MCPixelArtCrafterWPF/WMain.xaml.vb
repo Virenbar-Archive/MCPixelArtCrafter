@@ -33,6 +33,7 @@ Class WMain
 		Configuration.LoadConfig()
 		MapColorsCollection.Load()
 		TexturesCollection.Load()
+		DataContext = Configuration.Config
 	End Sub
 
 	Private Sub B_Settings_Click(sender As Object, e As EventArgs)
@@ -70,17 +71,6 @@ Class WMain
 		lbl_Elapsed.Text = SH.Elapsed
 	End Sub
 
-	Private Sub ColorModeChanged(sender As Object, e As EventArgs) Handles RB_Staircase.Checked, RB_Flat.Checked, RB_All.Checked
-		If RB_Flat.IsChecked Then
-			MapColorsCollection.ColorTypes = {MapColor.Type.Normal}
-		ElseIf RB_Staircase.IsChecked Then
-			MapColorsCollection.ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down}
-		ElseIf RB_All.IsChecked Then
-			MapColorsCollection.ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down, MapColor.Type.Dark}
-		End If
-		If CType(sender, Control).IsFocused Then MapColorsCollection.CheckConfig()
-	End Sub
-
 	Private Sub PB_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles PB.DragEnter
 		If e.Data.GetDataPresent(DataFormats.FileDrop) Then
 			e.Effects = DragDropEffects.Copy
@@ -101,10 +91,15 @@ Class WMain
 		End If
 	End Sub
 
+	Private Sub Test_Click(sender As Object, e As RoutedEventArgs) Handles Test.Click
+		MapResultCreator.CreateMapTest(InputImage)
+	End Sub
+
 	Public Async Sub Start()
 		Create.Content = My.Resources.MyStrings.B_Cancel
 		Rot.Work()
 		SH.Start()
+		MapColorsCollection.CheckConfig()
 		'Dim result As IResult = IIf(RB_Map.Checked, New MapResult, Nothing)
 		Dim result As MapResult
 		CTS = New Threading.CancellationTokenSource

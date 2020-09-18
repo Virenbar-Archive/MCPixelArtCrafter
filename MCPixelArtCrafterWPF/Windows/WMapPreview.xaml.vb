@@ -14,6 +14,7 @@ Public Class WMapPreview
 	Public Overloads Sub Show(result As MapResult)
 		MapResult = result
 		Show()
+		PB.Reset()
 	End Sub
 
 	Private Sub B_Save_Click(sender As Object, e As RoutedEventArgs) Handles B_Save.Click
@@ -39,8 +40,8 @@ Public Class WMapPreview
 		Try
 			TI_Texture.IsEnabled = False
 			TB_Status.Text = My.Resources.MyStrings.T_TexCr
-			TextureImage = (Await MapResultCreator.CreateTextureImage(MapResult)).ToBitmapImage
-			PB2.Source = TextureImage
+			Await MapResult.RedoImageTex
+			PB2.Source = MapResult.ImageTex.ToBitmapImage
 			TB_Status.Text = ""
 			TI_Texture.IsEnabled = True
 		Catch ex As Exception
@@ -85,7 +86,7 @@ Public Class WMapPreview
 	End Sub
 
 	Private Sub TC_MV_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles TC_MV.SelectionChanged
-		If TextureImage Is Nothing And TI_Texture.IsSelected And TI_Texture.IsEnabled Then
+		If PB2.Source Is Nothing And TI_Texture.IsSelected And TI_Texture.IsEnabled Then
 			CreateTexture()
 		End If
 	End Sub
@@ -106,6 +107,7 @@ Public Class WMapPreview
 			WP_UsedTextures.Children.Add(tc)
 		Next
 		PB.InvalidateVisual()
+		PB.Reset()
 	End Sub
 
 	'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

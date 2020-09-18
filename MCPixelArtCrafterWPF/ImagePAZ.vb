@@ -112,8 +112,11 @@ Public Class ImagePAZ
 		'd*: Positive - Free client space, Negative - Hidden image space
 		Dim dx = RenderSize.Width - ImageSize.Width '* 1 / _zoomScale
 		Dim dy = RenderSize.Height - ImageSize.Height '* 1 / _zoomScale
-		tX = If(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
-		tY = If(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
+		tX = If(dx > 0, tX.Clamp(0, dx), tX.Clamp(dx, 0))
+		tY = If(dy > 0, tY.Clamp(0, dy), tY.Clamp(dy, 0))
+
+		'tX = If(dx > 0, Math.Max(Math.Min(tX, dx), 0), Math.Min(Math.Max(tX, dx), 0))
+		'tY = If(dy > 0, Math.Max(Math.Min(tY, dy), 0), Math.Min(Math.Max(tY, dy), 0))
 	End Sub
 
 	Private Sub g() 'Handles Me.SizeChanged
@@ -125,7 +128,10 @@ Public Class ImagePAZ
 		InvalidateVisual()
 	End Sub
 
-	Private Sub Reset()
+	''' <summary>
+	''' Reset position and zoom
+	''' </summary>
+	Public Sub Reset()
 		_zoomScale = 1
 		SetZoomMin()
 		tX = CInt(RenderSize.Width / 2 - Source.Width / 2)

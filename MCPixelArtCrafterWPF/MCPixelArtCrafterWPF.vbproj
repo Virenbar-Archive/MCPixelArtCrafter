@@ -123,6 +123,7 @@
     <Compile Include="Controls\TextureSelector.xaml.vb">
       <DependentUpon>TextureSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\EnumRadioConverter.vb" />
     <Compile Include="Extensions.vb" />
     <Compile Include="Windows\MessageBox\MessageBoxWPF.vb" />
     <Compile Include="Windows\MessageBox\WMessageBox.xaml.vb">

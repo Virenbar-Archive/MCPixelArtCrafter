@@ -29,6 +29,15 @@ Namespace Helpers
 
 		Public Shared Sub CheckConfig()
 			LabMode = Config.LabMode
+			Select Case Config.MapType
+				Case MapType.Flat
+					ColorTypes = {MapColor.Type.Normal}
+				Case MapType.Staircase
+					ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down}
+				Case MapType.Creative
+					ColorTypes = {MapColor.Type.Normal, MapColor.Type.Up, MapColor.Type.Down, MapColor.Type.Dark}
+			End Select
+
 			MapColors.Clear()
 			For Each MC In MapColorsFull
 				If Config.BlacklistMC.Contains(MC.ID_str) OrElse Not ColorTypes.Contains(MC.TypeT) Then Continue For

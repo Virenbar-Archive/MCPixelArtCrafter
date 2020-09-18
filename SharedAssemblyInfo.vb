@@ -6,6 +6,5 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCopyright("Copyright © Virenbar 2020")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(False)>
-<Assembly: AssemblyVersion("3.1.0")>
+<Assembly: AssemblyVersion("3.1.1")>
 '<Assembly: AssemblyFileVersion("3.0.0")>
-
