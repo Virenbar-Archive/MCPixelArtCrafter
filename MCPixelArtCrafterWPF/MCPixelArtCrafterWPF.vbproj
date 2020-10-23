@@ -129,6 +129,9 @@
     <Compile Include="Windows\MessageBox\WMessageBox.xaml.vb">
       <DependentUpon>WMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WNBTExport.xaml.vb">
+      <DependentUpon>WNBTExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WStaircase.xaml.vb">
       <DependentUpon>WStaircase.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Resources\icons8-info-48.png" />
     <Content Include="Resources\Lang.ru-RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,6 +183,10 @@
     <Page Include="Windows\MessageBox\WMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\WNBTExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WStaircase.xaml">
       <SubType>Designer</SubType>
@@ -277,6 +285,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
     <None Include="My Project\app.manifest" />
+    <None Include="My Project\DataSources\MCPACLib.CBSources.MCVersionList.datasource" />
     <None Include="My Project\DataSources\MCPACLib.Helpers.TexturesCollection+Texture.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

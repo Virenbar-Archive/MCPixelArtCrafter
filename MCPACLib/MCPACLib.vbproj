@@ -96,6 +96,7 @@
     <Compile Include="..\SharedAssemblyInfo.vb">
       <Link>My Project\SharedAssemblyInfo.vb</Link>
     </Compile>
+    <Compile Include="CBSources\MCVersionList.vb" />
     <Compile Include="Data\IO\FileSaver.vb" />
     <Compile Include="Data\IO\JSONConverter.vb" />
     <Compile Include="Data\IO\MCPACConverter.vb" />
@@ -103,6 +104,7 @@
     <Compile Include="Data\SPQ\FloydSteinbergDithererIP.vb" />
     <Compile Include="Data\SPQ\MapColorQuantizer.vb" />
     <Compile Include="Enums\MapType.vb" />
+    <Compile Include="Enums\MCVersion.vb" />
     <Compile Include="Helpers\Configuration.vb" />
     <Compile Include="Helpers\Const.vb" />
     <Compile Include="Helpers\Extensions.vb" />
@@ -140,6 +142,7 @@
     <Compile Include="Types\MapColor.vb" />
     <Compile Include="Types\MapResult.vb" />
     <Compile Include="Types\MapStaircase.vb" />
+    <Compile Include="Types\NBTConfig.vb" />
     <Compile Include="Types\Texture.vb" />
     <Compile Include="Types\TextureSelection.vb" />
   </ItemGroup>

@@ -153,4 +153,19 @@
   <data name="CB_Dither" xml:space="preserve">
     <value>Использовать дизеринг</value>
   </data>
+  <data name="B_Export" xml:space="preserve">
+    <value>Экспорт в карты</value>
+  </data>
+  <data name="CB_IDCounts" xml:space="preserve">
+    <value>Создать idcounts.dat</value>
+  </data>
+  <data name="T_Exporting" xml:space="preserve">
+    <value>Экспортирование в карты</value>
+  </data>
+  <data name="T_FirstID" xml:space="preserve">
+    <value>Начальный ID</value>
+  </data>
+  <data name="T_Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
 </root>

@@ -83,6 +83,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Ищет локализованную строку, похожую на Export to maps.
+        '''</summary>
+        Public Shared ReadOnly Property B_Export() As String
+            Get
+                Return ResourceManager.GetString("B_Export", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Ищет локализованную строку, похожую на Create image.
         '''</summary>
         Public Shared ReadOnly Property B_GenerateImage() As String
@@ -128,6 +137,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Ищет локализованную строку, похожую на Create idcounts.dat.
+        '''</summary>
+        Public Shared ReadOnly Property CB_IDCounts() As String
+            Get
+                Return ResourceManager.GetString("CB_IDCounts", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Ищет локализованную строку, похожую на Grid.
         '''</summary>
         Public Shared ReadOnly Property CB_ShowGrid() As String
@@ -142,6 +160,24 @@ Namespace My.Resources
         Public Shared ReadOnly Property T_Colors() As String
             Get
                 Return ResourceManager.GetString("T_Colors", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Exporting to maps.
+        '''</summary>
+        Public Shared ReadOnly Property T_Exporting() As String
+            Get
+                Return ResourceManager.GetString("T_Exporting", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на First ID.
+        '''</summary>
+        Public Shared ReadOnly Property T_FirstID() As String
+            Get
+                Return ResourceManager.GetString("T_FirstID", resourceCulture)
             End Get
         End Property
         
@@ -169,6 +205,15 @@ Namespace My.Resources
         Public Shared ReadOnly Property T_Textures() As String
             Get
                 Return ResourceManager.GetString("T_Textures", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Ищет локализованную строку, похожую на Version.
+        '''</summary>
+        Public Shared ReadOnly Property T_Version() As String
+            Get
+                Return ResourceManager.GetString("T_Version", resourceCulture)
             End Get
         End Property
     End Class

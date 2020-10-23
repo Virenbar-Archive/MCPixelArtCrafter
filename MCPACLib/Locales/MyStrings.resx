@@ -153,4 +153,19 @@
   <data name="CB_Dither" xml:space="preserve">
     <value>Use dither</value>
   </data>
+  <data name="B_Export" xml:space="preserve">
+    <value>Export to maps</value>
+  </data>
+  <data name="CB_IDCounts" xml:space="preserve">
+    <value>Create idcounts.dat</value>
+  </data>
+  <data name="T_Exporting" xml:space="preserve">
+    <value>Exporting to maps</value>
+  </data>
+  <data name="T_FirstID" xml:space="preserve">
+    <value>First ID</value>
+  </data>
+  <data name="T_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

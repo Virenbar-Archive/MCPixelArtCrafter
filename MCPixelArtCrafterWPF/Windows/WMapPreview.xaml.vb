@@ -110,6 +110,11 @@ Public Class WMapPreview
 		PB.Reset()
 	End Sub
 
+	Private Sub B_Export_Click(sender As Object, e As RoutedEventArgs) Handles B_Export.Click
+		Dim Exp = New WNBTExport()
+		Exp.Show(MapResult)
+	End Sub
+
 	'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 	'	FormTextureView.Show(MapResult)
 	'End Sub

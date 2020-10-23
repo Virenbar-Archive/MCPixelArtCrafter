@@ -59,10 +59,13 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left">
             <CheckBox Name="CB_Grid" Content="{x:Static r:MyStrings.CB_ShowGrid}" />
         </StackPanel>
-        <Button Name="B_Save" Content="Save" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom" Grid.Row="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Name="B_Export" Content="{x:Static r:MyStrings.B_Export}" Margin="5,0" VerticalAlignment="Center" Grid.Row="1" />
+            <Button Name="B_Save" Content="{x:Static r:MyStrings.B_Save}"  VerticalAlignment="Center" Grid.Row="1" />
+        </StackPanel>
         <DockPanel Grid.Row="2">
             <StatusBar>
                 <StatusBarItem>
