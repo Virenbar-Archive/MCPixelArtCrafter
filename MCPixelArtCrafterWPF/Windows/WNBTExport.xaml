@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     Title="{x:Static r:MyStrings.T_Exporting}" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Window.Resources>
-        <ObjectDataProvider x:Key="rr" ObjectType="{x:Type CBSources:MCVersionList}" MethodName="Gett" />
+        <ObjectDataProvider x:Key="MCVer" ObjectType="{x:Type CBSources:MCVersionList}" MethodName="Gett" />
     </Window.Resources>
     <Window.DataContext>
         <MCPACLib:ConfigType />
@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Content="{x:Static r:MyStrings.T_Version}" />
-        <ComboBox Width="120" ItemsSource="{Binding MCVersionList, Source={StaticResource rr}}" VerticalAlignment="Center" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding NBTConfig.Version, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" />
+        <ComboBox Width="120" ItemsSource="{Binding Source={StaticResource MCVer}}" VerticalAlignment="Center" SelectedValue="{Binding NBTConfig.Version, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" DisplayMemberPath="Value" SelectedValuePath="Key" />
 
         <Label Content="{x:Static r:MyStrings.T_FirstID}" VerticalContentAlignment="Center" Grid.Row="1" />
         <TextBox HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Text="{Binding NBTConfig.FirstID, Mode=TwoWay}" Grid.Column="1" />

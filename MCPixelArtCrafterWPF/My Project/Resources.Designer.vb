@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Поиск локализованного ресурса типа System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property GitHub_Mark_32px() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("GitHub_Mark_32px", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property icons8_chevron_left_48() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8_chevron_left_48", resourceCulture)

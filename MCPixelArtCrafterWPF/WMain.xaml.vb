@@ -37,7 +37,7 @@ Class WMain
 	End Sub
 
 	Private Sub B_Settings_Click(sender As Object, e As EventArgs)
-		Dim s = New WSettings
+		Dim s = New WSettings() With {.Owner = Application.Current.MainWindow}
 		s.ShowDialog()
 	End Sub
 

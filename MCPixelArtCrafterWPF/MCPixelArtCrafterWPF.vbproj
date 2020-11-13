@@ -96,6 +96,8 @@
     <Compile Include="..\SharedAssemblyInfo.vb">
       <Link>My Project\SharedAssemblyInfo.vb</Link>
     </Compile>
+    <Compile Include="Commands.vb" />
+    <Compile Include="Commands\ComAbout.vb" />
     <Compile Include="Controls\MapColorCheckBox.xaml.vb">
       <DependentUpon>MapColorCheckBox.xaml</DependentUpon>
     </Compile>
@@ -125,6 +127,10 @@
     </Compile>
     <Compile Include="Converters\EnumRadioConverter.vb" />
     <Compile Include="Extensions.vb" />
+    <Compile Include="RelayCommnad.vb" />
+    <Compile Include="Windows\WAbout.xaml.vb">
+      <DependentUpon>WAbout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MessageBox\MessageBoxWPF.vb" />
     <Compile Include="Windows\MessageBox\WMessageBox.xaml.vb">
       <DependentUpon>WMessageBox.xaml</DependentUpon>
@@ -170,6 +176,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Resources\icons8-info-48.png" />
+    <Resource Include="Resources\GitHub-Mark-32px.png" />
     <Content Include="Resources\Lang.ru-RU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -180,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Page Include="Windows\WAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MessageBox\WMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

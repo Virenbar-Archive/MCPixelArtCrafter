@@ -1,0 +1,68 @@
+﻿<Window x:Class="WAbout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MCPixelArtCrafterWPF"
+        mc:Ignorable="d"
+        Title="About"  ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/MCPixelArtCrafterWPF;component/Resources/Logo.ico">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="256" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <RichTextBox Grid.Row="0" Grid.Column="0" BorderThickness="0" IsReadOnly="True" IsDocumentEnabled="True">
+            <FlowDocument>
+                <FlowDocument.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0" />
+                    </Style>
+                    <Style TargetType="{x:Type Hyperlink}">
+                        <EventSetter Event="RequestNavigate" Handler="Hyperlink_RequestNavigate" />
+                    </Style>
+                </FlowDocument.Resources>
+                <Paragraph>
+                    <Run>Developed by</Run>
+                    <Hyperlink NavigateUri="https://github.com/Virenbar">Virenbar</Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    <Run>Source code:</Run>
+                    <Hyperlink NavigateUri="https://github.com/Virenbar/MCPixelArtCrafter">Github</Hyperlink>
+                    <Image Width="16" Source="pack://siteoforigin:,,,/Resources/GitHub-Mark-32px.png" />
+                </Paragraph>
+                <Paragraph>
+                    <Run>Free icons:</Run>
+                    <Hyperlink NavigateUri="https://icons8.com">Icons8</Hyperlink>
+                </Paragraph>
+                <Paragraph Margin="0,5,0,0">
+                    <Run>Used libraries:</Run>
+                </Paragraph>
+                <List Margin="0" MarkerOffset="3" Padding="10,0,0,0">
+                    <ListItem>
+                        <Paragraph>
+                            <Run>Json.NET:</Run>
+                            <Hyperlink NavigateUri="https://github.com/JamesNK/Newtonsoft.Json">Github</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            <Run>Colourful:</Run>
+                            <Hyperlink NavigateUri="https://github.com/tompazourek/Colourful">Github</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            <Run>fNBT:</Run>
+                            <Hyperlink NavigateUri="https://github.com/mstefarov/fNbt">Github</Hyperlink>
+                        </Paragraph>
+                    </ListItem>
+                </List>
+            </FlowDocument>
+        </RichTextBox>
+        <Image Height="128" Grid.Row="0" Grid.Column="1" Source="/MCPixelArtCrafterWPF;component/Resources/Logo.ico" VerticalAlignment="Top" />
+    </Grid>
+</Window>
