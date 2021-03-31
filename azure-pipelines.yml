@@ -20,6 +20,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: AssembyInfoReader@2
+  inputs:
+    searchPattern: 'SharedAssemblyInfo.vb'
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
