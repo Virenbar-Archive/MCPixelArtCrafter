@@ -7,9 +7,9 @@ trigger:
   tags:
     include:
       - v*
-  branches:
-    include:
-      - master
+#  branches:
+#    include:
+#      - master
 
 pool:
   vmImage: 'windows-latest'
